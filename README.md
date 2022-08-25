@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Project Phoenix
+
+A ReactJS project utlizing Jikan api (an unofficial api for MyAnimeList)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

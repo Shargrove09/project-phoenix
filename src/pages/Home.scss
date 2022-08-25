@@ -1,0 +1,24 @@
+.home__form{ 
+    border-radius: 5px;
+    padding: 15px; 
+    z-index: 1; 
+    background-color: #7d8fbb;
+}
+
+.home__formControl { 
+    display: flex !important; // Overrides 
+    flex-direction: row !important;
+}
+
+.home__input { 
+    flex: 1; 
+}
+
+.home__iconButton { 
+    flex: 0; 
+}
+
+.home__searchBarImage { 
+    padding-top: 20px;
+    border-radius: 40px;
+}
