@@ -32,7 +32,7 @@ const SingleAnime = (props) => {
             {title}
           </Typography>
           <Typography variant="h5" component="h2">
-            Airing: {String(airing)}
+            Airing: {airing ? "Currently Airing": "Not Airing"}
           </Typography>
           <Typography variant="h5" component="h2">
             Score: {score}

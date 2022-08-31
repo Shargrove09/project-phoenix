@@ -9,6 +9,8 @@ import { alpha,  makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import {Grid} from '@material-ui/core';
 
+import './MainNavigation.scss';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -85,7 +87,7 @@ export default function SearchAppBar() {
   return (
     <div className={classes.root}>
       <AppBar position="static" className="MainNavigation__appbar">
-        <Toolbar>
+        <Toolbar className="MainNavigation__toolbar">
           <Link to="/" className={classes.title}>
           <Grid container>
             <Grid item>

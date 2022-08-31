@@ -32,8 +32,8 @@ const Home = () => {
         <Grid item>
           <img
             alt="Gurren Lagann"
-            src={`${process.env.PUBLIC_URL}/Gurren_Lagann.jpg`}
-            height={420}
+            src={`${process.env.PUBLIC_URL}/searchbar_img.jpeg`}
+            height={240}
             width={800}
             className="home__searchBarImage"
           />
