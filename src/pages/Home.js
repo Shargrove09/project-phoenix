@@ -1,7 +1,13 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../context/search";
-import { FormControl, Input, IconButton, Grid } from "@material-ui/core";
+import {
+  FormControl,
+  Input,
+  IconButton,
+  Grid,
+  TextField,
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 import "./Home.scss";
@@ -20,6 +26,7 @@ const Home = () => {
       navigate("/results");
     });
   };
+
   return (
     <Grid
       container
@@ -41,11 +48,13 @@ const Home = () => {
         <Grid item>
           <form className="home__form">
             <FormControl type="submit" className="home__formControl">
-              <Input
+              <TextField
+                autoFocus="true"
                 placeholder="Search for an anime..."
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 className="home__input"
+                inputProps={{ style: { color: "white" } }}
               />
               {/*Getting what's inside of event*/}
               <IconButton

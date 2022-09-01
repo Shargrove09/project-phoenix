@@ -11,7 +11,21 @@ import SingleView from "./pages/SingleView";
 import MainNavigation from "./components/MainNavigation";
 import { SearchContext } from "./context/search";
 
+import { createTheme, ThemeProvider } from "@material-ui/core";
+
 import "./App.css";
+
+const theme = createTheme({
+  palette: {
+    type: "dark",
+    primary: {
+      main: "#3f51b5",
+    },
+    secondary: {
+      main: "#f50057",
+    },
+  },
+});
 
 function App() {
   const [animeData, setAnimeData] = useState([]);
@@ -32,21 +46,23 @@ function App() {
   };
 
   return (
-    <SearchContext.Provider
-      value={{ search, animeData, singleData, setData, setSingle }}
-    >
-      <Router>
-        <MainNavigation />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/results" element={<Results />} />
-            <Route path="/single-view" element={<SingleView />} />
-            {/*Need to add Navigate component here in future*/}
-          </Routes>
-        </main>
-      </Router>
-    </SearchContext.Provider>
+    <ThemeProvider theme={theme}>
+      <SearchContext.Provider
+        value={{ search, animeData, singleData, setData, setSingle }}
+      >
+        <Router>
+          <MainNavigation />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/results" element={<Results />} />
+              <Route path="/single-view" element={<SingleView />} />
+              {/*Need to add Navigate component here in future*/}
+            </Routes>
+          </main>
+        </Router>
+      </SearchContext.Provider>
+    </ThemeProvider>
   );
 }
 

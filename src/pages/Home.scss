@@ -1,8 +1,10 @@
 .home__form{ 
     border-radius: 5px;
     padding: 15px; 
+    margin-top: 25px; 
     z-index: 1; 
-    background-color: #95A3B3;
+    background-color: #4B4E6D;
+    color: white; 
 }
 
 .home__formControl { 
@@ -12,6 +14,7 @@
 
 .home__input { 
     flex: 1; 
+    font-style: white;
 }
 
 .home__iconButton { 
