@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Results from "./pages/Results";
 import SingleView from "./pages/SingleView";
 import MainNavigation from "./components/MainNavigation";
+import Friends from "./pages/Friends";
 import { SearchContext } from "./context/search";
 
 import { createTheme, ThemeProvider } from "@material-ui/core";
@@ -57,6 +58,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/results" element={<Results />} />
               <Route path="/single-view" element={<SingleView />} />
+              <Route path="/friends" element={<Friends />} />
               {/*Need to add Navigate component here in future*/}
             </Routes>
           </main>
