@@ -94,16 +94,7 @@ export default function SearchAppBar() {
           <Link to="/" className={classes.title}>
             <Grid container>
               <Grid item>
-                <IconButton
-                  size="small"
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  sx={{ mr: 2 }}
-                >
-                  <MenuIcon />
-                  <NavDrawer />
-                </IconButton>
+                <NavDrawer />
               </Grid>
               <Grid item>
                 <img

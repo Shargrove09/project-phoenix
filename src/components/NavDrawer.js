@@ -10,6 +10,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { IconButton } from "@material-ui/core";
+import MenuIcon from "@mui/icons-material/Menu";
 
 export default function TemporaryDrawer() {
   const [state, setState] = React.useState({
@@ -66,7 +68,9 @@ export default function TemporaryDrawer() {
     <div>
       {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <IconButton size="small" onClick={toggleDrawer(anchor, true)}>
+            <MenuIcon />
+          </IconButton>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
