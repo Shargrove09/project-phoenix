@@ -48,6 +48,8 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      {" "}
+      {/* PASS THIS THEME TO MAIN NAV THEN TO NAV DRAWER*/}
       <SearchContext.Provider
         value={{ search, animeData, singleData, setData, setSingle }}
       >

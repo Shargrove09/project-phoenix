@@ -32,7 +32,7 @@ const SingleAnime = (props) => {
             {title}
           </Typography>
           <Typography variant="h5" component="h2">
-            Airing: {airing ? "Currently Airing": "Not Airing"}
+            Airing: {airing ? "Currently Airing" : "Not Airing"}
           </Typography>
           <Typography variant="h5" component="h2">
             Score: {score}
@@ -47,7 +47,10 @@ const SingleAnime = (props) => {
             Episodes: {episodes || "Unknown"}
           </Typography>
           <Typography variant="h5" component="h2">
-            <a href={url}> MAL </a>
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {" "}
+              MAL{" "}
+            </a>
           </Typography>
         </Paper>
       </Grid>

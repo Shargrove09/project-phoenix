@@ -9,8 +9,6 @@ import { alpha, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import { Grid } from "@material-ui/core";
 import NavDrawer from "../components/NavDrawer";
-import { IconButton } from "@material-ui/core";
-import MenuIcon from "@mui/icons-material/Menu";
 
 import "./MainNavigation.scss";
 
@@ -18,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 20001,
+  },
+  toolbar: theme.mixins.toolbar,
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -89,7 +91,7 @@ export default function SearchAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className="MainNavigation__appbar">
+      <AppBar position="sticky" className={classes.appBar}>
         <Toolbar className="MainNavigation__toolbar">
           <Link to="/" className={classes.title}>
             <Grid container>
@@ -107,7 +109,7 @@ export default function SearchAppBar() {
               </Grid>
               <Grid item>
                 <Typography variant="h6" noWrap>
-                  Project Phoenix
+                  Project Phoenix - WWA Hub
                 </Typography>
               </Grid>
             </Grid>
