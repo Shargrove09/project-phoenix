@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -10,8 +11,25 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import PeopleIcon from "@mui/icons-material/People";
+import { IconButton, makeStyles } from "@material-ui/core";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useTheme } from "@material-ui/core";
+
+import "./NavDrawer.js";
+
+const useStyles = makeStyles((theme) => ({
+  toolbar: theme.mixins.toolbar,
+
+  root: {
+    color: "blue",
+  },
+}));
 
 export default function TemporaryDrawer() {
+  const theme = useTheme();
+  console.log("Theme test", theme);
+  const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
   });
@@ -45,6 +63,19 @@ export default function TemporaryDrawer() {
             </ListItemButton>
           </ListItem>
         ))}
+        <ListItem
+          disablePadding
+          component={Link}
+          to={"/friends"}
+          style={{ color: "white" }}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Friends"} />
+          </ListItemButton>
+        </ListItem>
       </List>
       <Divider />
       <List>
@@ -66,12 +97,22 @@ export default function TemporaryDrawer() {
     <div>
       {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <IconButton size="small" onClick={toggleDrawer(anchor, true)}>
+            <MenuIcon />
+          </IconButton>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
+            variant="temporary"
+            PaperProps={{
+              sx: {
+                backgroundColor: "#363535",
+                color: "white",
+              },
+            }}
           >
+            <div className={classes.toolbar} />
             {list(anchor)}
           </Drawer>
         </React.Fragment>
