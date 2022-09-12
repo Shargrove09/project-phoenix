@@ -22,7 +22,7 @@ const SingleView = () => {
     }
     console.log(search.singleData);
   }, [search]);
-  console.log("Data", dataExists)
+  console.log("dataExists", dataExists);
   return (
     <div>
       {(dataExists && <SingleAnime info={search.singleData} />) || (

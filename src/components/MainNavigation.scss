@@ -1,6 +1,9 @@
 .MainNavigation__logo { 
     padding-right: 5px;
-    display: inline-flex;
+}
+.MainNavigation__logoContainer { 
+    padding-right: 5px;
+    float: left;
 }
 
 .MainNavigation__toolbar { 

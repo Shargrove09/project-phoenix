@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 import Results from "./pages/Results";
 import SingleView from "./pages/SingleView";
 import MainNavigation from "./components/MainNavigation";
-import Friends from "./pages/Friends";
+import FriendsView from "./pages/FriendsView";
 import { SearchContext } from "./context/search";
 
 import { createTheme, ThemeProvider } from "@material-ui/core";
@@ -48,8 +48,6 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {" "}
-      {/* PASS THIS THEME TO MAIN NAV THEN TO NAV DRAWER*/}
       <SearchContext.Provider
         value={{ search, animeData, singleData, setData, setSingle }}
       >
@@ -60,7 +58,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/results" element={<Results />} />
               <Route path="/single-view" element={<SingleView />} />
-              <Route path="/friends" element={<Friends />} />
+              <Route path="/friends" element={<FriendsView />} />
               {/*Need to add Navigate component here in future*/}
             </Routes>
           </main>
