@@ -1,0 +1,21 @@
+.friendCard__userName { 
+  padding: 10px; 
+}
+
+.friendCard__container { 
+  display: flex; 
+  align-items: center;
+  height: 100%;
+  padding: 25px; 
+  min-width: 600px;
+  max-width: 600px;
+
+}
+
+.friendCard__paper {
+  display: flex; 
+  align-items: center;
+  height: 100%;
+  min-width: 400px;
+  max-width: 400px;
+}

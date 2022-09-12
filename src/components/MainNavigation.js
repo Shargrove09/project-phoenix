@@ -93,12 +93,13 @@ export default function SearchAppBar() {
     <div className={classes.root}>
       <AppBar position="sticky" className={classes.appBar}>
         <Toolbar className="MainNavigation__toolbar">
-          <Link to="/" className={classes.title}>
-            <Grid container>
-              <Grid item>
-                <NavDrawer />
-              </Grid>
-              <Grid item>
+          <Grid container direction="row">
+            <Grid item>
+              <NavDrawer />
+            </Grid>
+
+            <Grid item className="MainNavigation__logoContainer">
+              <Link to="/" className={classes.title}>
                 <img
                   alt="Gurren Lagann"
                   src={`${process.env.PUBLIC_URL}/gurren_lagann_logo.png`}
@@ -106,14 +107,14 @@ export default function SearchAppBar() {
                   width={25}
                   className="MainNavigation__logo"
                 />
-              </Grid>
-              <Grid item>
-                <Typography variant="h6" noWrap>
-                  Project Phoenix - WWA Hub
-                </Typography>
-              </Grid>
+              </Link>
             </Grid>
-          </Link>
+            <Grid item>
+              <Typography variant="h6" noWrap>
+                Project Phoenix - WWA Hub
+              </Typography>
+            </Grid>
+          </Grid>
           <form className={classes.search} onSubmit={handleSearch}>
             <div className={classes.searchIcon}>
               <SearchIcon />

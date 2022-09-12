@@ -9,8 +9,9 @@ import Home from "./pages/Home";
 import Results from "./pages/Results";
 import SingleView from "./pages/SingleView";
 import MainNavigation from "./components/MainNavigation";
-import Friends from "./pages/Friends";
+import FriendsView from "./pages/FriendsView";
 import { SearchContext } from "./context/search";
+import { FriendsContext } from "./context/friends";
 
 import { createTheme, ThemeProvider } from "@material-ui/core";
 
@@ -31,6 +32,7 @@ const theme = createTheme({
 function App() {
   const [animeData, setAnimeData] = useState([]);
   const [singleData, setSingleData] = useState({});
+  const [friendsData, setFriendsData] = useState([]); 
 
   const setData = (data) => {
     setAnimeData(data);
@@ -40,6 +42,10 @@ function App() {
     setSingleData(data);
   };
 
+  const setFriends = (data) => {
+    setFriendsData(data)
+  }
+
   const search = (searchTerm) => {
     return fetch(
       `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=20`
@@ -48,11 +54,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {" "}
-      {/* PASS THIS THEME TO MAIN NAV THEN TO NAV DRAWER*/}
       <SearchContext.Provider
         value={{ search, animeData, singleData, setData, setSingle }}
       >
+        <FriendsContext.Provider value={{friendsData, setFriends}}>
         <Router>
           <MainNavigation />
           <main>
@@ -60,11 +65,12 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/results" element={<Results />} />
               <Route path="/single-view" element={<SingleView />} />
-              <Route path="/friends" element={<Friends />} />
+              <Route path="/friends" element={<FriendsView />} />
               {/*Need to add Navigate component here in future*/}
             </Routes>
           </main>
         </Router>
+        </FriendsContext.Provider>
       </SearchContext.Provider>
     </ThemeProvider>
   );
