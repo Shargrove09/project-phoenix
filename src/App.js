@@ -11,6 +11,7 @@ import SingleView from "./pages/SingleView";
 import MainNavigation from "./components/MainNavigation";
 import FriendsView from "./pages/FriendsView";
 import { SearchContext } from "./context/search";
+import { FriendsContext } from "./context/friends";
 
 import { createTheme, ThemeProvider } from "@material-ui/core";
 
@@ -31,6 +32,7 @@ const theme = createTheme({
 function App() {
   const [animeData, setAnimeData] = useState([]);
   const [singleData, setSingleData] = useState({});
+  const [friendsData, setFriendsData] = useState([]); 
 
   const setData = (data) => {
     setAnimeData(data);
@@ -39,6 +41,10 @@ function App() {
   const setSingle = (data) => {
     setSingleData(data);
   };
+
+  const setFriends = (data) => {
+    setFriendsData(data)
+  }
 
   const search = (searchTerm) => {
     return fetch(
@@ -51,6 +57,7 @@ function App() {
       <SearchContext.Provider
         value={{ search, animeData, singleData, setData, setSingle }}
       >
+        <FriendsContext.Provider value={{friendsData, setFriends}}>
         <Router>
           <MainNavigation />
           <main>
@@ -63,6 +70,7 @@ function App() {
             </Routes>
           </main>
         </Router>
+        </FriendsContext.Provider>
       </SearchContext.Provider>
     </ThemeProvider>
   );

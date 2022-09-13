@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import React, { useEffect, useState, useContext } from "react";
-import { FriendContext } from "../context/friends";
+import { FriendsContext } from "../context/friends";
 import FriendCard from "../components/FriendCard";
 
 const FriendsView = () => {
@@ -9,7 +9,7 @@ const FriendsView = () => {
   const [isLoading, setLoading] = useState(false);
 
   // Can use context when consuming friends in other part of app for now not needed
-  const friends = useContext(FriendContext);
+  const friends = useContext(FriendsContext);
 
   //UseState to take input to get new Friends
   useEffect(() => {
