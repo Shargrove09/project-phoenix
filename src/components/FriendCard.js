@@ -25,12 +25,12 @@ const backUpImg = () => {
 
 const FriendsCard = (props) => {
   console.log("Props in FriendCard", props);
-  let img_url = "BLANK";
+  var img_url = "BLANK";
   let userName = "NO USER";
 
   if (!props.isLoading) {
-    img_url = props.data.data.images.jpg.image_url || { backUpImg };
-    userName = props.data.data.username;
+    img_url = props.image_url || backUpImg;
+    userName = props.username;
   }
 
   const StyledAvatar = ({ children, ...props }) => (

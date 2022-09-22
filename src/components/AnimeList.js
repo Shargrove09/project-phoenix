@@ -3,6 +3,7 @@ import AnimeCard from "./AnimeCard";
 import { ImageList } from "@material-ui/core";
 
 const AnimeList = (props) => {
+  console.log("AnimeListProps: ", props);
   return (
     <ImageList>
       {props.data.map((anime) => (

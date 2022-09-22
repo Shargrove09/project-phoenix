@@ -1,45 +1,38 @@
-import { Typography } from "@mui/material";
-import React, { useEffect, useState, useContext } from "react";
-import { FriendsContext } from "../context/friends";
-import FriendCard from "../components/FriendCard";
+import React, { useEffect, useContext, useState } from "react";
+import FriendList from "../components/FriendList";
+import { FriendsContext } from "../context/friends"; //Wrap imports in curly braces when they aren't default exports
+import { Box, Typography } from "@material-ui/core";
+import FriendModal from "../components/FriendModal/FriendModal";
 
 const FriendsView = () => {
-  const [friendsData, setFriendsData] = useState([]);
-  const [friendsDataExists, setFriendsDataExists] = useState(false);
-  const [isLoading, setLoading] = useState(false);
-
-  // Can use context when consuming friends in other part of app for now not needed
   const friends = useContext(FriendsContext);
+  const [dataExists, setDataExists] = useState(true);
 
-  //UseState to take input to get new Friends
+  console.log("FriendsData from context", friends.friendData);
+
   useEffect(() => {
-    setLoading(true);
+    if (friends.friendData === undefined || friends.friendData.length === 0) {
+      try {
+        friends.setFriendData(
+          JSON.parse(localStorage.getItem("myFriendsData"))
+        );
+        setDataExists(true);
+      } catch (error) {
+        console.log(error);
+        setDataExists(false);
+      }
+    }
+  }, [friends]);
 
-    fetch(`https://api.jikan.moe/v4/users/Shoujo-ai/full`)
-      .then((response) => response.json())
-      .then((data) => {
-        setFriendsData([...friendsData, data]);
-        setFriendsDataExists(true);
-      });
-
-    setLoading(false);
-  }, []);
-
-  console.log("Friends Data: ", friendsData); //
-
-  return isLoading ? (
-    <div> LOADING </div>
-  ) : (
-    <div>
-      {(friendsDataExists &&
-        friendsData.map((data) => (
-          <FriendCard data={data} isLoading={isLoading} />
-        ))) || (
-        <Typography variant="h4" component="h2">
-          No Friends Data
-        </Typography>
-      )}
-    </div>
+  return (
+    <>
+      <FriendModal className="friendsView_modal"></FriendModal>
+      <Box mt={2}>
+        {(dataExists && <FriendList data={friends.friendData} />) || (
+          <Typography variant="h4">Data does not exist</Typography>
+        )}
+      </Box>
+    </>
   );
 };
 

@@ -7,6 +7,8 @@ const Results = () => {
   const search = useContext(SearchContext);
   const [dataExists, setDataExists] = useState(true);
 
+  console.log("animeData from context", search.animeData);
+
   useEffect(() => {
     if (search.animeData === undefined || search.animeData.length === 0) {
       try {
