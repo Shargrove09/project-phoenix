@@ -7,7 +7,11 @@ const Results = () => {
   const search = useContext(SearchContext);
   const [dataExists, setDataExists] = useState(true);
 
+  console.log("animeData from context", search.animeData);
+
   useEffect(() => {
+    console.log("Data Use Effect ran");
+
     if (search.animeData === undefined || search.animeData.length === 0) {
       try {
         search.setData(JSON.parse(localStorage.getItem("myData")));

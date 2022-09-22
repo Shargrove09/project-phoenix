@@ -1,45 +1,49 @@
-import { Typography } from "@mui/material";
-import React, { useEffect, useState, useContext } from "react";
-import { FriendsContext } from "../context/friends";
-import FriendCard from "../components/FriendCard";
+import React, { useEffect, useContext, useState } from "react";
+import FriendList from "../components/FriendList";
+import { FriendsContext } from "../context/friends"; //Wrap imports in curly braces when they aren't default exports
+import { Box, Typography } from "@material-ui/core";
+import FriendModal from "../components/FriendModal/FriendModal";
 
 const FriendsView = () => {
-  const [friendsData, setFriendsData] = useState([]);
-  const [friendsDataExists, setFriendsDataExists] = useState(false);
-  const [isLoading, setLoading] = useState(false);
-
-  // Can use context when consuming friends in other part of app for now not needed
   const friends = useContext(FriendsContext);
+  const [dataExists, setDataExists] = useState(true);
 
-  //UseState to take input to get new Friends
   useEffect(() => {
-    setLoading(true);
+    console.log("FriendsData", friends.friendData);
+    if (
+      friends.friendData === (undefined || null) ||
+      friends.friendData?.length === 0
+    ) {
+      try {
+        var localStorage_myFriendsData = JSON.parse(
+          localStorage.getItem("myFriendsData")
+        );
+        if (localStorage_myFriendsData === null)
+          throw Error("localStorage data null!");
+        friends.setFriendData(localStorage_myFriendsData);
+        setDataExists(true);
+      } catch (error) {
+        setDataExists(false);
+      }
+    }
+  }, [friends]);
 
-    fetch(`https://api.jikan.moe/v4/users/Shoujo-ai/full`)
-      .then((response) => response.json())
-      .then((data) => {
-        setFriendsData([...friendsData, data]);
-        setFriendsDataExists(true);
-      });
+  // TWO options to fix having to refresh after friend search 1) move handleAdd func from modal to here pass to modal as prop
+  // then use that as dependecny for useFfect
+  // 2) useFfect dependency for handleClick in FriendModal DIDNT WORK
 
-    setLoading(false);
-  }, []);
-
-  console.log("Friends Data: ", friendsData); //
-
-  return isLoading ? (
-    <div> LOADING </div>
-  ) : (
-    <div>
-      {(friendsDataExists &&
-        friendsData.map((data) => (
-          <FriendCard data={data} isLoading={isLoading} />
-        ))) || (
-        <Typography variant="h4" component="h2">
-          No Friends Data
-        </Typography>
-      )}
-    </div>
+  return (
+    <>
+      <FriendModal className="friendsView_modal"></FriendModal>
+      <Box mt={2}>
+        {(dataExists && <FriendList data={friends.friendData} />) || (
+          <Typography variant="h4">
+            No friends loaded. Click The "Add Friends" button to add some
+            friends here!
+          </Typography>
+        )}
+      </Box>
+    </>
   );
 };
 

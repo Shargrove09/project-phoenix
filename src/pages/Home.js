@@ -1,19 +1,15 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../context/search";
-import {
-  FormControl,
-  Input,
-  IconButton,
-  Grid,
-  TextField,
-} from "@material-ui/core";
+import { FormControl, IconButton, Grid, TextField } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 import "./Home.scss";
+import { FriendsContext } from "../context/friends";
 
 const Home = () => {
   const search = useContext(SearchContext);
+  const friends = useContext(FriendsContext);
   const [input, setInput] = useState("");
 
   const navigate = useNavigate();
@@ -24,6 +20,17 @@ const Home = () => {
       search.setData(data.data); // Should try data.data.results (Actually results doesnt exist in v4)
       localStorage.setItem("myData", JSON.stringify(data.data)); //Allowed to set Strings
       navigate("/results");
+    });
+  };
+
+  const handleFriendSearch = (event) => {
+    event.preventDefault();
+    friends.friendSearch().then((data) => {
+      const dataValues = Object.values(data);
+      console.log("DataValues", dataValues);
+      friends.setFriendData(dataValues);
+      localStorage.setItem("myFriendsData", JSON.stringify(dataValues));
+      navigate("/friends");
     });
   };
 
@@ -69,6 +76,16 @@ const Home = () => {
               </IconButton>
             </FormControl>
           </form>
+
+          <IconButton
+            className="home__iconButton"
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={handleFriendSearch}
+          >
+            <SearchIcon />
+          </IconButton>
         </Grid>
       </Grid>
     </Grid>

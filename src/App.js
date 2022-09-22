@@ -32,7 +32,7 @@ const theme = createTheme({
 function App() {
   const [animeData, setAnimeData] = useState([]);
   const [singleData, setSingleData] = useState({});
-  const [friendsData, setFriendsData] = useState([]); 
+  const [friendData, setFriendListData] = useState([]);
 
   const setData = (data) => {
     setAnimeData(data);
@@ -42,9 +42,14 @@ function App() {
     setSingleData(data);
   };
 
-  const setFriends = (data) => {
-    setFriendsData(data)
-  }
+  const setFriendData = (data) => {
+    //setFriendListData((friendData) => [...friendData, data]);
+    // console.log("New Friend Data: ", friendData);
+
+    console.log("Friend Data before push in App", friendData);
+    setFriendListData(data);
+    console.log("Friend Data after push in App", friendData);
+  };
 
   const search = (searchTerm) => {
     return fetch(
@@ -52,24 +57,33 @@ function App() {
     ).then((response) => response.json());
   };
 
+  const friendSearch = (friendName) => {
+    // Do I need an async function?
+    return fetch(`https://api.jikan.moe/v4/users/${friendName}/full`).then(
+      (response) => response.json()
+    );
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <SearchContext.Provider
         value={{ search, animeData, singleData, setData, setSingle }}
       >
-        <FriendsContext.Provider value={{friendsData, setFriends}}>
-        <Router>
-          <MainNavigation />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/results" element={<Results />} />
-              <Route path="/single-view" element={<SingleView />} />
-              <Route path="/friends" element={<FriendsView />} />
-              {/*Need to add Navigate component here in future*/}
-            </Routes>
-          </main>
-        </Router>
+        <FriendsContext.Provider
+          value={{ friendData, setFriendData, friendSearch }}
+        >
+          <Router>
+            <MainNavigation />
+            <main>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/results" element={<Results />} />
+                <Route path="/single-view" element={<SingleView />} />
+                <Route path="/friends" element={<FriendsView />} />
+                {/*Need to add Navigate component here in future*/}
+              </Routes>
+            </main>
+          </Router>
         </FriendsContext.Provider>
       </SearchContext.Provider>
     </ThemeProvider>
