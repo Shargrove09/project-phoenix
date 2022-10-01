@@ -1,13 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../context/search";
-import {
-  FormControl,
-  Input,
-  IconButton,
-  Grid,
-  TextField,
-} from "@material-ui/core";
+import { FormControl, IconButton, Grid, TextField } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 import "./Home.scss";
@@ -33,7 +27,6 @@ const Home = () => {
     event.preventDefault();
     friends.friendSearch().then((data) => {
       const dataValues = Object.values(data);
-      console.log("DataValues", dataValues);
       friends.setFriendData(dataValues);
       localStorage.setItem("myFriendsData", JSON.stringify(dataValues));
       navigate("/friends");

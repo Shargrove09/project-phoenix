@@ -26,8 +26,6 @@ const FriendsView = () => {
     setLoading(false);
   }, []);
 
-  console.log("Friends Data: ", friendsData);
-
   return isLoading ? (
     <div> LOADING </div>
   ) : (

@@ -8,28 +8,48 @@ const FriendsView = () => {
   const friends = useContext(FriendsContext);
   const [dataExists, setDataExists] = useState(true);
 
-  console.log("FriendsData from context", friends.friendData);
-
   useEffect(() => {
-    if (friends.friendData === undefined || friends.friendData.length === 0) {
+    console.log("FriendsData", friends.friendData);
+    friends.validateFriendData(friends.friendData);
+    if (
+      friends.friendData === (undefined || null) ||
+      friends.friendData?.length === 0
+    ) {
+      console.log("Went into intial IF");
       try {
-        friends.setFriendData(
-          JSON.parse(localStorage.getItem("myFriendsData"))
+        var localStorage_myFriendsData = JSON.parse(
+          localStorage.getItem("myFriendsData")
         );
-        setDataExists(true);
+        console.log("LocalStorage_Friends", localStorage_myFriendsData);
+        if (localStorage_myFriendsData === null) {
+          // Going in this if statement no matter what
+          // Handle usecase where user not found?
+          throw Error("localStorage data null!");
+        } else {
+          // Else Unecessary
+          friends.setFriendData(localStorage_myFriendsData);
+          console.log("friendDATA in view", friends.friendData);
+          setDataExists(true);
+        }
       } catch (error) {
-        console.log(error);
         setDataExists(false);
       }
     }
-  }, [friends]);
+  }, []); // Did not add 'friends' as a dependency in order to remove infinite rendering
+
+  // TWO options to fix having to refresh after friend search 1) move handleAdd func from modal to here pass to modal as prop
+  // then use that as dependecny for useFfect
+  // 2) useFfect dependency for handleClick in FriendModal DIDNT WORK
 
   return (
     <>
       <FriendModal className="friendsView_modal"></FriendModal>
       <Box mt={2}>
         {(dataExists && <FriendList data={friends.friendData} />) || (
-          <Typography variant="h4">Data does not exist</Typography>
+          <Typography variant="h4">
+            No friends loaded. Click The "Add Friends" button to add some
+            friends here!
+          </Typography>
         )}
       </Box>
     </>

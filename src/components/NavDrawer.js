@@ -14,7 +14,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import PeopleIcon from "@mui/icons-material/People";
 import { IconButton, makeStyles } from "@material-ui/core";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useTheme } from "@material-ui/core";
 
 import "./NavDrawer.js";
 
@@ -27,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TemporaryDrawer() {
-  const theme = useTheme();
-  console.log("Theme test", theme);
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,

@@ -1,12 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Box, Button, Typography, Modal } from "@mui/material";
-import {
-  FormControl,
-  Input,
-  IconButton,
-  Grid,
-  TextField,
-} from "@material-ui/core";
+import { FormControl, IconButton, TextField } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { FriendsContext } from "../../context/friends";
 
@@ -30,13 +24,22 @@ const FriendModal = () => {
 
   const [input, setInput] = useState("");
 
+  const appenedToLocalStorage = (data) => {
+    var oldStorage = JSON.parse(localStorage.getItem("myFriendsData")) || [];
+
+    oldStorage.push(data[0]);
+    localStorage.setItem("myFriendsData", JSON.stringify(oldStorage));
+  };
+
   const handleAddFriend = (event) => {
     event.preventDefault(); // I think i need the page to refresh so maybe delete this
     friends.friendSearch(input).then((data) => {
-      console.log("FriendModal data", data);
+      console.log("FriendModal data in", data);
       const dataValues = Object.values(data);
+      console.log("DataVALUES IN MODAL", dataValues);
       friends.setFriendData(dataValues);
-      localStorage.setItem("myFriendsData", JSON.stringify(dataValues));
+      appenedToLocalStorage(dataValues);
+      // localStorage.setItem("myFriendsData", JSON.stringify(friends.friendData));
     });
   };
 
@@ -72,7 +75,7 @@ const FriendModal = () => {
                 inputProps={{ style: { color: "white", width: "100%" } }} // Definitely not doing anything
               />
               <IconButton
-                className="home__iconButton"
+                className="friendModal__iconButton"
                 variant="contained"
                 color="primary"
                 type="submit"

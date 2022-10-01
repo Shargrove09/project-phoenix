@@ -43,32 +43,75 @@ function App() {
   };
 
   const setFriendData = (data) => {
-    // setFriendListData(data);
-    // console.log("New Friend Data: ", friendData);
-    friendData.push(data);
-    console.log("New Friend Data: ", friendData);
+    console.log("Friend Data to be added in app", data);
+
+    if (friendData.indexOf(data) === -1) {
+      console.log("APP if entered");
+      setFriendListData((friendData) => [...friendData, data]);
+    }
+    console.log("Friend Data after push in App", friendData);
   };
 
-  const search = (searchTerm) => {
-    return fetch(
+  const search = async (searchTerm) => {
+    const response = await fetch(
       `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=20`
-    ).then((response) => response.json());
+    );
+    return await response.json();
   };
 
-  const friendSearch = (friendName) => {
-    // Do I need an async function?
-    return fetch(`https://api.jikan.moe/v4/users/${friendName}/full`).then(
-      (response) => response.json()
+  const searchById = async (searchId) => {
+    const response = await fetch(
+      `https://api.jikan.moe/v4/anime/${searchId}/full`
     );
+    return await response.json();
+  };
+
+  const friendSearch = async (friendName) => {
+    // Do I need an async function?
+    const response = await fetch(
+      `https://api.jikan.moe/v4/users/${friendName}/full`
+    );
+    return await response.json();
+  };
+
+  const validateFriendData = (dataArr) => {
+    console.log("dataArr in App", dataArr);
+    const validatedFriendArray = [];
+
+    const unique = dataArr.filter((element) => {
+      const isDuplicate = validatedFriendArray.includes(element.mal_id);
+
+      if (!isDuplicate) {
+        validatedFriendArray.push(element.mal_id);
+
+        return true;
+      }
+
+      return false;
+    });
+
+    setFriendListData(unique);
   };
 
   return (
     <ThemeProvider theme={theme}>
       <SearchContext.Provider
-        value={{ search, animeData, singleData, setData, setSingle }}
+        value={{
+          search,
+          searchById,
+          animeData,
+          singleData,
+          setData,
+          setSingle,
+        }}
       >
         <FriendsContext.Provider
-          value={{ friendData, setFriendData, friendSearch }}
+          value={{
+            friendData,
+            setFriendData,
+            friendSearch,
+            validateFriendData,
+          }}
         >
           <Router>
             <MainNavigation />

@@ -1,5 +1,7 @@
 .animeCard__container { 
     margin: 10px;
+    max-width: 232px;
+    
 }
 
 .animeCard__paper {
@@ -9,6 +11,8 @@
     justify-content: center;
     flex-direction: column;
     padding: 10px;
+    min-height: 412px;
+    max-width: 232px; // Fix this + ^^ some corners aren't rounded (See Naruto for exmaple)
 }
 
 .animeCard__paper:hover {
