@@ -9,13 +9,14 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import PeopleIcon from "@mui/icons-material/People";
+import HomeIcon from "@mui/icons-material/Home";
+import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
+import SavedSearchIcon from "@mui/icons-material/SavedSearch";
 import { IconButton, makeStyles } from "@material-ui/core";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import "./NavDrawer.js";
+import "./NavDrawer.scss";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
@@ -50,16 +51,45 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem
+          disablePadding
+          component={Link}
+          to={"/"}
+          style={{ color: "white" }}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <HomeIcon className="navDrawer__icon" />
+            </ListItemIcon>
+            <ListItemText primary={"Home"} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem
+          disablePadding
+          component={Link}
+          to={"/results"}
+          style={{ color: "white" }}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <ContentPasteSearchIcon className="navDrawer__icon" />
+            </ListItemIcon>
+            <ListItemText primary={"Results"} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem
+          disablePadding
+          component={Link}
+          to={"/single-view"}
+          style={{ color: "white" }}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <SavedSearchIcon className="navDrawer__icon" />
+            </ListItemIcon>
+            <ListItemText primary={"Last Searched Anime"} />
+          </ListItemButton>
+        </ListItem>
         <ListItem
           disablePadding
           component={Link}
@@ -68,25 +98,13 @@ export default function TemporaryDrawer() {
         >
           <ListItemButton>
             <ListItemIcon>
-              <PeopleIcon />
+              <PeopleIcon className="navDrawer__icon" />
             </ListItemIcon>
             <ListItemText primary={"Friends"} />
           </ListItemButton>
         </ListItem>
       </List>
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </Box>
   );
 
