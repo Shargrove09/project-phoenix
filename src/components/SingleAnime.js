@@ -4,20 +4,19 @@ import { Grid, Typography, Paper } from "@material-ui/core";
 import "./SingleAnime.scss";
 
 const SingleAnime = (props) => {
-  console.log("props.info", props.info);
-  console.log("props.info.data", props.info.data);
-  const { title, images, rating, airing, broadcast, score, url, episodes } =
-    props.info?.data || "nothing";
+  const { images, rating, airing, score, url, episodes } =
+    props.info?.data ?? "AHH";
 
+  const title = props.info?.data?.title ?? "title Didn't load";
+  const broadcast = props.info?.data?.broadcast;
   const image_url = images?.jpg.image_url;
-  useEffect(() => {
-    console.log("Title", title);
-  }, [title]);
+
+  useEffect(() => {}, []);
   return (
     <Grid
       container
       className="singleAnime__container"
-      spacing={10}
+      spacing={5}
       direction="row"
       justify="center"
       alignItems="center"
@@ -38,7 +37,7 @@ const SingleAnime = (props) => {
             Score: {score}
           </Typography>
           <Typography variant="h5" component="h2">
-            Broadcast: {broadcast.string}
+            Broadcast: {broadcast?.string}
           </Typography>
           <Typography variant="h5" component="h2">
             Rating: {rating}

@@ -9,8 +9,9 @@ import Home from "./pages/Home";
 import Results from "./pages/Results";
 import SingleView from "./pages/SingleView";
 import MainNavigation from "./components/MainNavigation";
-import Friends from "./pages/Friends";
+import FriendsView from "./pages/FriendsView";
 import { SearchContext } from "./context/search";
+import { FriendsContext } from "./context/friends";
 
 import { createTheme, ThemeProvider } from "@material-ui/core";
 
@@ -31,6 +32,7 @@ const theme = createTheme({
 function App() {
   const [animeData, setAnimeData] = useState([]);
   const [singleData, setSingleData] = useState({});
+  const [friendData, setFriendListData] = useState([]);
 
   const setData = (data) => {
     setAnimeData(data);
@@ -40,31 +42,90 @@ function App() {
     setSingleData(data);
   };
 
-  const search = (searchTerm) => {
-    return fetch(
+  const setFriendData = (data) => {
+    console.log("Friend Data to be added in app", data);
+
+    if (friendData.indexOf(data) === -1) {
+      console.log("APP if entered");
+      setFriendListData((friendData) => [...friendData, data]);
+    }
+    console.log("Friend Data after push in App", friendData);
+  };
+
+  const search = async (searchTerm) => {
+    const response = await fetch(
       `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=20`
-    ).then((response) => response.json());
+    );
+    return await response.json();
+  };
+
+  const searchById = async (searchId) => {
+    const response = await fetch(
+      `https://api.jikan.moe/v4/anime/${searchId}/full`
+    );
+    return await response.json();
+  };
+
+  const friendSearch = async (friendName) => {
+    // Do I need an async function?
+    const response = await fetch(
+      `https://api.jikan.moe/v4/users/${friendName}/full`
+    );
+    return await response.json();
+  };
+
+  const validateFriendData = (dataArr) => {
+    console.log("dataArr in App", dataArr);
+    const validatedFriendArray = [];
+
+    const unique = dataArr.filter((element) => {
+      const isDuplicate = validatedFriendArray.includes(element.mal_id);
+
+      if (!isDuplicate) {
+        validatedFriendArray.push(element.mal_id);
+
+        return true;
+      }
+
+      return false;
+    });
+
+    setFriendListData(unique);
   };
 
   return (
     <ThemeProvider theme={theme}>
-      {" "}
-      {/* PASS THIS THEME TO MAIN NAV THEN TO NAV DRAWER*/}
       <SearchContext.Provider
-        value={{ search, animeData, singleData, setData, setSingle }}
+        value={{
+          search,
+          searchById,
+          animeData,
+          singleData,
+          setData,
+          setSingle,
+        }}
       >
-        <Router>
-          <MainNavigation />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/results" element={<Results />} />
-              <Route path="/single-view" element={<SingleView />} />
-              <Route path="/friends" element={<Friends />} />
-              {/*Need to add Navigate component here in future*/}
-            </Routes>
-          </main>
-        </Router>
+        <FriendsContext.Provider
+          value={{
+            friendData,
+            setFriendData,
+            friendSearch,
+            validateFriendData,
+          }}
+        >
+          <Router>
+            <MainNavigation />
+            <main>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/results" element={<Results />} />
+                <Route path="/single-view" element={<SingleView />} />
+                <Route path="/friends" element={<FriendsView />} />
+                {/*Need to add Navigate component here in future*/}
+              </Routes>
+            </main>
+          </Router>
+        </FriendsContext.Provider>
       </SearchContext.Provider>
     </ThemeProvider>
   );

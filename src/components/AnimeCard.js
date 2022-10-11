@@ -30,15 +30,12 @@ const AnimeCard = (props) => {
       ? `${props.anime.title.substring(0, 15)}...`
       : props.anime.title;
   const imageUrl = props.anime.images.jpg.image_url;
-  console.log("Anime", props.anime);
 
   const synopsisDef = props.anime.synopsis || "No Synopsis"; // Default to No Synopsis if anime doesn't have a synopsis
-  console.log("SynopsisDef", synopsisDef);
   const synopsis =
     synopsisDef.length > 30
       ? `${synopsisDef.substring(0, 30)}...`
       : synopsisDef;
-  console.log("synopsis", synopsis);
 
   // container item takes up only as much space as it needs and no more
   return (

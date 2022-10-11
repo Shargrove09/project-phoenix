@@ -6,7 +6,6 @@ import { SearchContext } from "../context/search";
 const SingleView = () => {
   const search = useContext(SearchContext);
   const [dataExists, setDataExists] = useState(true);
-
   useEffect(() => {
     if (
       search.singleData === undefined ||
@@ -16,13 +15,10 @@ const SingleView = () => {
         search.setSingle(JSON.parse(localStorage.getItem("singleData")));
         setDataExists(true);
       } catch (error) {
-        console.log(error);
         setDataExists(false);
       }
     }
-    console.log(search.singleData);
   }, [search]);
-  console.log("Data", dataExists)
   return (
     <div>
       {(dataExists && <SingleAnime info={search.singleData} />) || (
