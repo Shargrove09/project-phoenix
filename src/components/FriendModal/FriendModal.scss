@@ -1,0 +1,15 @@
+.friendModal__button {
+  margin-top: 15px !important; //Overrides MUI button root
+  margin-left: 10px !important;
+}
+
+.friendModal__modalTitle { 
+  color: white;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.friendModal__formControl { 
+  width: 100%
+}
