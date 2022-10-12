@@ -1,8 +1,13 @@
 # Project Phoenix
 
-A ReactJS project utlizing [Jikan](https://jikan.moe/) api (an unofficial api for MyAnimeList)
+This project allows users to search for any anime/manga that exists on MyAnimeList and see all the available information on each entry. Users are able to view their friends most recent activity/entries. In the future a calendar will be availble to view simulcasts to keep up with currently airing shows. 
 
+
+## Technologies Used
+Project Phoenix utilizes [Jikan](https://jikan.moe/) API (an unofficial API for MyAnimeList). 
+MaterialUI was utilized for most of the base components (AppBar, Drawer, Icons)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[FullCalendar]( https://fullcalendar.io/)
 
 ## Available Scripts
 
