@@ -4,10 +4,10 @@ This project allows users to search for any anime/manga that exists on MyAnimeLi
 
 
 ## Technologies Used
-Project Phoenix utilizes [Jikan](https://jikan.moe/) API (an unofficial API for MyAnimeList). 
-MaterialUI was utilized for most of the base components (AppBar, Drawer, Icons)
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-[FullCalendar]( https://fullcalendar.io/)
+- Project Phoenix utilizes [Jikan](https://jikan.moe/) API (an unofficial API for MyAnimeList). 
+- MaterialUI was utilized for most of the base components (AppBar, Drawer, Icons)
+- Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [FullCalendar]( https://fullcalendar.io/) will be used for future calendar feature
 
 ## Available Scripts
 
