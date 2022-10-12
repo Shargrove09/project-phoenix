@@ -75,16 +75,6 @@ const Home = () => {
               </IconButton>
             </FormControl>
           </form>
-
-          <IconButton
-            className="home__iconButton"
-            variant="contained"
-            color="primary"
-            type="submit"
-            onClick={handleFriendSearch}
-          >
-            <SearchIcon />
-          </IconButton>
         </Grid>
       </Grid>
     </Grid>

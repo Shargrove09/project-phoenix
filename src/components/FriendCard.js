@@ -109,7 +109,9 @@ const FriendsCard = (props) => {
               Last online: {lastOnlineDate}
             </Typography>
           </div>
-          <div style={{ margin: "auto", width: "auto" }}>Latest Updates </div>
+          <div style={{ margin: "auto", width: "auto", paddingTop: "5px" }}>
+            Latest Updates{" "}
+          </div>
           <Grid container className="friendCard__recentGrid">
             <Grid item container className="friendCard__recentlyWatched" xs={6}>
               <div style={{ textAlign: "center" }}>Anime Updates </div>
@@ -161,7 +163,7 @@ const FriendsCard = (props) => {
               })}
             </Grid>
 
-            {/*MANGA ENTRY!!!!!!!!! */}
+            {/*MANGA ENTRY */}
             <Grid item className="friendCard__recentlyRead" xs={6}>
               <div style={{ textAlign: "center" }}>Manga Updates </div>
               {/* Need a component for recentlyWatchedList and then for recentlyWatched Anime*/}

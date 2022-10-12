@@ -5,9 +5,28 @@
 
 .singleAnime__image { 
   border-radius: 10px;
+  margin-left: 20px;
+}
+
+.singleAnime__title { 
+  color: white; 
+  padding-left: 25px; 
+  padding-bottom: 30px;
+  font-size: 3rem; 
 }
 
 .singleAnime__description { 
   max-width: 400px;
   padding: 20px; 
+  margin: 100px;
+}
+
+.singleAnime__synopsis { 
+  max-width: 600px; 
+  max-height: 400px; 
+  padding: 20px; 
+}
+
+.singleAnime__info { 
+  padding: 10px;
 }

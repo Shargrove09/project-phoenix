@@ -111,7 +111,7 @@ export default function SearchAppBar() {
             </Grid>
             <Grid item>
               <Typography variant="h6" noWrap>
-                Project Phoenix - WWA Hub
+                Project Phoenix
               </Typography>
             </Grid>
           </Grid>
