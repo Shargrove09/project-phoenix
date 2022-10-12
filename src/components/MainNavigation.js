@@ -82,8 +82,8 @@ export default function SearchAppBar() {
   const handleSearch = (event) => {
     event.preventDefault();
     search.search(input).then((data) => {
-      search.setData(data.results);
-      localStorage.setItem("myData", JSON.stringify(data.results));
+      search.setData(data.data);
+      localStorage.setItem("myData", JSON.stringify(data.data));
       setInput("");
       navigate("/results");
     });
