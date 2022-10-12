@@ -9,7 +9,6 @@ import { FriendsContext } from "../context/friends";
 
 const Home = () => {
   const search = useContext(SearchContext);
-  const friends = useContext(FriendsContext);
   const [input, setInput] = useState("");
 
   const navigate = useNavigate();
@@ -20,16 +19,6 @@ const Home = () => {
       search.setData(data.data); // Should try data.data.results (Actually results doesnt exist in v4)
       localStorage.setItem("myData", JSON.stringify(data.data)); //Allowed to set Strings
       navigate("/results");
-    });
-  };
-
-  const handleFriendSearch = (event) => {
-    event.preventDefault();
-    friends.friendSearch().then((data) => {
-      const dataValues = Object.values(data);
-      friends.setFriendData(dataValues);
-      localStorage.setItem("myFriendsData", JSON.stringify(dataValues));
-      navigate("/friends");
     });
   };
 

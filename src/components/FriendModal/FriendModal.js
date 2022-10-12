@@ -4,7 +4,10 @@ import { FormControl, IconButton, TextField } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { FriendsContext } from "../../context/friends";
 
+import "./FriendModal.scss";
+
 const style = {
+  backgroundColor: "#363535",
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -39,13 +42,16 @@ const FriendModal = () => {
       console.log("DataVALUES IN MODAL", dataValues);
       friends.setFriendData(dataValues);
       appenedToLocalStorage(dataValues);
-      // localStorage.setItem("myFriendsData", JSON.stringify(friends.friendData));
     });
   };
 
   return (
     <div>
-      <Button variant="contained" onClick={handleOpen}>
+      <Button
+        className="friendModal__button"
+        onClick={handleOpen}
+        variant="contained"
+      >
         Add Friends
       </Button>
       <Modal
@@ -59,8 +65,7 @@ const FriendModal = () => {
             id="modal-modal-title"
             variant="h6"
             component="h2"
-            className="friendModal__modalTitle"
-            inputProps={{ style: { color: "white" } }} // Not doing anything
+            className="friendModal__modalTitle" // Not doing anything
           >
             Add Friends
           </Typography>
@@ -72,7 +77,7 @@ const FriendModal = () => {
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 className="friendModal__input"
-                inputProps={{ style: { color: "white", width: "100%" } }} // Definitely not doing anything
+                inputProps={{ style: { color: "white", width: "100%" } }} // Not doing anything
               />
               <IconButton
                 className="friendModal__iconButton"

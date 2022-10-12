@@ -26,7 +26,7 @@ const backUpImg = () => {
 };
 
 const FriendsCard = (props) => {
-  // const jikanjs = require("@mateoaranda/jikanjs"); Do this later
+  // const jikanjs = require("@mateoaranda/jikanjs"); API Wrapper Test
 
   const search = React.useContext(SearchContext);
   const navigate = useNavigate();

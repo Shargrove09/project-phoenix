@@ -43,7 +43,7 @@ const FriendsView = () => {
 
   return (
     <>
-      <FriendModal className="friendsView_modal"></FriendModal>
+      <FriendModal className="friendsView__modal"></FriendModal>
       <Box mt={2}>
         {(dataExists && <FriendList data={friends.friendData} />) || (
           <Typography variant="h4">

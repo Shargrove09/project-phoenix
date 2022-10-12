@@ -1,11 +1,23 @@
 import React, { useEffect } from "react";
+import Divider from "@mui/material/Divider";
 import { Grid, Typography, Paper } from "@material-ui/core";
+import { Button } from "@mui/material";
 
 import "./SingleAnime.scss";
 
 const SingleAnime = (props) => {
-  const { images, rating, airing, score, url, episodes } =
-    props.info?.data ?? "Null";
+  console.log("SingleAnime, ", props);
+  const {
+    airing,
+    images,
+    rating,
+    rank,
+    score,
+    popularity,
+    url,
+    episodes,
+    members,
+  } = props.info?.data ?? "Null";
 
   const title = props.info?.data?.title ?? "title Didn't load";
   const broadcast = props.info?.data?.broadcast;
@@ -41,26 +53,80 @@ const SingleAnime = (props) => {
         <Paper>
           <Grid item className="singleAnime__score singleAnime__info">
             <Typography variant="h5" component="h2">
-              Score: {score}
+              Score: <b>{score}</b>
             </Typography>
           </Grid>
         </Paper>
         <Paper>
-          <Grid item className="singleAnime__rating singleAnime__info">
+          <Grid item className="singleAnime__ranking singleAnime__info">
             <Typography variant="h5" component="h2">
-              Rating: {rating}
+              Rank: <b>{rank}</b>
             </Typography>
           </Grid>
         </Paper>
         <Paper>
-          <Grid item className="singleAnime__episodes singleAnime__info">
+          <Grid item className="singleAnime__popularity singleAnime__info">
             <Typography variant="h5" component="h2">
-              Episodes: {episodes || "Unknown"}
+              Popularity: <b>#{popularity}</b>
             </Typography>
           </Grid>
         </Paper>
-        <Grid item xs={9} className="singleAnime__synopsis">
-          <Typography>{synopsis}</Typography>
+        <Paper>
+          <Grid item className="singleAnime__members singleAnime__info">
+            <Typography variant="h5" component="h2">
+              Members: <b>{members}</b>
+            </Typography>
+          </Grid>
+        </Paper>
+        <Grid item xs={9} className="singleAnime__synopsisContainer">
+          <Divider />
+          <Typography
+            variant="body1"
+            component="h3"
+            className="singleAnime__synopsis"
+          >
+            <p>{synopsis}</p>
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        item
+        xs={3}
+        className="singleAnime__additonalInfoContainer"
+      >
+        <Grid item xs={12} className="singleAnime__episodesContainer">
+          <Typography
+            variant="body2"
+            className=" singleAnime__episodes singleAnime__additionalInfo"
+          >
+            Episodes: <i>{episodes}</i>
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} className="singleAnime__airingContainer">
+          <Typography
+            variant="body2"
+            className=" singleAnime__airing singleAnime__additionalInfo"
+          >
+            Airing: <i>{airing ? "Currently Airing" : "Not Airing"}</i>
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} className="singleAnime__linkContainer">
+          <Button
+            className="singleAnime__linkButton singleAnime__additionalInfo"
+            variant="contained"
+          >
+            <a
+              href={url}
+              style={{ textDecoration: "none", color: "white" }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              MAL
+            </a>
+          </Button>
         </Grid>
       </Grid>
     </Grid>

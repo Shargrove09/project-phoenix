@@ -22,11 +22,31 @@
 }
 
 .singleAnime__synopsis { 
-  max-width: 600px; 
   max-height: 400px; 
-  padding: 20px; 
+  padding-top: 10px;
+  width:100%;
+  color: white; 
+}
+
+.singleAnime__container { 
+  width:100%
 }
 
 .singleAnime__info { 
   padding: 10px;
+}
+
+.singleAnime__additionalInfo {
+  margin-left: 20px  !important;
+  margin-bottom: 5px !important; 
+  color: white
+}
+
+.singleAnime__additionalInfoContainer { 
+  margin-left:20px;
+
+}
+
+.singleAnime__linkButton { 
+  width: 45%;
 }
