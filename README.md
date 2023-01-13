@@ -1,7 +1,18 @@
 # Project Phoenix
 
-This project allows users to search for any anime/manga that exists on MyAnimeList and see all the available information on each entry. Users are able to view their friends most recent activity/entries. In the future a calendar will be availble to view simulcasts to keep up with currently airing shows. 
+This project allows users to search for any anime/manga that exists on MyAnimeList (MAL) and see all the available information on each entry. Users are able to view their friends most recent activity/entries. In the future a calendar will be availble to view simulcasts to keep up with currently airing shows. 
 
+## Current Functionality 
+- Search Anime 
+- Search Manga 
+- Anime statistics (Score, title, airing status, popularity, rank and link to MAL entry) 
+- Lookup users on MAL via username 
+
+
+## Planned Functionality 
+- Users log-in
+- Recommend shows based on users log in 
+- Calendar feature to view simulcasts dates
 
 ## Technologies Used
 - Project Phoenix utilizes [Jikan](https://jikan.moe/) API (an unofficial API for MyAnimeList). 
