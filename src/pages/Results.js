@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import AnimeList from "../components/AnimeList";
-import { SearchContext } from "../context/search"; //Wrap imports in curly braces when they aren't default exports
+import { SearchContext } from "../context/useSearchContext"; //Wrap imports in curly braces when they aren't default exports
 import { Box, Typography } from "@material-ui/core";
 
 const Results = () => {

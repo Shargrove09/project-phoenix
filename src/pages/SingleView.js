@@ -1,7 +1,7 @@
 import { Typography } from "@material-ui/core";
 import React, { useEffect, useContext, useState } from "react";
 import SingleAnime from "../components/SingleAnime";
-import { SearchContext } from "../context/search";
+import { SearchContext } from "../context/useSearchContext";
 
 const SingleView = () => {
   const search = useContext(SearchContext);

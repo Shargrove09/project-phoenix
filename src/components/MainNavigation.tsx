@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
+import { SearchContext } from "../context/useSearchContext";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -8,7 +8,7 @@ import InputBase from "@material-ui/core/InputBase";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import { Grid } from "@material-ui/core";
-import NavDrawer from "../components/NavDrawer";
+import NavDrawer from "./NavDrawer";
 
 import "./MainNavigation.scss";
 

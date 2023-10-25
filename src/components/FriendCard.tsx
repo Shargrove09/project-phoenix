@@ -8,7 +8,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { Avatar } from "@mui/material";
-import { SearchContext } from "../context/search";
+import { SearchContext } from "../context/useSearchContext";
 import { useNavigate } from "react-router-dom";
 
 import "./FriendCard.scss";
@@ -33,7 +33,8 @@ const FriendsCard = (props) => {
 
   var img_url = "BLANK";
   var userName = "NO USER";
-  var lastOnline = "No Date";
+  // TODO: get right date
+  var lastOnline: Date = new Date();
   var recentlyWatched = [];
   var recentlyRead = [];
 

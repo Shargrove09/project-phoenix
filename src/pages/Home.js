@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
+import { SearchContext } from "../context/useSearchContext";
 import { FormControl, IconButton, Grid, TextField } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 

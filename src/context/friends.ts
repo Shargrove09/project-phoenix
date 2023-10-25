@@ -4,7 +4,7 @@ import { createContext } from "react";
 
 export const FriendsContext = createContext({
   friendData: [],
-  friendSearch: () => {},
-  setFriendData: () => [],
-  validateFriendData: () => {},
+  friendSearch: (data) => ({}),
+  setFriendData: (data) => {},
+  validateFriendData: (data) => {},
 });

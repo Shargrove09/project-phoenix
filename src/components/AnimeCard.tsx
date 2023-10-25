@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
+import { SearchContext } from "../context/useSearchContext";
 import {
   Typography,
   Link,

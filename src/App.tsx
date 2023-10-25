@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Navigate,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Results from "./pages/Results";
 import SingleView from "./pages/SingleView";
 import MainNavigation from "./components/MainNavigation";
 import FriendsView from "./pages/FriendsView";
-import { SearchContext } from "./context/search";
+import { SearchProvider } from "./context/useSearchContext";
 import { FriendsContext } from "./context/friends";
 
 import { createTheme, ThemeProvider } from "@material-ui/core";
@@ -95,16 +90,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <SearchContext.Provider
-        value={{
-          search,
-          searchById,
-          animeData,
-          singleData,
-          setData,
-          setSingle,
-        }}
-      >
+      <SearchProvider>
         <FriendsContext.Provider
           value={{
             friendData,
@@ -126,7 +112,7 @@ function App() {
             </main>
           </Router>
         </FriendsContext.Provider>
-      </SearchContext.Provider>
+      </SearchProvider>
     </ThemeProvider>
   );
 }
