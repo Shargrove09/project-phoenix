@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Box, Button, Typography, Modal } from "@mui/material";
 import { FormControl, IconButton, TextField } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { FriendsContext } from "../../context/friends";
+import { useFriendsContext } from "../../context/useFriendsContext";
 
 import "./FriendModal.scss";
 
@@ -23,7 +23,7 @@ const FriendModal = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const friends = useContext(FriendsContext);
+  const { friendSearch, setFriendsList } = useFriendsContext();
 
   const [input, setInput] = useState("");
 
@@ -36,11 +36,11 @@ const FriendModal = () => {
 
   const handleAddFriend = (event) => {
     event.preventDefault(); // I think i need the page to refresh so maybe delete this
-    friends.friendSearch(input).then((data) => {
+    friendSearch(input).then((data) => {
       console.log("FriendModal data in", data);
       const dataValues = Object.values(data);
       console.log("DataVALUES IN MODAL", dataValues);
-      friends.setFriendData(dataValues);
+      setFriendsList(dataValues);
       appenedToLocalStorage(dataValues);
     });
   };
@@ -69,7 +69,7 @@ const FriendModal = () => {
           >
             Add Friends
           </Typography>
-          <form>
+          {/* <form>
             <FormControl type="submit" className="friendModal__formControl">
               <TextField
                 autoFocus="true"
@@ -90,7 +90,7 @@ const FriendModal = () => {
                 <SearchIcon />
               </IconButton>
             </FormControl>
-          </form>
+          </form> */}
         </Box>
       </Modal>
     </div>

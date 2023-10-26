@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
+// Old way
+// import { SearchContext } from "../context/useSearchContext";
+import { useSearchContext } from "../context/useSearchContext";
 import {
   Typography,
   Link,
@@ -13,13 +15,17 @@ import "./AnimeCard.scss";
 
 const AnimeCard = (props) => {
   const navigate = useNavigate();
-  const search = useContext(SearchContext);
+
+  // Old Way
+  // const search = useContext(SearchContext);
+
+  const { setSingle } = useSearchContext();
 
   const onClickHandler = () => {
     fetch(`https://api.jikan.moe/v4/anime/${props.anime.mal_id}/full`)
       .then((response) => response.json())
       .then((data) => {
-        search.setSingle(data);
+        setSingle(data);
         localStorage.setItem("singleData", JSON.stringify(data));
         navigate("/single-view");
       });

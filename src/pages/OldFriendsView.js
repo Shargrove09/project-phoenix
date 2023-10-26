@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import React, { useEffect, useState, useContext } from "react";
 import { ImageList } from "@material-ui/core";
-import { FriendsContext } from "../context/friends";
+import { FriendsContext } from "../context/useFriendsContext";
 import FriendCard from "../components/FriendCard";
 
 const FriendsView = () => {

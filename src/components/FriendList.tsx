@@ -1,7 +1,6 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import FriendCard from "./FriendCard";
 import { ImageList } from "@material-ui/core";
-import { FriendsContext } from "../context/friends";
 
 const FriendList = (props) => {
   return (

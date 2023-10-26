@@ -1,22 +1,22 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
-import { FormControl, IconButton, Grid, TextField } from "@material-ui/core";
+import { useSearchContext } from "../context/useSearchContext";
+import { IconButton, Grid, TextField } from "@material-ui/core";
+import { FormControl } from "@mui/material";
 import SearchIcon from "@material-ui/icons/Search";
 
 import "./Home.scss";
-import { FriendsContext } from "../context/friends";
 
 const Home = () => {
-  const search = useContext(SearchContext);
+  const { search, setData } = useSearchContext();
   const [input, setInput] = useState("");
 
   const navigate = useNavigate();
 
   const handleSearch = (event) => {
     event.preventDefault(); //Won't allow page to refresh when you submit input
-    search.search(input).then((data) => {
-      search.setData(data.data); // Should try data.data.results (Actually results doesnt exist in v4)
+    search(input).then((data) => {
+      setData(data.data); // Should try data.data.results (Actually results doesnt exist in v4)
       localStorage.setItem("myData", JSON.stringify(data.data)); //Allowed to set Strings
       navigate("/results");
     });
@@ -41,7 +41,7 @@ const Home = () => {
           />
         </Grid>
         <Grid item>
-          <form className="home__form">
+          {/* <form className="home__form">
             <FormControl type="submit" className="home__formControl">
               <TextField
                 autoFocus="true"
@@ -51,7 +51,7 @@ const Home = () => {
                 className="home__input"
                 inputProps={{ style: { color: "white" } }}
               />
-              {/*Getting what's inside of event*/}
+              {/*Getting what's inside of event*
               <IconButton
                 className="home__iconButton"
                 variant="contained"
@@ -63,6 +63,26 @@ const Home = () => {
                 <SearchIcon />
               </IconButton>
             </FormControl>
+          </form> */}
+          <form className="home__form">
+            <TextField
+              autoFocus={true}
+              placeholder="Search for an anime..."
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+              className="home__input"
+              inputProps={{ style: { color: "white" } }}
+            />
+
+            <IconButton
+              className="home__iconButton"
+              color="primary"
+              type="submit"
+              disabled={!input}
+              onClick={handleSearch}
+            >
+              <SearchIcon />
+            </IconButton>
           </form>
         </Grid>
       </Grid>

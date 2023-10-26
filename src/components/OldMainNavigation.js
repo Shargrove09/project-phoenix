@@ -15,7 +15,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
+import { SearchContext } from "../context/useSearchContext";
 import { fade, makeStyles } from "@material-ui/core";
 
 const pages = ["Home", "Results", "SingleView"];

@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
+import { useSearchContext } from "../context/useSearchContext";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -8,7 +8,7 @@ import InputBase from "@material-ui/core/InputBase";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import { Grid } from "@material-ui/core";
-import NavDrawer from "../components/NavDrawer";
+import NavDrawer from "./NavDrawer";
 
 import "./MainNavigation.scss";
 
@@ -76,13 +76,15 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchAppBar() {
   const classes = useStyles();
   const navigate = useNavigate();
-  const search = useContext(SearchContext);
+
+  const { search, setData } = useSearchContext();
+
   const [input, setInput] = useState("");
 
   const handleSearch = (event) => {
     event.preventDefault();
-    search.search(input).then((data) => {
-      search.setData(data.data);
+    search(input).then((data) => {
+      setData(data.data);
       localStorage.setItem("myData", JSON.stringify(data.data));
       setInput("");
       navigate("/results");

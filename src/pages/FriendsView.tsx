@@ -1,20 +1,17 @@
 import React, { useEffect, useContext, useState } from "react";
 import FriendList from "../components/FriendList";
-import { FriendsContext } from "../context/friends"; //Wrap imports in curly braces when they aren't default exports
+import { useFriendsContext } from "../context/useFriendsContext"; //Wrap imports in curly braces when they aren't default exports
 import { Box, Typography } from "@material-ui/core";
 import FriendModal from "../components/FriendModal/FriendModal";
 
 const FriendsView = () => {
-  const friends = useContext(FriendsContext);
+  const { validateFriends, setFriendsList, friendsList } = useFriendsContext();
   const [dataExists, setDataExists] = useState(true);
 
   useEffect(() => {
-    console.log("FriendsData", friends.friendData);
-    friends.validateFriendData(friends.friendData);
-    if (
-      friends.friendData === (undefined || null) ||
-      friends.friendData?.length === 0
-    ) {
+    console.log("FriendsData", friendsList);
+    validateFriends(friendsList);
+    if (friendsList === (undefined || null) || friendsList?.length === 0) {
       console.log("Went into intial IF");
       try {
         var localStorage_myFriendsData = JSON.parse(
@@ -27,8 +24,8 @@ const FriendsView = () => {
           throw Error("localStorage data null!");
         } else {
           // Else Unecessary
-          friends.setFriendData(localStorage_myFriendsData);
-          console.log("friendDATA in view", friends.friendData);
+          setFriendsList(localStorage_myFriendsData);
+          console.log("friendDATA in view", friendsList);
           setDataExists(true);
         }
       } catch (error) {
@@ -43,9 +40,10 @@ const FriendsView = () => {
 
   return (
     <>
-      <FriendModal className="friendsView__modal"></FriendModal>
+      {/* className="friendsView__modal" <- Removed from friend modal component below*/}
+      <FriendModal></FriendModal>
       <Box mt={2}>
-        {(dataExists && <FriendList data={friends.friendData} />) || (
+        {(dataExists && <FriendList data={friendsList} />) || (
           <Typography variant="h4">
             No friends loaded. Click The "Add Friends" button to add some
             friends here!

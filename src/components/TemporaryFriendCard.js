@@ -8,7 +8,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { Avatar } from "@mui/material";
-import { SearchContext } from "../context/search";
+import { SearchContext } from "../context/useSearchContext";
 import { useNavigate } from "react-router-dom";
 
 import "./FriendCard.scss";
