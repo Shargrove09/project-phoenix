@@ -116,7 +116,7 @@ export default function TemporaryDrawer() {
             <MenuIcon />
           </IconButton>
           <Drawer
-            anchor={anchor}
+            anchor={"left"}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
             variant="temporary"

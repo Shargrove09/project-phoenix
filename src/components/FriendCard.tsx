@@ -1,15 +1,7 @@
 import * as React from "react";
-import {
-  Typography,
-  Link,
-  Paper,
-  ImageListItem,
-  Grid,
-  Button,
-} from "@material-ui/core";
+import { Typography, Paper, ImageListItem, Grid } from "@material-ui/core";
 import { Avatar } from "@mui/material";
-import { SearchContext } from "../context/useSearchContext";
-import { useNavigate } from "react-router-dom";
+import { useSearchContext } from "../context/useSearchContext";
 
 import "./FriendCard.scss";
 
@@ -28,8 +20,7 @@ const backUpImg = () => {
 const FriendsCard = (props) => {
   // const jikanjs = require("@mateoaranda/jikanjs"); Do this later
 
-  const search = React.useContext(SearchContext);
-  const navigate = useNavigate();
+  const { searchById, setData } = useSearchContext();
 
   var img_url = "BLANK";
   var userName = "NO USER";
@@ -78,12 +69,11 @@ const FriendsCard = (props) => {
     }); 
   }; */
 
-  function handleRecentlyWatchedImageClick2(mal_id, event) {
+  function handleRecentlyWatchedImageClick2(mal_id) {
     console.log("MAL ID ", mal_id);
-    event.preventDefault();
-    search.searchById(mal_id).then((data) => {
-      search.setData(data.results);
-      console.log("searchDATA FROM FRIENDS", search.animeData);
+    //event.preventDefault();
+    searchById(mal_id).then((data) => {
+      setData(data.results);
       localStorage.setItem("myData", JSON.stringify(data.results));
     });
   }
@@ -95,7 +85,7 @@ const FriendsCard = (props) => {
           <div className="friendCard__header">
             {" "}
             {/* Grid Item Applicable*/}
-            <StyledAvatar className="friendCard__avatar" />
+            <StyledAvatar className="friendCard__avatar" children={undefined} />
             <Typography
               variant="h5"
               component="h2"
@@ -103,10 +93,7 @@ const FriendsCard = (props) => {
             >
               {userName}
             </Typography>
-            <Typography
-              component="subtitle2"
-              className="friendCard__lastOnline"
-            >
+            <Typography className="friendCard__lastOnline">
               Last online: {lastOnlineDate}
             </Typography>
           </div>

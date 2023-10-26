@@ -12,15 +12,12 @@
 // });
 
 import React, { createContext, useContext, useState } from "react";
-import { Search } from "react-router-dom";
 
 interface SearchContextValue {
   animeData: any[];
   singleData: {};
-  search: (searchterm) => {
-    /**TODO Set some default value */
-  };
-  searchById: (searchId) => void;
+  search: (searchterm) => Promise<any>;
+  searchById: (searchId) => Promise<any>;
   setData: (data) => void;
   setSingle: (data) => void;
 }
