@@ -64,6 +64,26 @@ const Home = () => {
               </IconButton>
             </FormControl>
           </form> */}
+          <form className="home__form">
+            <TextField
+              autoFocus={true}
+              placeholder="Search for an anime..."
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+              className="home__input"
+              inputProps={{ style: { color: "white" } }}
+            />
+
+            <IconButton
+              className="home__iconButton"
+              color="primary"
+              type="submit"
+              disabled={!input}
+              onClick={handleSearch}
+            >
+              <SearchIcon />
+            </IconButton>
+          </form>
         </Grid>
       </Grid>
     </Grid>
