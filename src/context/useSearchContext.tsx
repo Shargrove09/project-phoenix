@@ -46,7 +46,7 @@ export const SearchProvider: React.FC<Props> = ({ children }) => {
   // Search for an anime by general search term
   const search = async (searchTerm: string) => {
     const response = await fetch(
-      `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=20`
+      `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=20&sfw`
     );
     return await response.json();
   };

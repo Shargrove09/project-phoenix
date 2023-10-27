@@ -16,6 +16,7 @@ const Home = () => {
   const handleSearch = (event) => {
     event.preventDefault(); //Won't allow page to refresh when you submit input
     search(input).then((data) => {
+      console.log("Search Data", data);
       setData(data.data); // Should try data.data.results (Actually results doesnt exist in v4)
       localStorage.setItem("myData", JSON.stringify(data.data)); //Allowed to set Strings
       navigate("/results");
@@ -26,7 +27,7 @@ const Home = () => {
     <Grid
       container
       direction="column"
-      justify="center"
+      justifyContent="center"
       alignContent="center"
       alignItems="center"
     >
@@ -60,7 +61,7 @@ const Home = () => {
                 disabled={!input}
                 onClick={handleSearch}
               >
-                <SearchIcon />
+              <SearchIcon />
               </IconButton>
             </FormControl>
           </form> */}
@@ -72,8 +73,7 @@ const Home = () => {
               onChange={(event) => setInput(event.target.value)}
               className="home__input"
               inputProps={{ style: { color: "white" } }}
-            />
-
+            ></TextField>
             <IconButton
               className="home__iconButton"
               color="primary"

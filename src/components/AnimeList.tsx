@@ -2,6 +2,8 @@ import React from "react";
 import AnimeCard from "./AnimeCard";
 import { ImageList } from "@material-ui/core";
 
+interface Props {}
+
 const AnimeList = (props) => {
   console.log("AnimeListProps: ", props);
   return (

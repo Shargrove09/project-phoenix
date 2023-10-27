@@ -5,6 +5,8 @@
     z-index: 1; 
     background-color: #4B4E6D;
     color: white; 
+    display: flex; 
+    flex-direction: row; 
 }
 
 .home__formControl { 
@@ -15,10 +17,11 @@
 .home__input { 
     flex: 1; 
     font-style: white;
+    width: 98%; 
+    z-index: 200;
 }
 
 .home__iconButton { 
-    flex: 0; 
 }
 
 .home__searchBarImage { 
