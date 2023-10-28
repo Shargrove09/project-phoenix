@@ -6,7 +6,7 @@ import { Switch } from "@mui/base/Switch";
 import UseResultsSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 
 import "./Results.scss";
-import DetailedAnimeList from "../../components/DetailedAnimeList/DetailedAnimeList";
+import ListView from "../../components/ListView/ListView";
 
 const Results = () => {
   const { animeData, setAnimeData } = useSearchContext();
@@ -37,7 +37,7 @@ const Results = () => {
       </div>
       {(resultsExists && !showDetailedView && (
         <AnimeList data={animeData} />
-      )) || <DetailedAnimeList animeList={animeData} />}
+      )) || <ListView animeList={animeData} />}
     </Box>
   );
 };

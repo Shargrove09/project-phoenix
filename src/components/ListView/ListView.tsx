@@ -1,13 +1,13 @@
 import React from "react";
 import DetailedAnimeCard from "../DetailedAnimeCard/DetailedAnimeCard";
 
-import "./DetailedAnimeList.scss";
+import "./ListView.scss";
 
 interface Props {
   animeList: any;
 }
 
-const DetailedAnimeList = (props: Props) => {
+const ListView = (props: Props) => {
   const { animeList } = props;
 
   console.log("animeList", animeList);
@@ -19,4 +19,4 @@ const DetailedAnimeList = (props: Props) => {
   );
 };
 
-export default DetailedAnimeList;
+export default ListView;
