@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Results from "./pages/Results";
+import Results from "./pages/Results/Results";
 import SingleView from "./pages/SingleView";
 import MainNavigation from "./components/MainNavigation";
 import FriendsView from "./pages/FriendsView";

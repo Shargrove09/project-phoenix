@@ -1,0 +1,10 @@
+.results__content { 
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+}
+
+.results__viewpill { 
+display: flex; 
+flex-direction: row-reverse;
+}

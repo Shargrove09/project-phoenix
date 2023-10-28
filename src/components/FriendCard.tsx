@@ -20,7 +20,7 @@ const backUpImg = () => {
 const FriendsCard = (props) => {
   // const jikanjs = require("@mateoaranda/jikanjs"); Do this later
 
-  const { searchById, setData } = useSearchContext();
+  const { searchById, setAnimeData } = useSearchContext();
 
   var img_url = "BLANK";
   var userName = "NO USER";
@@ -64,7 +64,7 @@ const FriendsCard = (props) => {
     /*
     search.searchById(mal_id).then((data) => {
       search.setData(data.results);
-      localStorage.setItem("myData", JSON.stringify(data.results));
+      localStorage.setItem("animeSearchResultData", JSON.stringify(data.results));
       navigate("/results");
     }); 
   }; */
@@ -73,8 +73,11 @@ const FriendsCard = (props) => {
     console.log("MAL ID ", mal_id);
     //event.preventDefault();
     searchById(mal_id).then((data) => {
-      setData(data.results);
-      localStorage.setItem("myData", JSON.stringify(data.results));
+      setAnimeData(data.results);
+      localStorage.setItem(
+        "animeSearchResultData",
+        JSON.stringify(data.results)
+      );
     });
   }
 

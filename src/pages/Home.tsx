@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { SyntheticEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
 import { IconButton, Grid, TextField } from "@material-ui/core";
@@ -8,17 +8,21 @@ import SearchIcon from "@material-ui/icons/Search";
 import "./Home.scss";
 
 const Home = () => {
-  const { search, setData } = useSearchContext();
+  const { search, setAnimeData } = useSearchContext();
   const [input, setInput] = useState("");
 
   const navigate = useNavigate();
 
-  const handleSearch = (event) => {
+  // User searches anime
+  const handleAnimeSearch = (event: SyntheticEvent) => {
     event.preventDefault(); //Won't allow page to refresh when you submit input
-    search(input).then((data) => {
-      console.log("Search Data", data);
-      setData(data.data); // Should try data.data.results (Actually results doesnt exist in v4)
-      localStorage.setItem("myData", JSON.stringify(data.data)); //Allowed to set Strings
+    search(input).then((searchResult) => {
+      console.log("searchResult from search", searchResult);
+      setAnimeData(searchResult.data);
+      localStorage.setItem(
+        "animeSearchResultData",
+        JSON.stringify(searchResult.data)
+      ); //Allowed to set Strings
       navigate("/results");
     });
   };
@@ -79,7 +83,7 @@ const Home = () => {
               color="primary"
               type="submit"
               disabled={!input}
-              onClick={handleSearch}
+              onClick={handleAnimeSearch}
             >
               <SearchIcon />
             </IconButton>

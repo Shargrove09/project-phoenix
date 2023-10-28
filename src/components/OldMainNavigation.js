@@ -134,7 +134,7 @@ export default function SearchAppBar() {
     event.preventDefault();
     search.search(input).then((data) => {
       search.setData(data.data);
-      localStorage.setItem("myData", JSON.stringify(data.data));
+      localStorage.setItem("animeSearchResultData", JSON.stringify(data.data));
       setInput("");
       navigate("/results");
     });

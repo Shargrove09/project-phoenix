@@ -18,8 +18,8 @@ interface SearchContextValue {
   singleData: {};
   search: (searchterm) => Promise<any>;
   searchById: (searchId) => Promise<any>;
-  setData: (data) => void;
   setSingle: (data) => void;
+  setAnimeData: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 interface Props {
@@ -31,12 +31,6 @@ const SearchContext = createContext<SearchContextValue>(undefined);
 export const SearchProvider: React.FC<Props> = ({ children }) => {
   const [animeData, setAnimeData] = useState([]);
   const [singleData, setSingleData] = useState({});
-
-  // TODO: rename to setAnimeData to be descriptive
-  // Stores all anime data
-  const setData = (data) => {
-    setAnimeData(data);
-  };
 
   // Stores single anime data if single anime is clicked
   const setSingle = (data: any) => {
@@ -60,7 +54,14 @@ export const SearchProvider: React.FC<Props> = ({ children }) => {
 
   return (
     <SearchContext.Provider
-      value={{ animeData, singleData, search, searchById, setData, setSingle }}
+      value={{
+        animeData,
+        singleData,
+        search,
+        searchById,
+        setAnimeData,
+        setSingle,
+      }}
     >
       {children}
     </SearchContext.Provider>

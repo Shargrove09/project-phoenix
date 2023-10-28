@@ -77,15 +77,15 @@ export default function SearchAppBar() {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  const { search, setData } = useSearchContext();
+  const { search, setAnimeData } = useSearchContext();
 
   const [input, setInput] = useState("");
 
   const handleSearch = (event) => {
     event.preventDefault();
     search(input).then((data) => {
-      setData(data.data);
-      localStorage.setItem("myData", JSON.stringify(data.data));
+      setAnimeData(data.data);
+      localStorage.setItem("animeSearchResultData", JSON.stringify(data.data));
       setInput("");
       navigate("/results");
     });
