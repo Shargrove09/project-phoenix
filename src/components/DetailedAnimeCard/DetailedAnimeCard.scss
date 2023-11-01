@@ -27,10 +27,17 @@
 
 .dcard__content { 
   display: flex; 
-  align-items: center;
+  align-items: center;    
+   
 }
 
 .dcard__actions { 
   right: 0; 
   z-index: 3;
 }
+
+.dcard__content > .MuiTypography-root { 
+  color: rgb(194, 192, 192);
+}
+
+

@@ -27,8 +27,6 @@ const Results = () => {
     }
   }, []);
 
-  console.log("Show Detailed", showDetailedView);
-
   return (
     <Box
       className="results__content"
@@ -37,12 +35,13 @@ const Results = () => {
     >
       <div className="results__searchResults_header">
         <Typography variant="h5" component={"h2"}>
-          Search Results for: {searchTerm}
+          Search Results for: '{searchTerm}'
         </Typography>
+        <div className="results__viewpill">
+          <UseResultsSwitch setShowDetailedView={setShowDetailedView} />
+        </div>
       </div>
-      <div className="results__viewpill">
-        <UseResultsSwitch setShowDetailedView={setShowDetailedView} />
-      </div>
+
       {(resultsExists && !showDetailedView && (
         <AnimeList data={animeData} />
       )) || <ListView animeList={animeData} />}
