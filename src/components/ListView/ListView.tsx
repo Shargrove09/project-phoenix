@@ -13,8 +13,10 @@ const ListView = (props: Props) => {
   console.log("animeList", animeList);
 
   return (
-    <div className="dal__container">
-      <DetailedAnimeCard animeData={animeList[0]} />
+    <div className="listView__container">
+      {animeList.map((animeData, index) => (
+        <DetailedAnimeCard key={index} animeData={animeData} />
+      ))}
     </div>
   );
 };

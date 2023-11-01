@@ -2,9 +2,17 @@
   display: flex; 
   flex-direction: column;
   align-items: center;
+  text-align: center;;
 }
 
 .results__viewpill { 
-display: flex; 
-flex-direction: row-reverse;
+  display: flex;
+}
+
+.results__content { 
+  display: flex; 
+}
+
+.results__searchResults_header { 
+  color: rgb(255, 255, 255); 
 }

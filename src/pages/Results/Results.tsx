@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import AnimeList from "../../components/AnimeList";
 import { useSearchContext } from "../../context/useSearchContext"; //Wrap imports in curly braces when they aren't default exports
-import { Box, Typography } from "@material-ui/core";
-import { Switch } from "@mui/base/Switch";
+import { Box } from "@mui/material";
 import UseResultsSwitch from "../../components/ToggleSwitch/ToggleSwitch";
-
+import Typography from "@mui/material/Typography";
 import "./Results.scss";
 import ListView from "../../components/ListView/ListView";
 
 const Results = () => {
-  const { animeData, setAnimeData } = useSearchContext();
+  const { animeData, setAnimeData, searchTerm } = useSearchContext();
 
   const [resultsExists, setResultsExists] = useState(true);
 
@@ -31,7 +30,16 @@ const Results = () => {
   console.log("Show Detailed", showDetailedView);
 
   return (
-    <Box className="results__content" mt={2}>
+    <Box
+      className="results__content"
+      mt={2}
+      sx={{ justifyContent: "center", display: "flex" }}
+    >
+      <div className="results__searchResults_header">
+        <Typography variant="h5" component={"h2"}>
+          Search Results for: {searchTerm}
+        </Typography>
+      </div>
       <div className="results__viewpill">
         <UseResultsSwitch setShowDetailedView={setShowDetailedView} />
       </div>
