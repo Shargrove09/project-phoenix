@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Results from "./pages/Results/Results";
 import SingleView from "./pages/SingleView";
-import MainNavigation from "./components/MainNavigation";
+// import MainNavigation from "./components/MainNavigation";
+import MainBar from "./components/MainBar";
 import FriendsView from "./pages/FriendsView";
 import { SearchProvider } from "./context/useSearchContext";
 import { FriendsProvider } from "./context/useFriendsContext";
@@ -43,7 +44,7 @@ function App() {
       <SearchProvider>
         <FriendsProvider>
           <Router>
-            <MainNavigation />
+            <MainBar />
             <main>
               <Routes>
                 <Route path="/" element={<Home />} />

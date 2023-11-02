@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 // Old way
 // import { SearchContext } from "../context/useSearchContext";
 import { useSearchContext } from "../context/useSearchContext";
-import { Typography, Link, Card, ImageListItem, Grid } from "@material-ui/core";
+import { Typography, Link, Card, ImageListItem, Grid } from "@mui/material";
 
 import "./AnimeCard.scss";
 

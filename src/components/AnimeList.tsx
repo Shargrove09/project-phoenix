@@ -1,6 +1,6 @@
 import React from "react";
 import AnimeCard from "./AnimeCard";
-import { ImageList } from "@material-ui/core";
+import { ImageList } from "@mui/material";
 import { Anime } from "../common/Anime";
 
 interface Props {

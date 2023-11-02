@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import SingleAnime from "../components/SingleAnime";
 import { useSearchContext } from "../context/useSearchContext";

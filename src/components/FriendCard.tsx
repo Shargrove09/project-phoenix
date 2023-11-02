@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Typography, Paper, ImageListItem, Grid } from "@material-ui/core";
+import { Typography, Paper, ImageListItem, Grid } from "@mui/material";
 import { Avatar } from "@mui/material";
 import { useSearchContext } from "../context/useSearchContext";
 

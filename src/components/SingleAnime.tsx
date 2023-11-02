@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Divider from "@mui/material/Divider";
-import { Grid, Typography, Paper } from "@material-ui/core";
+import { Grid, Typography, Paper } from "@mui/material";
 import { Button } from "@mui/material";
 
 import "./SingleAnime.scss";

@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "@mui/system/babel-plugin",
+    [
+      "@emotion/babel-plugin",
+      {
+        "autoLabel": "always",
+        "labelFormat": "[local]",
+        "sourceMap": true
+      }
+    ]
+  ]
+}

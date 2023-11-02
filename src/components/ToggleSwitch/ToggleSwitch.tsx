@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import clsx from "clsx";
 import { styled } from "@mui/system";
 import { useSwitch, UseSwitchParameters } from "@mui/base/useSwitch";
+import GridViewIcon from "@mui/icons-material/GridView";
 
 interface Props extends UseSwitchParameters {
   setShowDetailedView: React.Dispatch<React.SetStateAction<boolean>>;
@@ -55,11 +56,16 @@ const grey = {
 const SwitchRoot = styled("span")`
   display: inline-block;
   position: relative;
-  width: 48px;
+  width: 56px;
   height: 36px;
   padding: 8px;
   margin-top: 1em;
 `;
+
+const CustomGridViewIcon = styled(GridViewIcon)({
+  width: 30,
+  height: 30,
+});
 
 const SwitchInput = styled("input")`
   position: absolute;
@@ -80,7 +86,7 @@ const SwitchThumb = styled("span")`
   width: 30px;
   height: 30px;
   border-radius: 8px;
-  top: 3px;
+
   left: 4px;
   transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -92,9 +98,8 @@ const SwitchThumb = styled("span")`
 
     /* false positive: */
     /* stylelint-disable unit-no-unknown */
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-        "#fff"
-      )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')
+    background: url(${CustomGridViewIcon}); // Set the background image to GridViewIcon
+    background-size: cover; // Adjust the size of the background image
       center center no-repeat;
     /* stylelint-enable unit-no-unknown */
   }
@@ -104,7 +109,7 @@ const SwitchThumb = styled("span")`
   }
 
   &.checked {
-    transform: translateX(24px);
+    transform: translateX(20px);
 
     &::before {
       /* false positive: */

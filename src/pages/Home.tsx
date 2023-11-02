@@ -1,7 +1,7 @@
-import React, { SyntheticEvent, useContext, useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
-import { IconButton, Grid, TextField } from "@material-ui/core";
+import { IconButton, Grid, TextField } from "@mui/material";
 import { FormControl } from "@mui/material";
 import SearchIcon from "@material-ui/icons/Search";
 
