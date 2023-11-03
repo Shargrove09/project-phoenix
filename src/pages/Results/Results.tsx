@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AnimeList from "../../components/AnimeList";
 import { useSearchContext } from "../../context/useSearchContext"; //Wrap imports in curly braces when they aren't default exports
 import { Box } from "@mui/material";
-import MuiSwitch from "../../components/ToggleSwitch/ToggleSwitch";
+import ResultsViewSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 import Typography from "@mui/material/Typography";
 import "./Results.scss";
 import ListView from "../../components/ListView/ListView";
@@ -38,7 +38,7 @@ const Results = () => {
           Search Results for: '{searchTerm}'
         </Typography>
         <div className="results__viewpill">
-          <MuiSwitch
+          <ResultsViewSwitch
             setShowDetailedView={setShowDetailedView}
             showDetailedView={showDetailedView}
           />
