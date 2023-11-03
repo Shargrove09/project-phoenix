@@ -10,7 +10,7 @@ interface Props {
 const AnimeList = (props) => {
   console.log("AnimeListProps: ", props);
   return (
-    <ImageList style={{ margin: "auto", justifyContent: "center" }}>
+    <ImageList style={{ margin: "auto", justifyContent: "center" }} cols={6}>
       {props.data.map((anime) => (
         <AnimeCard kdey={anime.mal_id} anime={anime} />
       ))}

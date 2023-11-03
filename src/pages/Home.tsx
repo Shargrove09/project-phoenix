@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
 import { IconButton, Grid, TextField } from "@mui/material";
 import { FormControl } from "@mui/material";
-import SearchIcon from "@material-ui/icons/Search";
-
+import SearchIcon from "@mui/icons-material/Search";
 import "./Home.scss";
 
 const Home = () => {
