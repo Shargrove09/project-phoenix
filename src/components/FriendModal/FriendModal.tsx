@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Box, Button, Typography, Modal } from "@mui/material";
 import { FormControl, IconButton, TextField } from "@mui/material";
-import SearchIcon from "@material-ui/icons/Search";
+import SearchIcon from "@mui/icons-material";
 import { useFriendsContext } from "../../context/useFriendsContext";
 
 import "./FriendModal.scss";

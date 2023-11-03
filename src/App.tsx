@@ -13,11 +13,14 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"; // Import fro
 import CssBaseline from "@mui/material/CssBaseline"; // Import CssBaselin
 
 import "./App.css";
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,600&display=swap"
-  rel="stylesheet"
-/>;
+<>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,600&display=swap"
+    rel="stylesheet"
+  />
+</>;
 
 const theme = createTheme({
   palette: {
