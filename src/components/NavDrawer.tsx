@@ -51,60 +51,60 @@
 //       onClick={toggleDrawer(anchor, false)}
 //       onKeyDown={toggleDrawer(anchor, false)}
 //     >
-//       <List>
-//         <ListItem
-//           disablePadding
-//           component={Link}
-//           to={"/"}
-//           style={{ color: "white" }}
-//         >
-//           <ListItemButton>
-//             <ListItemIcon>
-//               <HomeIcon className="navDrawer__icon" />
-//             </ListItemIcon>
-//             <ListItemText primary={"Home"} />
-//           </ListItemButton>
-//         </ListItem>
-//         <ListItem
-//           disablePadding
-//           component={Link}
-//           to={"/results"}
-//           style={{ color: "white" }}
-//         >
-//           <ListItemButton>
-//             <ListItemIcon>
-//               <ContentPasteSearchIcon className="navDrawer__icon" />
-//             </ListItemIcon>
-//             <ListItemText primary={"Results"} />
-//           </ListItemButton>
-//         </ListItem>
-//         <ListItem
-//           disablePadding
-//           component={Link}
-//           to={"/single-view"}
-//           style={{ color: "white" }}
-//         >
-//           <ListItemButton>
-//             <ListItemIcon>
-//               <SavedSearchIcon className="navDrawer__icon" />
-//             </ListItemIcon>
-//             <ListItemText primary={"Last Searched Anime"} />
-//           </ListItemButton>
-//         </ListItem>
-//         <ListItem
-//           disablePadding
-//           component={Link}
-//           to={"/friends"}
-//           style={{ color: "white" }}
-//         >
-//           <ListItemButton>
-//             <ListItemIcon>
-//               <PeopleIcon className="navDrawer__icon" />
-//             </ListItemIcon>
-//             <ListItemText primary={"Friends"} />
-//           </ListItemButton>
-//         </ListItem>
-//       </List>
+// <List>
+//   <ListItem
+//     disablePadding
+//     component={Link}
+//     to={"/"}
+//     style={{ color: "white" }}
+//   >
+//     <ListItemButton>
+//       <ListItemIcon>
+//         <HomeIcon className="navDrawer__icon" />
+//       </ListItemIcon>
+//       <ListItemText primary={"Home"} />
+//     </ListItemButton>
+//   </ListItem>
+//   <ListItem
+//     disablePadding
+//     component={Link}
+//     to={"/results"}
+//     style={{ color: "white" }}
+//   >
+//     <ListItemButton>
+//       <ListItemIcon>
+//         <ContentPasteSearchIcon className="navDrawer__icon" />
+//       </ListItemIcon>
+//       <ListItemText primary={"Results"} />
+//     </ListItemButton>
+//   </ListItem>
+//   <ListItem
+//     disablePadding
+//     component={Link}
+//     to={"/single-view"}
+//     style={{ color: "white" }}
+//   >
+//     <ListItemButton>
+//       <ListItemIcon>
+//         <SavedSearchIcon className="navDrawer__icon" />
+//       </ListItemIcon>
+//       <ListItemText primary={"Last Searched Anime"} />
+//     </ListItemButton>
+//   </ListItem>
+//   <ListItem
+//     disablePadding
+//     component={Link}
+//     to={"/friends"}
+//     style={{ color: "white" }}
+//   >
+//     <ListItemButton>
+//       <ListItemIcon>
+//         <PeopleIcon className="navDrawer__icon" />
+//       </ListItemIcon>
+//       <ListItemText primary={"Friends"} />
+//     </ListItemButton>
+//   </ListItem>
+// </List>
 //       <Divider />
 //     </Box>
 //   );

@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Results from "./pages/Results/Results";
 import SingleView from "./pages/SingleView";
 // import MainNavigation from "./components/MainNavigation";
-import MainBar from "./components/MainBar";
+import MainBar from "./components/MainBar/MainBar";
 import FriendsView from "./pages/FriendsView";
 import { SearchProvider } from "./context/useSearchContext";
 import { FriendsProvider } from "./context/useFriendsContext";
