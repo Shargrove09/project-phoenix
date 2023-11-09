@@ -1,16 +1,44 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
-import { IconButton, Grid, TextField } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import Grid from "@mui/material/Unstable_Grid2";
 import { FormControl } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Home.scss";
+import { Anime } from "../common/Anime";
+import ImageCarousel from "../components/SeasonalCarousel/SeasonalCarousel";
+import SwipeableTextMobileStepper from "../components/SeasonalCarousel/SeasonalCarouselSwipeable";
 
 const Home = () => {
-  const { search, setAnimeData } = useSearchContext();
+  const { search, setAnimeData, searchById, setSingle } = useSearchContext();
+
   const [input, setInput] = useState("");
+  const [airingShows, setAiringShows] = useState<Anime[]>([]);
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
+  useEffect(() => {
+    getAiringShows();
+  }, []);
 
   const navigate = useNavigate();
+
+  const topAiringAnimeToShow = expanded
+    ? airingShows.slice(0, 10)
+    : airingShows.slice(0, 5);
 
   // User searches anime
   const handleAnimeSearch = (event: SyntheticEvent) => {
@@ -26,16 +54,46 @@ const Home = () => {
     });
   };
 
+  const getAiringShows = async () => {
+    const airingResponse = await fetch(`https://api.jikan.moe/v4/seasons/now`);
+
+    const airingResponseJson = await airingResponse.json();
+    console.log("Airing Response JSON, ", airingResponseJson);
+    setAiringShows(airingResponseJson.data);
+
+    return airingResponseJson;
+  };
+
+  const handleAiringShowEntryClick = (show) => {
+    // When a currently airing entry is clicked user should be directed to single anime page
+    // for that entry
+
+    // Can reuse data from airing data fetch
+    console.log("Handling Airing Show Entry w/ : ", show);
+    setSingle(show);
+    localStorage.setItem("singleData", JSON.stringify(show));
+    navigate("/single-view");
+
+    return null;
+  };
+
   return (
     <Grid
       container
+      className={"home__grid"}
       direction="column"
       justifyContent="center"
       alignContent="center"
       alignItems="center"
     >
-      <Grid item>
-        <Grid item>
+      <Grid
+        container
+        className={"home__grid-row-1"}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid lg={3}></Grid>
+        <Grid xs={12} sm={6} md={6} className="home__searchBarImg_container">
           <img
             alt="Gurren Lagann"
             src={`${process.env.PUBLIC_URL}/searchbar_img.jpeg`}
@@ -44,30 +102,49 @@ const Home = () => {
             className="home__searchBarImage"
           />
         </Grid>
-        <Grid item>
-          {/* <form className="home__form">
-            <FormControl type="submit" className="home__formControl">
-              <TextField
-                autoFocus="true"
-                placeholder="Search for an anime..."
-                value={input}
-                onChange={(event) => setInput(event.target.value)}
-                className="home__input"
-                inputProps={{ style: { color: "white" } }}
-              />
-              {/*Getting what's inside of event*
-              <IconButton
-                className="home__iconButton"
-                variant="contained"
-                color="primary"
-                type="submit"
-                disabled={!input}
-                onClick={handleSearch}
-              >
-              <SearchIcon />
-              </IconButton>
-            </FormControl>
-          </form> */}
+        <Grid xs={12} sm={6} md={3} lg={3} className="home__airing_container">
+          <Card className="home__airing" sx={{ backgroundColor: "#424242" }}>
+            <CardHeader
+              className="home__airing_header"
+              title="Top Airing Anime"
+              action={
+                <IconButton
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon sx={{ color: "#c2c0c0" }} />
+                </IconButton>
+              }
+            />
+            <CardContent className="home__airing_entry_content">
+              {topAiringAnimeToShow.map((anime, index) => (
+                <div
+                  key={index}
+                  className="home__airing_entry"
+                  onClick={() => handleAiringShowEntryClick(anime)}
+                >
+                  {}
+                  <img
+                    src={anime.images.jpg.small_image_url}
+                    alt={anime + "small-image-card"}
+                    className="home__airing_entry_img"
+                  />
+                  <strong>{anime.title}</strong>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        className={"home__grid-row-2"}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid lg={3}></Grid>
+        <Grid xs={12} sm={6} md={6} className="home__searchBar_container">
           <form className="home__form">
             <TextField
               autoFocus={true}
@@ -87,6 +164,33 @@ const Home = () => {
               <SearchIcon />
             </IconButton>
           </form>
+        </Grid>
+        <Grid xs={12} sm={6} md={3} lg={3} className="home__seasonal_container">
+          <Card className="home__seasonal" sx={{ backgroundColor: "#424242" }}>
+            <CardHeader
+              className="home__seasonal_header"
+              title="Seasonal Anime"
+              action={
+                <IconButton
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon sx={{ color: "#c2c0c0" }} />
+                </IconButton>
+              }
+            />
+            <CardContent className="home__seasonal_entry_content">
+              {/* <ImageCarousel
+                images={[
+                  topAiringAnimeToShow[0].images.jpg.large_image_url,
+                  topAiringAnimeToShow[1].images.jpg.large_image_url,
+                  topAiringAnimeToShow[2].images.jpg.large_image_url,
+                ]}
+              /> */}
+              <SwipeableTextMobileStepper images={[]} />
+            </CardContent>
+          </Card>
         </Grid>
       </Grid>
     </Grid>

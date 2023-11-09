@@ -21,6 +21,9 @@ import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
 import SavedSearchIcon from "@mui/icons-material/SavedSearch";
 import PeopleIcon from "@mui/icons-material/People";
 import { Link } from "react-router-dom";
+import NavDrawer from "../NavDrawer";
+
+import "./MainBar.scss";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -71,8 +74,20 @@ const CustomSwipeableDrawer = styled(SwipeableDrawer)(({ theme }) => ({
   },
 }));
 
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  zIndex: theme.zIndex.appBar - 1,
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-end",
+}));
+
 export default function SearchAppBar() {
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
+
+  const drawerWidth = 240;
 
   const toggleDrawer = (open: boolean) => (event) => {
     if (
@@ -86,9 +101,9 @@ export default function SearchAppBar() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
+    <Box sx={{ display: "flex", flexGrow: 1 }}>
+      <AppBar className="mainBar" position="sticky" sx={{ zIndex: 1400 }}>
+        <Toolbar className="toolBar">
           <IconButton
             size="large"
             edge="start"
@@ -99,6 +114,15 @@ export default function SearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
+          <Link to="/">
+            <img
+              alt="Gurren Lagann"
+              src={`${process.env.PUBLIC_URL}/gurren_lagann_logo.png`}
+              height={25}
+              width={25}
+              className="MainNavigation__logo"
+            />
+          </Link>
           <Typography
             variant="h6"
             noWrap
@@ -125,6 +149,7 @@ export default function SearchAppBar() {
         onOpen={toggleDrawer(true)}
         color="#3A3A3A"
       >
+        <DrawerHeader></DrawerHeader>
         <List>
           <ListItem
             disablePadding

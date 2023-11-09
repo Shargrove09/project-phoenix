@@ -7,6 +7,8 @@
     color: white; 
     display: flex; 
     flex-direction: row; 
+    width: 100%; 
+    
 }
 
 .home__formControl { 
@@ -27,5 +29,72 @@
 .home__searchBarImage { 
     border-top-left-radius: 4px;
     border-radius: 5px;
-    margin-top: 10%;
+}
+
+.home__airing { 
+    margin: 20px; 
+}
+
+.home__airing_entry { 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center;
+    margin-bottom: 4px; 
+    transition: background-color 0.3s; 
+    border-radius: 4px; 
+}
+
+.home__airing_entry:hover { 
+    background-color: #383838; 
+}
+
+.home__airing_entry_content { 
+    color: rgb(194, 192, 192);
+}
+
+.home__airing_entry_img { 
+    margin-right: 8px; 
+    border-radius: 4px; 
+}
+
+.home__airing_header > .MuiCardHeader-content {
+    color: rgb(194, 192, 192);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home__grid { 
+    width: 100%; 
+}
+
+.home__grid-row-1 { 
+    width: 100%; 
+    height: 100%; 
+}
+
+.home__grid-row-2 { 
+    width: 100%; 
+    height: 100%; 
+}
+
+.home__searchBarImg_container { 
+    display: flex; 
+    justify-content: center; 
+}
+
+.home__searchBar_container { 
+    display: flex; 
+    justify-content: center; 
+}
+
+.home__airing_container { 
+    position: relative; 
+}
+
+.home__grid-row-2 { 
+    display: grid; 
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    justify-content: flex-start;
 }

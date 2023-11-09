@@ -12,10 +12,11 @@
 // });
 
 import React, { createContext, useContext, useState } from "react";
+import { Anime } from "../common/Anime";
 
 interface SearchContextValue {
   animeData: any[];
-  singleData: {};
+  singleData: Anime;
   search: (searchterm) => Promise<any>;
   searchById: (searchId) => Promise<any>;
   searchTerm: string;
@@ -31,7 +32,7 @@ const SearchContext = createContext<SearchContextValue>(undefined);
 
 export const SearchProvider: React.FC<Props> = ({ children }) => {
   const [animeData, setAnimeData] = useState([]);
-  const [singleData, setSingleData] = useState({});
+  const [singleData, setSingleData] = useState<Anime>();
   const [searchTerm, setSearchTerm] = useState("");
 
   // Stores single anime data if single anime is clicked

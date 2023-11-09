@@ -1,12 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Divider from "@mui/material/Divider";
 import { Grid, Typography, Paper } from "@mui/material";
 import { Button } from "@mui/material";
 
 import "./SingleAnime.scss";
+import { Anime } from "../common/Anime";
+
+interface Props {
+  info: Anime;
+}
 
 const SingleAnime = (props) => {
-  console.log("SingleAnime, ", props);
+  console.log("SingleAnime props ", props);
   const {
     airing,
     images,
@@ -17,14 +22,13 @@ const SingleAnime = (props) => {
     url,
     episodes,
     members,
-  } = props.info?.data ?? "Null";
+  } = props.info ?? "Null";
 
-  const title = props.info?.data?.title ?? "title Didn't load";
-  const broadcast = props.info?.data?.broadcast;
+  const title = props.info?.title ?? "title Didn't load";
+  const broadcast = props.info?.broadcast;
   const image_url = images?.jpg.image_url;
-  const synopsis = props.info?.data.synopsis;
+  const synopsis = props.info?.synopsis ?? "No Synopisis Loaded";
 
-  useEffect(() => {}, []);
   return (
     <Grid
       container

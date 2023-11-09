@@ -1,5 +1,5 @@
 //TODO: finish definting types for attributes
-export interface Anime { 
+export interface Anime {
   aired: {}; 
   airing: boolean; 
   approved: boolean; 
