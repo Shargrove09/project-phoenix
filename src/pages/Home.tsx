@@ -25,7 +25,9 @@ const Home = () => {
   const [input, setInput] = useState("");
   const [airingShows, setAiringShows] = useState<Anime[]>([]);
   const [expanded, setExpanded] = useState(false);
-
+  const [isAiringShowsLoading, setIsAiringShowsLoading] =
+    useState<boolean>(true);
+  const [carouselShows, setCarouselShows] = useState([]);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -44,7 +46,6 @@ const Home = () => {
   const handleAnimeSearch = (event: SyntheticEvent) => {
     event.preventDefault(); //Won't allow page to refresh when you submit input
     search(input).then((searchResult) => {
-      console.log("searchResult from search", searchResult);
       setAnimeData(searchResult.data);
       localStorage.setItem(
         "animeSearchResultData",
@@ -55,13 +56,22 @@ const Home = () => {
   };
 
   const getAiringShows = async () => {
-    const airingResponse = await fetch(`https://api.jikan.moe/v4/seasons/now`);
+    try {
+      const airingResponse = await fetch(
+        `https://api.jikan.moe/v4/seasons/now`
+      );
+      const airingShowsResult = await airingResponse.json();
+      setAiringShows(airingShowsResult.data);
 
-    const airingResponseJson = await airingResponse.json();
-    console.log("Airing Response JSON, ", airingResponseJson);
-    setAiringShows(airingResponseJson.data);
-
-    return airingResponseJson;
+      // Extract carousel images and set loading state to false
+      const images = airingShowsResult.data.map((show: Anime) => ({
+        image: show.images.jpg.large_image_url,
+      }));
+      setCarouselShows(images);
+      setIsAiringShowsLoading(false);
+    } catch (error) {
+      console.error("Error fetching airing shows", error);
+    }
   };
 
   const handleAiringShowEntryClick = (show) => {
@@ -105,7 +115,7 @@ const Home = () => {
         <Grid xs={12} sm={6} md={3} lg={3} className="home__airing_container">
           <Card className="home__airing" sx={{ backgroundColor: "#424242" }}>
             <CardHeader
-              className="home__airing_header"
+              className="home__airing_header home__card_header"
               title="Top Airing Anime"
               action={
                 <IconButton
@@ -168,7 +178,7 @@ const Home = () => {
         <Grid xs={12} sm={6} md={3} lg={3} className="home__seasonal_container">
           <Card className="home__seasonal" sx={{ backgroundColor: "#424242" }}>
             <CardHeader
-              className="home__seasonal_header"
+              className="home__seasonal_header home__card_header"
               title="Seasonal Anime"
               action={
                 <IconButton
@@ -181,14 +191,11 @@ const Home = () => {
               }
             />
             <CardContent className="home__seasonal_entry_content">
-              {/* <ImageCarousel
-                images={[
-                  topAiringAnimeToShow[0].images.jpg.large_image_url,
-                  topAiringAnimeToShow[1].images.jpg.large_image_url,
-                  topAiringAnimeToShow[2].images.jpg.large_image_url,
-                ]}
-              /> */}
-              <SwipeableTextMobileStepper images={[]} />
+              {isAiringShowsLoading ? (
+                <Typography>Loading...</Typography>
+              ) : (
+                <SwipeableTextMobileStepper shows={carouselShows} />
+              )}
             </CardContent>
           </Card>
         </Grid>

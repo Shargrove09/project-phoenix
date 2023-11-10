@@ -10,45 +10,56 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 
+import "./SeasonalCarouselSwipeable.scss";
+import { Anime } from "../../common/Anime";
+
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 interface Props {
-  images: any;
+  shows: Anime[];
 }
 
-const SwipeableTextMobileStepper = ({ images }: Props) => {
+const SwipeableTextMobileStepper = ({ shows }: Props) => {
   const theme = useTheme();
-  console.log("Images: ", images);
+
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+  const maxSteps = shows ? shows.length : 0;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    if (activeStep === 0) {
+      // Loop back to end of carousel
+      setActiveStep(maxSteps - 1);
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    }
   };
 
   const handleStepChange = (step: number) => {
-    setActiveStep(step);
+    if (activeStep === maxSteps - 1) {
+      // Loob back to beginning of carousel
+      setActiveStep(0);
+    } else setActiveStep(step);
   };
 
   return (
-    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+    <Box sx={{ maxWidth: 300, flexGrow: 1 }}>
       <Paper
         square
         elevation={0}
         sx={{
           display: "flex",
           alignItems: "center",
-          height: 50,
+          justifyContent: "center",
           pl: 2,
           bgcolor: "background.default",
         }}
       >
         <Typography>
-          {images?.length > 0 ? images[activeStep].label : "No Image"}
+          {shows.length ? shows[activeStep].title : "No Image"}
         </Typography>
       </Paper>
       <AutoPlaySwipeableViews
@@ -57,53 +68,48 @@ const SwipeableTextMobileStepper = ({ images }: Props) => {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {images?.length > 0
-          ? images.map((step, index) => (
-              <div key={step.label ?? 0}>
-                {Math.abs(activeStep - index) <= 2 ? (
-                  <Box
-                    component="img"
-                    sx={{
-                      height: 255,
-                      display: "block",
-                      maxWidth: 400,
-                      overflow: "hidden",
-                      width: "100%",
-                    }}
-                    src={step.imgPath}
-                    alt={step.label ?? 0}
-                  />
-                ) : null}
-              </div>
-            ))
-          : null}
+        {shows.map((step, index) => (
+          <div key={step.title ?? 0}>
+            {Math.abs(activeStep - index) <= 2 ? (
+              <Box
+                component="img"
+                sx={{
+                  height: "auto",
+                  display: "block",
+                  maxWidth: 300,
+                  overflow: "hidden",
+                  width: "100%",
+                }}
+                src={step.images.jpg.large_image_url}
+                alt={step.title ?? "Seasonal Show #" + index}
+              />
+            ) : undefined}
+          </div>
+        ))}
       </AutoPlaySwipeableViews>
       <MobileStepper
         steps={maxSteps}
         position="static"
         activeStep={activeStep}
+        variant="progress"
         nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            Next
+          <Button size="small" onClick={handleNext} disabled={false}>
+            {/* Next */}
             {theme.direction === "rtl" ? (
-              <KeyboardArrowLeft />
+              <KeyboardArrowLeft fontSize="large" />
             ) : (
-              <KeyboardArrowRight />
+              <KeyboardArrowRight fontSize="large" />
             )}
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <Button size="small" onClick={handleBack} disabled={false}>
             {theme.direction === "rtl" ? (
-              <KeyboardArrowRight />
+              <KeyboardArrowRight fontSize="large" />
             ) : (
-              <KeyboardArrowLeft />
+              <KeyboardArrowLeft fontSize="large" />
             )}
-            Back
+            {/* Back */}
           </Button>
         }
       />

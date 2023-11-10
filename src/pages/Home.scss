@@ -35,6 +35,7 @@
     margin: 20px; 
 }
 
+
 .home__airing_entry { 
     cursor: pointer; 
     display: flex; 
@@ -57,7 +58,8 @@
     border-radius: 4px; 
 }
 
-.home__airing_header > .MuiCardHeader-content {
+
+.home__card_header > .MuiCardHeader-content{ 
     color: rgb(194, 192, 192);
     display: flex;
     justify-content: center;
@@ -98,3 +100,18 @@
     align-items: center;
     justify-content: flex-start;
 }
+
+.home__seasonal { 
+    margin: 20px; 
+}
+
+.home__seasonal_header { 
+    padding-bottom: 0;
+}
+
+.home__seasonal_entry_content { 
+    display: flex; 
+    justify-content: center;
+    padding-top: 0; 
+}
+
