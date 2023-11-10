@@ -9,6 +9,8 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+import { useSearchContext } from "../../context/useSearchContext";
+import { useNavigate } from "react-router-dom";
 
 import "./SeasonalCarouselSwipeable.scss";
 import { Anime } from "../../common/Anime";
@@ -21,6 +23,10 @@ interface Props {
 
 const SwipeableTextMobileStepper = ({ shows }: Props) => {
   const theme = useTheme();
+  const { setSingle } = useSearchContext();
+  const navigate = useNavigate();
+
+  console.log("Shows: ", shows);
 
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = shows ? shows.length : 0;
@@ -45,6 +51,12 @@ const SwipeableTextMobileStepper = ({ shows }: Props) => {
     } else setActiveStep(step);
   };
 
+  const handleSeasonalShowClick = (show: Anime) => {
+    setSingle(show);
+    localStorage.setItem("singleData", JSON.stringify(show));
+    navigate("/single-view");
+  };
+
   return (
     <Box sx={{ maxWidth: 300, flexGrow: 1 }}>
       <Paper
@@ -54,12 +66,11 @@ const SwipeableTextMobileStepper = ({ shows }: Props) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          pl: 2,
           bgcolor: "background.default",
         }}
       >
-        <Typography>
-          {shows.length ? shows[activeStep].title : "No Image"}
+        <Typography className="scarousel__show_title">
+          {shows[activeStep].title ? shows[activeStep].title : "No Title"}
         </Typography>
       </Paper>
       <AutoPlaySwipeableViews

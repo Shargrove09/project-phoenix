@@ -37,6 +37,7 @@ const Home = () => {
   }, []);
 
   const navigate = useNavigate();
+  console.log("Loading: ", isAiringShowsLoading);
 
   const topAiringAnimeToShow = expanded
     ? airingShows.slice(0, 10)
@@ -64,9 +65,7 @@ const Home = () => {
       setAiringShows(airingShowsResult.data);
 
       // Extract carousel images and set loading state to false
-      const images = airingShowsResult.data.map((show: Anime) => ({
-        image: show.images.jpg.large_image_url,
-      }));
+      const images = airingShowsResult.data.map((show: Anime) => show);
       setCarouselShows(images);
       setIsAiringShowsLoading(false);
     } catch (error) {
