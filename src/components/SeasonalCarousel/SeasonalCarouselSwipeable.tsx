@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./SeasonalCarouselSwipeable.scss";
 import { Anime } from "../../common/Anime";
+import { ButtonBase } from "@mui/material";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -32,7 +33,12 @@ const SwipeableTextMobileStepper = ({ shows }: Props) => {
   const maxSteps = shows ? shows.length : 0;
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // Loop back to begining of carousel
+    if (activeStep === maxSteps - 1) {
+      setActiveStep(0);
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
   };
 
   const handleBack = () => {
@@ -45,13 +51,11 @@ const SwipeableTextMobileStepper = ({ shows }: Props) => {
   };
 
   const handleStepChange = (step: number) => {
-    if (activeStep === maxSteps - 1) {
-      // Loob back to beginning of carousel
-      setActiveStep(0);
-    } else setActiveStep(step);
+    setActiveStep(step);
   };
 
   const handleSeasonalShowClick = (show: Anime) => {
+    console.log("Handling seasonal show-click");
     setSingle(show);
     localStorage.setItem("singleData", JSON.stringify(show));
     navigate("/single-view");
@@ -67,12 +71,19 @@ const SwipeableTextMobileStepper = ({ shows }: Props) => {
           alignItems: "center",
           justifyContent: "center",
           bgcolor: "background.default",
+          cursor: "pointer",
         }}
       >
-        <Typography className="scarousel__show_title">
-          {shows[activeStep].title ? shows[activeStep].title : "No Title"}
-        </Typography>
+        <ButtonBase
+          sx={{ cursor: "pointer" }}
+          onClick={() => handleSeasonalShowClick(shows[activeStep])}
+        >
+          <Typography className="scarousel__show_title">
+            {shows[activeStep].title ? shows[activeStep].title : "No Title"}
+          </Typography>
+        </ButtonBase>
       </Paper>
+
       <AutoPlaySwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
