@@ -18,6 +18,7 @@ import "./Home.scss";
 import { Anime } from "../common/Anime";
 import ImageCarousel from "../components/SeasonalCarousel/SeasonalCarousel";
 import SwipeableTextMobileStepper from "../components/SeasonalCarousel/SeasonalCarouselSwipeable";
+import RedditCard from "../components/RedditCard/RedditCard";
 
 const Home = () => {
   const { search, setAnimeData, searchById, setSingle } = useSearchContext();
@@ -37,7 +38,6 @@ const Home = () => {
   }, []);
 
   const navigate = useNavigate();
-  console.log("Loading: ", isAiringShowsLoading);
 
   const topAiringAnimeToShow = expanded
     ? airingShows.slice(0, 10)
@@ -78,7 +78,6 @@ const Home = () => {
     // for that entry
 
     // Can reuse data from airing data fetch
-    console.log("Handling Airing Show Entry w/ : ", show);
     setSingle(show);
     localStorage.setItem("singleData", JSON.stringify(show));
     navigate("/single-view");
@@ -101,7 +100,9 @@ const Home = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid lg={3}></Grid>
+        <Grid lg={3}>
+          <RedditCard />
+        </Grid>
         <Grid xs={12} sm={6} md={6} className="home__searchBarImg_container">
           <img
             alt="Gurren Lagann"
