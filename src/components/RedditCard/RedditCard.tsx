@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, Typography, CircularProgress } from "@mui/material";
+import { flexbox } from "@mui/system";
 
 const RedditCard = () => {
   const [topPosts, setTopPosts] = useState([]);
@@ -26,12 +27,11 @@ const RedditCard = () => {
 
   const renderImage = (post) => {
     if (post.data.preview && post.data.preview.images[0].resolutions[0]) {
-      console.log("Image rendered: ", post.data.preview.images[0].source.url);
       return (
         <img
           src={post.data.preview.images[0].resolutions[2].url}
-          alt={post.data.title}
-          style={{ maxWidth: "100%", height: "auto" }}
+          alt={post.data.title.slice(0, 15) + "..."}
+          style={{ maxWidth: "100%", height: "auto", margin: "8px" }}
         />
       );
     } else {
@@ -40,7 +40,7 @@ const RedditCard = () => {
         <img
           src="https://www.redditinc.com/assets/images/site/reddit-logo.png"
           alt="Reddit Placeholder"
-          style={{ maxWidth: "100%", height: "auto" }}
+          style={{ maxWidth: "10%", height: "auto" }}
         />
       );
     }
@@ -52,12 +52,24 @@ const RedditCard = () => {
         <CircularProgress />
       ) : (
         topPosts.map((post) => (
-          <Card key={post.data.id} style={{ marginBottom: "16px" }}>
-            <CardContent>
-              <Typography variant="h6" gutterBottom>
-                {post.data.title}
+          <Card
+            className="redditCard"
+            key={post.data.id}
+            style={{ marginBottom: "16px" }}
+          >
+            <CardContent
+              className="redditCard__content"
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <Typography
+                className="redditCard__title"
+                variant="body1"
+                gutterBottom
+                sx={{ display: "flex", alignItems: "center" }}
+              >
+                {renderImage(post)}
+                <a href={post.data.url}>{post.data.title}</a>
               </Typography>
-              {renderImage(post)}
               <Typography variant="body2" color="textSecondary">
                 Author: {post.data.author} | Score: {post.data.score}
               </Typography>

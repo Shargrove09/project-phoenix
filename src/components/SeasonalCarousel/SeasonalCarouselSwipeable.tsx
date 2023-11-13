@@ -27,8 +27,6 @@ const SwipeableTextMobileStepper = ({ shows }: Props) => {
   const { setSingle } = useSearchContext();
   const navigate = useNavigate();
 
-  console.log("Shows: ", shows);
-
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = shows ? shows.length : 0;
 
