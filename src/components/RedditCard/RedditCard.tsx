@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, Typography, CircularProgress } from "@mui/material";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 import "./RedditCard.scss";
 
@@ -93,7 +94,8 @@ const RedditCard = () => {
                   color="#C2C2C0"
                   className="redditCard__entry_stats"
                 >
-                  Author: {post.data.author} | Score: {post.data.score}
+                  <ArrowUpwardIcon sx={{ color: "#FE4515" }} />
+                  {post.data.score}
                 </Typography>
                 {/* <Typography variant="body1" style={{ marginTop: "8px" }}>
                 {post.data.selftext || "No additional text"}
