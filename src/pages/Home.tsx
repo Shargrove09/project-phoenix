@@ -100,9 +100,7 @@ const Home = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid lg={3}>
-          <RedditCard />
-        </Grid>
+        <Grid lg={3}></Grid>
         <Grid xs={12} sm={6} md={6} className="home__searchBarImg_container">
           <img
             alt="Gurren Lagann"
@@ -111,6 +109,25 @@ const Home = () => {
             width={800}
             className="home__searchBarImage"
           />
+          <form className="home__form">
+            <TextField
+              autoFocus={true}
+              placeholder="Search for an anime..."
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+              className="home__input"
+              inputProps={{ style: { color: "white" } }}
+            ></TextField>
+            <IconButton
+              className="home__iconButton"
+              color="primary"
+              type="submit"
+              disabled={!input}
+              onClick={handleAnimeSearch}
+            >
+              <SearchIcon />
+            </IconButton>
+          </form>
         </Grid>
         <Grid xs={12} sm={6} md={3} lg={3} className="home__airing_container">
           <Card className="home__airing" sx={{ backgroundColor: "#424242" }}>
@@ -153,28 +170,16 @@ const Home = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid lg={3}></Grid>
-        <Grid xs={12} sm={6} md={6} className="home__searchBar_container">
-          <form className="home__form">
-            <TextField
-              autoFocus={true}
-              placeholder="Search for an anime..."
-              value={input}
-              onChange={(event) => setInput(event.target.value)}
-              className="home__input"
-              inputProps={{ style: { color: "white" } }}
-            ></TextField>
-            <IconButton
-              className="home__iconButton"
-              color="primary"
-              type="submit"
-              disabled={!input}
-              onClick={handleAnimeSearch}
-            >
-              <SearchIcon />
-            </IconButton>
-          </form>
+        <Grid lg={3}>
+          {" "}
+          <RedditCard />
         </Grid>
+        <Grid
+          xs={12}
+          sm={6}
+          md={6}
+          className="home__searchBar_container"
+        ></Grid>
         <Grid xs={12} sm={6} md={3} lg={3} className="home__seasonal_container">
           <Card className="home__seasonal" sx={{ backgroundColor: "#424242" }}>
             <CardHeader

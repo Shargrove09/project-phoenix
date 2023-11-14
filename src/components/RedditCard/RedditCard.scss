@@ -1,0 +1,27 @@
+.redditCard { 
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  color: #C2C2C0; 
+  margin: 20px; 
+}
+
+.redditCard__content { 
+  display: flex; 
+  align-items: center;
+  background-color: "#424242"
+}
+
+.redditCard__entry:hover{ 
+  background-color: #323232;
+}
+
+.redditCard__header { 
+  color: #C2C2C0;
+  font-weight: 600; 
+  padding: 16px; 
+}
+
+.redditCard__entry_stats { 
+  padding-left: 8px; 
+}
