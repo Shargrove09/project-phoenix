@@ -1,10 +1,10 @@
 //TODO: finish definting types for attributes
 export interface Anime {
-  aired: {}; 
+  aired: {from: string}; 
   airing: boolean; 
   approved: boolean; 
   background: any; 
-  broadcast: {}; 
+  broadcast: {day: string, string: string; time: string; timezone: string}; 
   demographics:{}[]; 
   duration: string; 
   episodes: number; 

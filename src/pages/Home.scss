@@ -113,3 +113,30 @@
     padding-top: 0; 
 }
 
+.home__schedule_container { 
+    align-items: start;
+}
+
+.home__schedule { 
+    margin: 20px; 
+}
+
+.home__scheduled_shows { 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center;
+    margin: 8px; 
+    transition: background-color 0.3s; 
+    border-radius: 4px; 
+    color: rgb(194, 192, 192);
+}
+
+.home__scheduled_shows:hover { 
+    background-color: #383838; 
+}
+
+.home__schedule_header { 
+    display: flex; 
+    justify-content: center;
+    color: rgb(194, 192, 192);
+}

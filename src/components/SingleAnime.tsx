@@ -42,7 +42,7 @@ const SingleAnime = (props) => {
       <Grid className="singleAnime__titleContainer" item xs={12}>
         <Typography
           className="singleAnime__title"
-          font-size={"3rem"}
+          fontSize={"3rem"}
           variant="h4"
           component="h2"
         >

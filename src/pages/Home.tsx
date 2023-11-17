@@ -12,16 +12,15 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import Grid from "@mui/material/Unstable_Grid2";
-import { FormControl } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Home.scss";
 import { Anime } from "../common/Anime";
-import ImageCarousel from "../components/SeasonalCarousel/SeasonalCarousel";
 import SwipeableTextMobileStepper from "../components/SeasonalCarousel/SeasonalCarouselSwipeable";
 import RedditCard from "../components/RedditCard/RedditCard";
+import ShowCalendar from "../components/ShowCalendar/ShowSchedule";
 
 const Home = () => {
-  const { search, setAnimeData, searchById, setSingle } = useSearchContext();
+  const { search, setAnimeData, setSingle } = useSearchContext();
 
   const [input, setInput] = useState("");
   const [airingShows, setAiringShows] = useState<Anime[]>([]);
@@ -29,6 +28,8 @@ const Home = () => {
   const [isAiringShowsLoading, setIsAiringShowsLoading] =
     useState<boolean>(true);
   const [carouselShows, setCarouselShows] = useState([]);
+  const [selectedDateShows, setSelectedDateShows] = useState<Anime[]>([]);
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -37,11 +38,20 @@ const Home = () => {
     getAiringShows();
   }, []);
 
+  useEffect(() => {
+    if (airingShows.length > 0) {
+      const currentDate = new Date();
+      handleDateSelect(currentDate);
+    }
+  }, [airingShows]);
+
   const navigate = useNavigate();
 
   const topAiringAnimeToShow = expanded
     ? airingShows.slice(0, 10)
     : airingShows.slice(0, 5);
+
+  console.log("topAiring", topAiringAnimeToShow);
 
   // User searches anime
   const handleAnimeSearch = (event: SyntheticEvent) => {
@@ -73,17 +83,65 @@ const Home = () => {
     }
   };
 
-  const handleAiringShowEntryClick = (show) => {
+  const handleAiringShowEntryClick = (show: Anime) => {
     // When a currently airing entry is clicked user should be directed to single anime page
     // for that entry
+    console.log("Handling SHow for: ", show);
 
     // Can reuse data from airing data fetch
     setSingle(show);
     localStorage.setItem("singleData", JSON.stringify(show));
     navigate("/single-view");
-
-    return null;
   };
+
+  const handleDateSelect = (selectedDate: Date) => {
+    console.log("Handling date seelct for: ", selectedDate);
+    // Filter shows based on the selected date and update the state
+    console.log("Airing Shows: ", airingShows);
+    const filteredShows = airingShows.filter((show) => {
+      const startDate = new Date(show.aired.from);
+      const numberOfEpisodes = show.episodes || 0;
+
+      // Generate an array of airing dates for the show
+      const airingDates = generateAiringDates(startDate, numberOfEpisodes);
+
+      // Check if the selected date is included in the array of airing dates
+      return airingDates.some(
+        (airingDate) =>
+          airingDate.toISOString().split("T")[0] ===
+          selectedDate.toISOString().split("T")[0]
+      );
+    });
+
+    console.log("Filtered Shows: ", filteredShows);
+    setSelectedDateShows(filteredShows);
+  };
+
+  function generateAiringDates(
+    startDate: Date,
+    numberOfEpisodes: number
+  ): Date[] {
+    const airingDates: Date[] = [];
+
+    // Iterate through each episode and calculate the airing date
+    for (
+      let episodeNumber = 1;
+      episodeNumber <= numberOfEpisodes;
+      episodeNumber++
+    ) {
+      const airingDate = new Date(startDate);
+
+      // Calculate the number of days to add for each episode
+      const daysToAdd = (episodeNumber - 1) * 7;
+
+      // Add the calculated days to the airing date
+      airingDate.setDate(startDate.getDate() + daysToAdd);
+
+      airingDates.push(airingDate);
+    }
+
+    return airingDates;
+  }
 
   return (
     <Grid
@@ -100,7 +158,25 @@ const Home = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid lg={3}></Grid>
+        <Grid className="home__schedule_container" lg={3}>
+          <Card className="home__schedule" sx={{ backgroundColor: "#424242" }}>
+            <CardHeader className="home__card_header" title="Daily Schedule" />
+            <ShowCalendar onDateSelect={handleDateSelect} />{" "}
+            {/* Display the shows for the selected date */}
+            {selectedDateShows.map((show) => (
+              <div
+                className="home__scheduled_shows"
+                key={show.title}
+                onClick={() => {
+                  console.log("Clicked: ", show);
+                  handleAiringShowEntryClick(show);
+                }}
+              >
+                {show.title} - {show.broadcast.string}
+              </div>
+            ))}
+          </Card>
+        </Grid>
         <Grid xs={12} sm={6} md={6} className="home__searchBarImg_container">
           <img
             alt="Gurren Lagann"
@@ -185,15 +261,6 @@ const Home = () => {
             <CardHeader
               className="home__seasonal_header home__card_header"
               title="Seasonal Anime"
-              action={
-                <IconButton
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon sx={{ color: "#c2c0c0" }} />
-                </IconButton>
-              }
             />
             <CardContent className="home__seasonal_entry_content">
               {isAiringShowsLoading ? (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Results from "./pages/Results/Results";
@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"; // Import fro
 import CssBaseline from "@mui/material/CssBaseline"; // Import CssBaselin
 
 import "./App.css";
+
 <>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
