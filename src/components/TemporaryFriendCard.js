@@ -73,7 +73,7 @@ const FriendsCard = (props) => {
     /*
     search.searchById(mal_id).then((data) => {
       search.setData(data.results);
-      localStorage.setItem("myData", JSON.stringify(data.results));
+      localStorage.setItem("animeSearchResultData", JSON.stringify(data.results));
       navigate("/results");
     }); 
   }; */
@@ -84,7 +84,7 @@ const FriendsCard = (props) => {
     search.searchById(mal_id).then((data) => {
       search.setData(data.results);
       console.log("searchDATA FROM FRIENDS", search.animeData);
-      localStorage.setItem("myData", JSON.stringify(data.results));
+      localStorage.setItem("animeSearchResultData", JSON.stringify(data.results));
     });
   }
 

@@ -1,13 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.scss";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { MantineProvider, createTheme } from "@mantine/core";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import "@mantine/core/styles.css";
+// Package styles for Mantine Calendar
+import "@mantine/dates/styles.css";
+
+// const theme = createTheme({
+//   colors: {
+//     // Add your color
+//     deepBlue: ['#E9EDFC', '#C1CCF6', '#99ABF0'],
+//     // or replace default theme color
+//     blue: ['#E9EDFC', '#C1CCF6', '#99ABF0' /* ... */],
+//   },
+// })
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <MantineProvider>
+      <App />
+    </MantineProvider>
   </React.StrictMode>
 );
 

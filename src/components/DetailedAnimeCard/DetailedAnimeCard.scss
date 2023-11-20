@@ -1,0 +1,43 @@
+.dcard__container { 
+  border-radius: 4px; 
+  width: 100%; 
+  display: flex; 
+  flex-direction: column;
+  cursor: pointer; 
+}
+
+.dcard__card_media { 
+  margin: 10px; 
+  margin-left: 0px; 
+
+}
+
+.dcard__header { 
+  height: 10%; 
+  background-color: #565656; 
+  display: flex; 
+  justify-content: space-between;
+}
+
+.dcard__header_text { 
+  color: white; 
+  margin: 10px; 
+  font-weight: 600; 
+}
+
+.dcard__content { 
+  display: flex; 
+  align-items: center;    
+   
+}
+
+.dcard__actions { 
+  right: 0; 
+  z-index: 3;
+}
+
+.dcard__content > .MuiTypography-root { 
+  color: rgb(194, 192, 192);
+}
+
+

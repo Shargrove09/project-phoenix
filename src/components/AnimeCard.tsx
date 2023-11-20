@@ -3,13 +3,7 @@ import { useNavigate } from "react-router-dom";
 // Old way
 // import { SearchContext } from "../context/useSearchContext";
 import { useSearchContext } from "../context/useSearchContext";
-import {
-  Typography,
-  Link,
-  Paper,
-  ImageListItem,
-  Grid,
-} from "@material-ui/core";
+import { Typography, Link, Card, ImageListItem, Grid } from "@mui/material";
 
 import "./AnimeCard.scss";
 
@@ -47,14 +41,24 @@ const AnimeCard = (props) => {
   return (
     <ImageListItem className="animeCard__container">
       <Grid container item xs={12}>
-        <Paper className="animeCard__paper">
-          <img src={imageUrl} alt={title} style={{ maxHeight: 300 }} />
-          <Typography variant="h5" component="h2">
+        <Card
+          style={{ backgroundColor: "#424242" }}
+          className="animeCard__card"
+        >
+          <div className="animeCard__img_container">
+            <img className="animeCard__img" src={imageUrl} alt={title} />
+          </div>
+          <Typography variant="h5" component="h3" className="animeCard__title">
             {" "}
             {/* component uses render of h2 (in this case) with size of h5 Takes h2 but turns into h5 */}
             {title}
           </Typography>
-          <Typography variant="body2" component="h2" paragraph={true}>
+          <Typography
+            variant="body2"
+            component="h2"
+            paragraph={true}
+            className="animeCard__synopsis"
+          >
             {synopsis}
           </Typography>
           <Link
@@ -65,7 +69,7 @@ const AnimeCard = (props) => {
           >
             Learn More
           </Link>
-        </Paper>
+        </Card>
       </Grid>
     </ImageListItem>
   );

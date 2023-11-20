@@ -13,7 +13,8 @@ import PeopleIcon from "@mui/icons-material/People";
 import HomeIcon from "@mui/icons-material/Home";
 import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
 import SavedSearchIcon from "@mui/icons-material/SavedSearch";
-import { IconButton, makeStyles } from "@material-ui/core";
+import { IconButton } from "@mui/material";
+import { makeStyles } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import "./NavDrawer.scss";
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TemporaryDrawer() {
-  const classes = useStyles();
+  // const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
   });
@@ -127,7 +128,7 @@ export default function TemporaryDrawer() {
               },
             }}
           >
-            <div className={classes.toolbar} />
+            <div className="" />
             {list(anchor)}
           </Drawer>
         </React.Fragment>

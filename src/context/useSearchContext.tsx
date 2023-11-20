@@ -12,14 +12,16 @@
 // });
 
 import React, { createContext, useContext, useState } from "react";
+import { Anime } from "../common/Anime";
 
 interface SearchContextValue {
   animeData: any[];
-  singleData: {};
+  singleData: Anime;
   search: (searchterm) => Promise<any>;
   searchById: (searchId) => Promise<any>;
-  setData: (data) => void;
+  searchTerm: string;
   setSingle: (data) => void;
+  setAnimeData: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 interface Props {
@@ -30,13 +32,8 @@ const SearchContext = createContext<SearchContextValue>(undefined);
 
 export const SearchProvider: React.FC<Props> = ({ children }) => {
   const [animeData, setAnimeData] = useState([]);
-  const [singleData, setSingleData] = useState({});
-
-  // TODO: rename to setAnimeData to be descriptive
-  // Stores all anime data
-  const setData = (data) => {
-    setAnimeData(data);
-  };
+  const [singleData, setSingleData] = useState<Anime>();
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Stores single anime data if single anime is clicked
   const setSingle = (data: any) => {
@@ -46,8 +43,9 @@ export const SearchProvider: React.FC<Props> = ({ children }) => {
   // Search for an anime by general search term
   const search = async (searchTerm: string) => {
     const response = await fetch(
-      `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=20`
+      `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=20&sfw`
     );
+    setSearchTerm(searchTerm);
     return await response.json();
   };
 
@@ -60,7 +58,15 @@ export const SearchProvider: React.FC<Props> = ({ children }) => {
 
   return (
     <SearchContext.Provider
-      value={{ animeData, singleData, search, searchById, setData, setSingle }}
+      value={{
+        animeData,
+        singleData,
+        search,
+        searchById,
+        setAnimeData,
+        setSingle,
+        searchTerm,
+      }}
     >
       {children}
     </SearchContext.Provider>

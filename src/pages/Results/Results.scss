@@ -1,0 +1,36 @@
+.results__content { 
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.results__searchResults_header {
+  color: rgb(255, 255, 255); 
+  align-items: center;
+
+  display: grid;
+  grid-template-columns: 1fr repeat(3, auto) 1fr;
+  justify-items: center;
+
+  div:nth-child(1) {
+    grid-column-start: 2;
+  }
+
+  div:nth-child(2) {
+    grid-column-start: 5;
+    justify-self: end; /* Right-align the .results__viewpill div */
+  }
+
+  width: 100%;
+}
+
+.results__searchResults_header > .MuiTypography-root {
+  grid-column: 2 / 4; /* Center the Typography component */
+  text-align: center;
+}
+
+.results__viewpill { 
+  margin-right: 20px; 
+}

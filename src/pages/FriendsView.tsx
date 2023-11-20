@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import FriendList from "../components/FriendList";
 import { useFriendsContext } from "../context/useFriendsContext"; //Wrap imports in curly braces when they aren't default exports
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography } from "@mui/material";
 import FriendModal from "../components/FriendModal/FriendModal";
 
 const FriendsView = () => {
