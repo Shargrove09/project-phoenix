@@ -10,7 +10,7 @@ export interface Anime {
   episodes: number; 
   explicit_genres: [];
   favorites: number; 
-  genres: {}[];
+  genres: [{mal_id: string, type: string, name: string, url: string}];
   images: {jpg: {image_url: string; small_image_url: string; large_image_url: string}, png: {image_url: string; small_image_url: string; large_image_url: string}}; 
   licesnsors: {}[]
   mal_id: number; 

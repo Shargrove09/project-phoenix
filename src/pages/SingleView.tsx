@@ -2,7 +2,6 @@ import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import SingleAnime from "../components/SingleAnime";
 import { useSearchContext } from "../context/useSearchContext";
-import ShowCalendar from "../components/ShowCalendar/ShowSchedule";
 
 const SingleView = () => {
   const { singleData, setSingle, search } = useSearchContext();
@@ -19,7 +18,7 @@ const SingleView = () => {
   }, [search]);
   return (
     <div>
-      {(dataExists && <SingleAnime info={singleData} />) || (
+      {(dataExists && <SingleAnime anime={singleData} />) || (
         <Typography variant="h4" component="h2">
           No Data Exists
         </Typography>
