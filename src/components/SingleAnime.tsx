@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 
-import { Grid, Typography, Paper, Box, Divider } from "@mui/material";
+import { Typography, Paper, Box, Divider } from "@mui/material";
 import { Button } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 
 import "./SingleAnime.scss";
 import { Anime } from "../common/Anime";
@@ -70,13 +71,15 @@ const SingleAnime = (props: Props) => {
       <Grid
         container
         className="singleAnime__container"
-        spacing={0} // Was 5 previously
-        direction="row"
+        spacing={3} // Was 5 previously
         //justify="center"
         alignItems="center"
-        alignContent="center"
+        direction={"row"}
       >
-        <Grid className="singleAnime__header" item xs={12}>
+        <Grid xs={3} sx={{ width: "fit-content", marginRight: "32px" }}>
+          <img src={image_url} alt={title} className="singleAnime__image" />
+        </Grid>
+        <Grid className="singleAnime__header" xs={9}>
           <Typography
             className="singleAnime__title"
             fontSize={"2.5rem"}
@@ -85,58 +88,59 @@ const SingleAnime = (props: Props) => {
           >
             {title}
           </Typography>
-        </Grid>
-        <Grid item xs={3}>
-          <img src={image_url} alt={title} className="singleAnime__image" />
-        </Grid>
-        {/* INFO GRID*/}
-        <Grid item container xs={9} className="singleAnime__infoContainer">
-          <Paper>
-            <Grid item className="singleAnime__score singleAnime__info">
-              <Typography variant="h5" component="h2">
+          {/* INFO GRID*/}
+          <Grid container xs={9} className="singleAnime__infoContainer">
+            <Paper>
+              <Typography
+                className="singleAnime__score singleAnime__info"
+                variant="h5"
+                component="h2"
+              >
                 Score: <b>{score}</b>
               </Typography>
-            </Grid>
-          </Paper>
-          <Paper>
-            <Grid item className="singleAnime__ranking singleAnime__info">
-              <Typography variant="h5" component="h2">
+            </Paper>
+            <Paper>
+              <Typography
+                className="singleAnime__ranking singleAnime__info"
+                variant="h5"
+                component="h2"
+              >
                 Rank: <b>{rank}</b>
               </Typography>
-            </Grid>
-          </Paper>
-          <Paper>
-            <Grid item className="singleAnime__popularity singleAnime__info">
-              <Typography variant="h5" component="h2">
+            </Paper>
+            <Paper>
+              <Typography
+                className="singleAnime__popularity singleAnime__info"
+                variant="h5"
+                component="h2"
+              >
                 Popularity: <b>#{popularity}</b>
               </Typography>
-            </Grid>
-          </Paper>
-          <Paper>
-            <Grid item className="singleAnime__members singleAnime__info">
-              <Typography variant="h5" component="h2">
+            </Paper>
+            <Paper>
+              <Typography
+                className="singleAnime__members singleAnime__info"
+                variant="h5"
+                component="h2"
+              >
                 Members: <b>{members}</b>
               </Typography>
+            </Paper>
+            <Grid xs={9} className="singleAnime__synopsisContainer">
+              <Divider />
+              <Typography
+                variant="body1"
+                component="h3"
+                className="singleAnime__synopsis"
+              >
+                <p>{synopsis}</p>
+              </Typography>
             </Grid>
-          </Paper>
-          <Grid item xs={9} className="singleAnime__synopsisContainer">
-            <Divider />
-            <Typography
-              variant="body1"
-              component="h3"
-              className="singleAnime__synopsis"
-            >
-              <p>{synopsis}</p>
-            </Typography>
           </Grid>
         </Grid>
-        <Grid
-          container
-          item
-          xs={3}
-          className="singleAnime__additonalInfoContainer"
-        >
-          <Grid item xs={12} className="singleAnime__episodesContainer">
+
+        <Grid container xs={3} className="singleAnime__additonalInfoContainer">
+          <Grid xs={12} className="singleAnime__episodesContainer">
             <Typography
               variant="body2"
               className=" singleAnime__episodes singleAnime__additionalInfo"
@@ -145,7 +149,7 @@ const SingleAnime = (props: Props) => {
             </Typography>
           </Grid>
 
-          <Grid item xs={12} className="singleAnime__airingContainer">
+          <Grid xs={12} className="singleAnime__airingContainer">
             <Typography
               variant="body2"
               className=" singleAnime__airing singleAnime__additionalInfo"
@@ -154,7 +158,7 @@ const SingleAnime = (props: Props) => {
             </Typography>
           </Grid>
 
-          <Grid item xs={12} className="singleAnime__linkContainer">
+          <Grid xs={12} className="singleAnime__linkContainer">
             <Button
               className="singleAnime__linkButton singleAnime__additionalInfo"
               variant="contained"
