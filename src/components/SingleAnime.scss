@@ -1,6 +1,7 @@
 .singleAnime__container { 
   margin-top: 50px !important;
   min-height: 412px;
+  width:100%
 }
 
 .singleAnime__image { 
@@ -20,16 +21,24 @@
   margin: 100px;
 }
 
-.singleAnime__synopsis { 
-  max-height: 400px; 
-  padding-top: 10px;
-  width:100%;
+.singleAnime__synopsis_container { 
   color: rgb(194, 192, 192);
+  font-weight: 600; 
 
 }
 
-.singleAnime__container { 
-  width:100%
+.singleAnime__synopsis { 
+  max-height: 400px; 
+  width:100%;
+  color: rgb(194, 192, 192);
+}
+
+
+.singleAnime__info_container { 
+  background-color: #424242; 
+  display: flex; 
+  margin-bottom: 20px; 
+  width: fit-content; 
 }
 
 .singleAnime__info { 
@@ -43,14 +52,21 @@
 .singleAnime__additionalInfo {
   margin-left: 20px  !important;
   margin-bottom: 5px !important; 
-  color: white
+  color: white;
+
+
 }
 
 .singleAnime__additionalInfoContainer { 
-  margin-left:20px;
-
+  width: fit-content; 
 }
 
 .singleAnime__linkButton { 
   width: 45%;
+}
+
+.singleAnime__background_container { 
+  color: rgb(194, 192, 192);
+  font-weight: 600; 
+
 }

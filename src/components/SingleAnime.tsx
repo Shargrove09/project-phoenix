@@ -18,8 +18,9 @@ const SingleAnime = (props: Props) => {
   const { searchById } = useSearchContext();
 
   useEffect(() => {
+    // No Longer needed since exposing complete anime object
     // getRelatedShows(anime.mal_id);
-    // getRecommendedShows(anime.mal_id);
+    getRecommendedShows(anime.mal_id);
   });
 
   const {
@@ -33,7 +34,8 @@ const SingleAnime = (props: Props) => {
     episodes,
     members,
     genres,
-  } = props.anime;
+    background,
+  } = anime;
 
   const title = props.anime?.title ?? "No Title Loaded :(";
   const broadcast = props.anime?.broadcast;
@@ -73,13 +75,65 @@ const SingleAnime = (props: Props) => {
         className="singleAnime__container"
         spacing={3} // Was 5 previously
         //justify="center"
-        alignItems="center"
+
         direction={"row"}
       >
-        <Grid xs={3} sx={{ width: "fit-content", marginRight: "32px" }}>
+        {/* Left */}
+        <Grid
+          container
+          xs={3}
+          sx={{ width: "fit-content", marginRight: "32px" }}
+          direction={"column"}
+        >
           <img src={image_url} alt={title} className="singleAnime__image" />
+          <Grid
+            container
+            spacing={3}
+            alignItems="center"
+            direction={"row"}
+            className="singleAnime__additonalInfoContainer"
+          >
+            <Grid sx={{ width: "fit-content" }}>
+              <Typography
+                variant="body2"
+                className=" singleAnime__episodes singleAnime__additionalInfo"
+              >
+                Episodes: <i>{episodes}</i>
+              </Typography>
+
+              <Typography
+                variant="body2"
+                className=" singleAnime__airing singleAnime__additionalInfo"
+              >
+                Airing: <i>{airing ? "Currently Airing" : "Not Airing"}</i>
+              </Typography>
+
+              <Button
+                className="singleAnime__linkButton singleAnime__additionalInfo"
+                variant="contained"
+              >
+                <a
+                  href={url}
+                  style={{ textDecoration: "none", color: "white" }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  MAL
+                </a>
+              </Button>
+            </Grid>
+
+            {/* <div>
+              Genres:
+              {genres.map((genre) => (
+                <Typography>{genre.name}</Typography>
+              ))}
+            </div> */}
+          </Grid>
         </Grid>
-        <Grid className="singleAnime__header" xs={9}>
+
+        {/* Main Portion */}
+        <Grid className="singleAnime__header" xs={6} direction={"column"}>
           <Typography
             className="singleAnime__title"
             fontSize={"2.5rem"}
@@ -88,9 +142,13 @@ const SingleAnime = (props: Props) => {
           >
             {title}
           </Typography>
+
           {/* INFO GRID*/}
-          <Grid container xs={9} className="singleAnime__infoContainer">
-            <Paper>
+          <Grid direction={"column"} container xs={12}>
+            <Paper
+              className="singleAnime__info_container"
+              sx={{ backgroundColor: "#424242" }}
+            >
               <Typography
                 className="singleAnime__score singleAnime__info"
                 variant="h5"
@@ -98,8 +156,7 @@ const SingleAnime = (props: Props) => {
               >
                 Score: <b>{score}</b>
               </Typography>
-            </Paper>
-            <Paper>
+              <Divider orientation="vertical" flexItem />
               <Typography
                 className="singleAnime__ranking singleAnime__info"
                 variant="h5"
@@ -107,8 +164,7 @@ const SingleAnime = (props: Props) => {
               >
                 Rank: <b>{rank}</b>
               </Typography>
-            </Paper>
-            <Paper>
+              <Divider orientation="vertical" flexItem />
               <Typography
                 className="singleAnime__popularity singleAnime__info"
                 variant="h5"
@@ -116,8 +172,7 @@ const SingleAnime = (props: Props) => {
               >
                 Popularity: <b>#{popularity}</b>
               </Typography>
-            </Paper>
-            <Paper>
+              <Divider orientation="vertical" flexItem />
               <Typography
                 className="singleAnime__members singleAnime__info"
                 variant="h5"
@@ -126,7 +181,9 @@ const SingleAnime = (props: Props) => {
                 Members: <b>{members}</b>
               </Typography>
             </Paper>
-            <Grid xs={9} className="singleAnime__synopsisContainer">
+
+            <Grid xs={12} className="singleAnime__synopsis_container">
+              Synopsis
               <Divider />
               <Typography
                 variant="body1"
@@ -136,49 +193,17 @@ const SingleAnime = (props: Props) => {
                 <p>{synopsis}</p>
               </Typography>
             </Grid>
-          </Grid>
-        </Grid>
-
-        <Grid container xs={3} className="singleAnime__additonalInfoContainer">
-          <Grid xs={12} className="singleAnime__episodesContainer">
-            <Typography
-              variant="body2"
-              className=" singleAnime__episodes singleAnime__additionalInfo"
-            >
-              Episodes: <i>{episodes}</i>
-            </Typography>
-          </Grid>
-
-          <Grid xs={12} className="singleAnime__airingContainer">
-            <Typography
-              variant="body2"
-              className=" singleAnime__airing singleAnime__additionalInfo"
-            >
-              Airing: <i>{airing ? "Currently Airing" : "Not Airing"}</i>
-            </Typography>
-          </Grid>
-
-          <Grid xs={12} className="singleAnime__linkContainer">
-            <Button
-              className="singleAnime__linkButton singleAnime__additionalInfo"
-              variant="contained"
-            >
-              <a
-                href={url}
-                style={{ textDecoration: "none", color: "white" }}
-                target="_blank"
-                rel="noopener noreferrer"
+            <Grid xs={6} className="singleAnime__background_container">
+              Background
+              <Divider />
+              <Typography
+                variant="body1"
+                component="h3"
+                className="singleAnime__synopsis"
               >
-                MAL
-              </a>
-            </Button>
-
-            {/* <div>
-              Genres:
-              {genres.map((genre) => (
-                <Typography>{genre.name}</Typography>
-              ))}
-            </div> */}
+                <p>{background}</p>
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
