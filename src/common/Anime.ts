@@ -32,7 +32,14 @@ export interface Anime {
   title_japanese: string; 
   title_synonyms: string[], 
   titles: {type: string, title: string}[]
-  trailer: {}, 
+  trailer: {embed_url: string, images: { 
+    image_url: string; 
+    small_image_url: string; 
+    medium_image_url: string; 
+    large_image_url: string; 
+
+
+  }, url: string, youtube_id: string}, 
   url: string; 
   year: number; 
 

@@ -7,6 +7,7 @@ import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import "./SingleAnime.scss";
 import { Anime } from "../common/Anime";
 import { useSearchContext } from "../context/useSearchContext";
+import Example from "./VideoPlayer/VideoPlayer";
 
 interface Props {
   anime: Anime;
@@ -21,6 +22,7 @@ const SingleAnime = (props: Props) => {
     // No Longer needed since exposing complete anime object
     // getRelatedShows(anime.mal_id);
     getRecommendedShows(anime.mal_id);
+    console.log("VIDEO ID: ", anime.trailer.youtube_id);
   });
 
   const {
