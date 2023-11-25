@@ -184,7 +184,10 @@ const SingleAnime = (props: Props) => {
               </Typography>
             </Paper>
 
-            <Grid xs={12} className="singleAnime__synopsis_container">
+            <Grid
+              xs={12}
+              className="singleAnime__synopsis_container singleAnime__section_header"
+            >
               Synopsis
               <Divider />
               <Typography
@@ -195,7 +198,10 @@ const SingleAnime = (props: Props) => {
                 <p>{synopsis}</p>
               </Typography>
             </Grid>
-            <Grid xs={6} className="singleAnime__background_container">
+            <Grid
+              xs={6}
+              className="singleAnime__background_container singleAnime__section_header"
+            >
               Background
               <Divider />
               <Typography
@@ -205,6 +211,10 @@ const SingleAnime = (props: Props) => {
               >
                 <p>{background}</p>
               </Typography>
+            </Grid>
+            <Grid className="singleAnime__related_container singleAnime__section_header">
+              Related Anime
+              <Divider />
             </Grid>
           </Grid>
         </Grid>
