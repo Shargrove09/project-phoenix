@@ -1,4 +1,5 @@
 //TODO: finish definting types for attributes
+// optional params are part of complete anime object
 export interface Anime {
   aired: {from: string}; 
   airing: boolean; 
@@ -18,6 +19,7 @@ export interface Anime {
   popularity: number; 
   producers: {}[]; 
   rank: number; 
+  relations?: [{relation: string, entry: [{mal_id: number, type: string, name: string, url: string}]}] // TODO: Type Manga object and add union here
   rating: string; 
   score: number; 
   scored_by: number; 

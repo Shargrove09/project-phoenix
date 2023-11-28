@@ -8,6 +8,7 @@ import "./SingleAnime.scss";
 import { Anime } from "../common/Anime";
 import { useSearchContext } from "../context/useSearchContext";
 import Example from "./VideoPlayer/VideoPlayer";
+import RelatedAnimeSection from "./RelatedAnimeSection/RelatedAnimeSection";
 
 interface Props {
   anime: Anime;
@@ -16,7 +17,6 @@ interface Props {
 const SingleAnime = (props: Props) => {
   console.log("Single Props: ", props);
   const { anime } = props;
-  const { searchById } = useSearchContext();
 
   useEffect(() => {
     // No Longer needed since exposing complete anime object
@@ -37,6 +37,7 @@ const SingleAnime = (props: Props) => {
     members,
     genres,
     background,
+    relations,
   } = anime;
 
   const title = props.anime?.title ?? "No Title Loaded :(";
@@ -69,6 +70,8 @@ const SingleAnime = (props: Props) => {
       console.error("Error getting recommended shows: ", error);
     }
   };
+
+  console.log("Relation Entry: ", relations);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -135,7 +138,7 @@ const SingleAnime = (props: Props) => {
         </Grid>
 
         {/* Main Portion */}
-        <Grid className="singleAnime__header" xs={6} direction={"column"}>
+        <Grid className="singleAnime__header" xs={7} direction={"column"}>
           <Typography
             className="singleAnime__title"
             fontSize={"2.5rem"}
@@ -215,8 +218,26 @@ const SingleAnime = (props: Props) => {
             <Grid className="singleAnime__related_container singleAnime__section_header">
               Related Anime
               <Divider />
+              <RelatedAnimeSection relations={relations} />
             </Grid>
           </Grid>
+        </Grid>
+        {/* Right */}
+        <Grid
+          className="singleAnime__right_section"
+          direction={"column"}
+          container
+          xs={true}
+          sx={{ right: 0 }}
+        >
+          <div>
+            PV:
+            <Example
+              videoId={anime.trailer.youtube_id}
+              height={180}
+              width={320}
+            />
+          </div>
         </Grid>
       </Grid>
     </Box>

@@ -69,5 +69,46 @@
 
 .singleAnime__section_header { 
   color: rgb(194, 192, 192);
-  font-weight: 600; 
+  font-weight: 700; 
+}
+
+.singleAnime__related_container { 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.singleAnime__related_entry_group { 
+  display: inline-block;
+  overflow: hidden; 
+  white-space: nowrap;
+  width: 50rem; 
+}
+
+.singleAnime__related_entry_container { 
+font-weight: 400; 
+  display: flex; 
+  margin-bottom: 10px;
+}
+
+.singleAnime__related_entry_container > .MuiTypography-root { 
+  font-weight: 500; 
+}
+
+.singleAnime__related_entry {                                               
+  cursor: pointer;
+  white-space: normal;
+  text-overflow: ellipsis;
+  margin-right: 8px;
+  font-size: 14px; 
+  color: #1a6cb4
+}
+
+.singleAnime__related_entry:hover { 
+  color: rgb(194, 192, 192);
+}
+
+// Right Section 
+.singleAnime__right_section { 
+  align-items: flex-end;
+  color: rgb(194, 192, 192);
 }

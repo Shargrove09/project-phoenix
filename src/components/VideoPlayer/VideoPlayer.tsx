@@ -4,10 +4,12 @@ import YouTube, { YouTubeProps } from "react-youtube";
 
 interface Props {
   videoId: string;
+  height?: number;
+  width?: number;
 }
 
 function Example(props: Props) {
-  const { videoId } = props;
+  const { height, width, videoId } = props;
 
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
     // access to player in all event handlers via event.target
@@ -15,8 +17,8 @@ function Example(props: Props) {
   };
 
   const opts: YouTubeProps["opts"] = {
-    height: "390",
-    width: "640",
+    height: height ?? "390",
+    width: width ?? "640",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
