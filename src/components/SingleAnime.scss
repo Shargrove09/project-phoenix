@@ -71,3 +71,32 @@
   color: rgb(194, 192, 192);
   font-weight: 600; 
 }
+
+.singleAnime__related_container { 
+  display: flex; 
+  flex-direction: column; 
+  white-space: nowrap ;
+
+}
+
+.singleAnime__related_entry_group { 
+  display: flex;
+  overflow-wrap: break-word;
+
+  flex-direction: row;
+  white-space: nowrap ;
+  overflow: hidden; 
+}
+
+.singleAnime__related_entry_container { 
+  font-weight: 400; 
+}
+
+.singleAnime__related_entry { 
+  cursor: pointer;
+  text-wrap: nowrap; 
+}
+
+.singleAnime__related_entry:hover { 
+  color: #228be6; 
+}

@@ -158,7 +158,7 @@ const FriendsCard = (props) => {
             <Grid item className="friendCard__recentlyRead" xs={6}>
               <div style={{ textAlign: "center" }}>Manga Updates </div>
               {/* Need a component for recentlyWatchedList and then for recentlyWatched Anime*/}
-              {recentlyRead.map(function (manga, idx) {
+              {recentlyRead.map((manga, idx) => {
                 return (
                   <Grid
                     container
