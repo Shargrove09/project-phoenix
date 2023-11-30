@@ -9,6 +9,7 @@ import { Anime } from "../common/Anime";
 import { useSearchContext } from "../context/useSearchContext";
 import Example from "./VideoPlayer/VideoPlayer";
 import RelatedAnimeSection from "./RelatedAnimeSection/RelatedAnimeSection";
+import { useNavigate } from "react-router";
 
 interface Props {
   anime: Anime;
@@ -17,6 +18,8 @@ interface Props {
 const SingleAnime = (props: Props) => {
   console.log("Single Props: ", props);
   const { anime } = props;
+  const { searchById, setSingle } = useSearchContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // No Longer needed since exposing complete anime object
@@ -72,6 +75,12 @@ const SingleAnime = (props: Props) => {
   };
 
   console.log("Relation Entry: ", relations);
+  const handleRelationEntryClick = async (malID: string) => {
+    const relationResult = await searchById(malID);
+    setSingle(relationResult.data);
+    localStorage.setItem("singleData", JSON.stringify(relationResult.data));
+    navigate("/single-view");
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -219,6 +228,34 @@ const SingleAnime = (props: Props) => {
               Related Anime
               <Divider />
               <RelatedAnimeSection relations={relations} />
+              {relations.map((relation) => (
+                <div className="singleAnime__related_entry_container">
+                  {relation.relation}:{" "}
+                  <div className="singleAnime__related_entry_group">
+                    {relation.entry.map((entry) =>
+                      entry.type === "anime" ? (
+                        <p
+                          className="singleAnime__related_entry"
+                          onClick={() =>
+                            handleRelationEntryClick(entry.mal_id.toString())
+                          }
+                        >
+                          {entry.name},
+                        </p>
+                      ) : (
+                        <p
+                          className="singleAnime__related_entry_non_anime"
+                          onClick={() =>
+                            console.log("Non - Anime pages coming soon")
+                          }
+                        >
+                          {entry.name},
+                        </p>
+                      )
+                    )}
+                  </div>
+                </div>
+              ))}
             </Grid>
           </Grid>
         </Grid>
