@@ -108,6 +108,10 @@ const SingleAnime = (props: Props) => {
             className="singleAnime__additonalInfoContainer"
           >
             <Grid sx={{ width: "fit-content" }}>
+              <Typography className="singleAnime__additionalInfo">
+                Information
+              </Typography>
+              <Divider sx={{ marginLeft: "20px" }} />
               <Typography
                 variant="body2"
                 className=" singleAnime__episodes singleAnime__additionalInfo"
