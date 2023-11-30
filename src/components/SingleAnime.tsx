@@ -228,34 +228,6 @@ const SingleAnime = (props: Props) => {
               Related Anime
               <Divider />
               <RelatedAnimeSection relations={relations} />
-              {relations.map((relation) => (
-                <div className="singleAnime__related_entry_container">
-                  {relation.relation}:{" "}
-                  <div className="singleAnime__related_entry_group">
-                    {relation.entry.map((entry) =>
-                      entry.type === "anime" ? (
-                        <p
-                          className="singleAnime__related_entry"
-                          onClick={() =>
-                            handleRelationEntryClick(entry.mal_id.toString())
-                          }
-                        >
-                          {entry.name},
-                        </p>
-                      ) : (
-                        <p
-                          className="singleAnime__related_entry_non_anime"
-                          onClick={() =>
-                            console.log("Non - Anime pages coming soon")
-                          }
-                        >
-                          {entry.name},
-                        </p>
-                      )
-                    )}
-                  </div>
-                </div>
-              ))}
             </Grid>
           </Grid>
         </Grid>
@@ -267,8 +239,8 @@ const SingleAnime = (props: Props) => {
           xs={true}
           sx={{ right: 0 }}
         >
-          <div>
-            PV:
+          <div className="singleAnime__trailer_container">
+            PV
             <Example
               videoId={anime.trailer.youtube_id}
               height={180}
