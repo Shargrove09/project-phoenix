@@ -8,6 +8,8 @@ import { MantineProvider, createTheme } from "@mantine/core";
 import "@mantine/core/styles.css";
 // Package styles for Mantine Calendar
 import "@mantine/dates/styles.css";
+// Package styles for Mantine Carousel
+import "@mantine/carousel/styles.css";
 
 // const theme = createTheme({
 //   colors: {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Typography, Paper, Box, Divider } from "@mui/material";
 import { Button } from "@mui/material";
@@ -10,6 +10,7 @@ import { useSearchContext } from "../context/useSearchContext";
 import Example from "./VideoPlayer/VideoPlayer";
 import RelatedAnimeSection from "./RelatedAnimeSection/RelatedAnimeSection";
 import { useNavigate } from "react-router";
+import AnimeCarousel from "./AnimeCarousel/AnimeCarousel";
 
 interface Props {
   anime: Anime;
@@ -21,12 +22,11 @@ const SingleAnime = (props: Props) => {
   const { searchById, setSingle } = useSearchContext();
   const navigate = useNavigate();
 
+  const [recommendedShows, setRecommendedShows] = useState<any[]>([]);
+
   useEffect(() => {
-    // No Longer needed since exposing complete anime object
-    // getRelatedShows(anime.mal_id);
     getRecommendedShows(anime.mal_id);
-    console.log("VIDEO ID: ", anime.trailer.youtube_id);
-  });
+  }, [anime]);
 
   const {
     airing,
@@ -48,18 +48,20 @@ const SingleAnime = (props: Props) => {
   const image_url = images?.jpg.image_url;
   const synopsis = props.anime?.synopsis ?? "No Synopisis Loaded";
 
-  const getRelatedShows = async (animeId: number) => {
-    try {
-      const relatedResponse = await fetch(
-        `https://api.jikan.moe/v4/anime/${animeId}/relations`
-      );
-      const relatedResult = await relatedResponse.json();
+  // Don't need since related shows are exposed already
 
-      console.log("Related Shows: ", relatedResult);
-    } catch (error) {
-      console.error("Error getting related shows: ", error);
-    }
-  };
+  // const getRelatedShows = async (animeId: number) => {
+  //   try {
+  //     const relatedResponse = await fetch(
+  //       `https://api.jikan.moe/v4/anime/${animeId}/relations`
+  //     );
+  //     const relatedResult = await relatedResponse.json();
+
+  //     console.log("Related Shows: ", relatedResult);
+  //   } catch (error) {
+  //     console.error("Error getting related shows: ", error);
+  //   }
+  // };
 
   const getRecommendedShows = async (animeId: number) => {
     try {
@@ -69,18 +71,18 @@ const SingleAnime = (props: Props) => {
       const recommendedResult = await recommendedResponse.json();
 
       console.log("Recommended Shows: ", recommendedResult);
+      setRecommendedShows(recommendedResult.data);
     } catch (error) {
       console.error("Error getting recommended shows: ", error);
     }
   };
 
-  console.log("Relation Entry: ", relations);
-  const handleRelationEntryClick = async (malID: string) => {
-    const relationResult = await searchById(malID);
-    setSingle(relationResult.data);
-    localStorage.setItem("singleData", JSON.stringify(relationResult.data));
-    navigate("/single-view");
-  };
+  // const handleRelationEntryClick = async (malID: string) => {
+  //   const relationResult = await searchById(malID);
+  //   setSingle(relationResult.data);
+  //   localStorage.setItem("singleData", JSON.stringify(relationResult.data));
+  //   navigate("/single-view");
+  // };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -107,7 +109,7 @@ const SingleAnime = (props: Props) => {
             direction={"row"}
             className="singleAnime__additonalInfoContainer"
           >
-            <Grid sx={{ width: "fit-content" }}>
+            <Grid sx={{ width: "100%" }}>
               <Typography className="singleAnime__additionalInfo">
                 Information
               </Typography>
@@ -232,6 +234,14 @@ const SingleAnime = (props: Props) => {
               Related Anime
               <Divider />
               <RelatedAnimeSection relations={relations} />
+            </Grid>
+            <Grid
+              className="singleAnime__recommended_container singleAnime__section_header"
+              sx={{ mx: "auto" }}
+            >
+              Recommended Anime
+              <Divider />
+              <AnimeCarousel shows={recommendedShows} />
             </Grid>
           </Grid>
         </Grid>

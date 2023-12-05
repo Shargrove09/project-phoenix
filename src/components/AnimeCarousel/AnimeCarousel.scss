@@ -1,0 +1,15 @@
+.animeCarousel { 
+  display: flex; 
+  justify-content: center;
+  width: 100%; 
+}
+
+.animeCarousel__loader { 
+  margin-top: 16px; 
+}
+
+.animeCarousel__slide { 
+  align-items: center;
+  margin-bottom: 32px; 
+
+}

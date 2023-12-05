@@ -48,8 +48,8 @@ const Home = () => {
   const navigate = useNavigate();
 
   const topAiringAnimeToShow = expanded
-    ? airingShows.slice(0, 10)
-    : airingShows.slice(0, 5);
+    ? airingShows?.slice(0, 10)
+    : airingShows?.slice(0, 5);
 
   // User searches anime
   const handleAnimeSearch = (event: SyntheticEvent) => {
