@@ -53,7 +53,6 @@ const SwipeableTextMobileStepper = ({ shows }: Props) => {
   };
 
   const handleSeasonalShowClick = (show: Anime) => {
-    console.log("Handling seasonal show-click");
     setSingle(show);
     localStorage.setItem("singleData", JSON.stringify(show));
     navigate("/single-view");

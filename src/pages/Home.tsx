@@ -88,7 +88,6 @@ const Home = () => {
     // Get Complete Anime resource data and provide to single
     const fullShow = await searchById(show.mal_id);
 
-    console.log("Airing Show click test: id: ", show.mal_id, fullShow);
     setSingle(fullShow.data);
     localStorage.setItem("singleData", JSON.stringify(fullShow.data));
     navigate("/single-view");

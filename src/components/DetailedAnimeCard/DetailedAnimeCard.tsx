@@ -47,7 +47,6 @@ const DetailedAnimeCard = (props: Props) => {
   };
 
   const handleInfoButtonClick = () => {
-    console.log("Handling Info Button click");
     fetch(`https://api.jikan.moe/v4/anime/${animeData.mal_id}/full`)
       .then((response) => response.json())
       .then((data) => {

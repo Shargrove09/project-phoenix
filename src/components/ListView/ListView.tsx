@@ -10,8 +10,6 @@ interface Props {
 const ListView = (props: Props) => {
   const { animeList } = props;
 
-  console.log("animeList", animeList);
-
   return (
     <div className="listView__container">
       {animeList.map((animeData, index) => (

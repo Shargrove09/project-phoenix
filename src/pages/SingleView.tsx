@@ -8,19 +8,16 @@ const SingleView = () => {
   const { singleData, setSingle, search } = useSearchContext();
   const [dataExists, setDataExists] = useState(false);
 
-  console.log("Single Data in Single View: ", singleData);
-
   useEffect(() => {
     if (singleData === undefined || Object.keys(singleData).length === 0) {
       try {
         const localStorageSingleData: Anime = JSON.parse(
           localStorage.getItem("singleData")
         );
-        console.log("Local Storage Single Data: ", localStorageSingleData);
         setSingle(localStorageSingleData);
         setDataExists(true);
       } catch (error) {
-        console.log("Errored: ", error);
+        console.error("Error Occured in Single View: ", error);
         setDataExists(false);
       }
     } else {

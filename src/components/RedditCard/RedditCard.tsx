@@ -15,7 +15,6 @@ const RedditCard = () => {
           "https://www.reddit.com/r/anime/top.json?t=day&limit=5"
         );
         const postsResults = await response.json();
-        console.log("Post results", postsResults);
         setTopPosts(postsResults.data.children);
       } catch (error) {
         console.error("Error fetching data from Reddit:", error);

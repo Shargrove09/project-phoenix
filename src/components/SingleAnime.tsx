@@ -17,7 +17,6 @@ interface Props {
 }
 
 const SingleAnime = (props: Props) => {
-  console.log("Single Props: ", props);
   const { anime } = props;
   const { searchById, setSingle } = useSearchContext();
   const navigate = useNavigate();

@@ -28,7 +28,6 @@ const AnimeCarousel = (props: Props) => {
   }
 
   const handleRecommendedClick = async (malID: number) => {
-    console.log("Handling Click: ", malID);
     const recommendedResult = await searchById(malID);
     setSingle(recommendedResult.data);
     localStorage.setItem("singleData", JSON.stringify(recommendedResult.data));

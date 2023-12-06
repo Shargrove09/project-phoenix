@@ -12,7 +12,6 @@ const ShowSchedule = (props: Props) => {
   const { onDateSelect } = props;
 
   const [value, setValue] = useState<Date | null>(new Date());
-  console.log("Value: ", value);
 
   const handleDateSelect = (selectedDate: Date) => {
     setValue(selectedDate);

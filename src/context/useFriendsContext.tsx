@@ -49,10 +49,8 @@ export const FriendsProvider: React.FC<Props> = ({ children }) => {
 
       if (!isDuplicate) {
         validatedFriendArray.push(element.mal_id);
-
         return true;
       }
-
       return false;
     });
 

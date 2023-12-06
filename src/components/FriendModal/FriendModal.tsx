@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Box, Button, Typography, Modal } from "@mui/material";
 import { FormControl, IconButton, TextField } from "@mui/material";
-import SearchIcon from "@mui/icons-material";
+import SearchIcon from "@mui/icons-material/Search";
 import { useFriendsContext } from "../../context/useFriendsContext";
 
 import "./FriendModal.scss";
@@ -69,28 +69,25 @@ const FriendModal = () => {
           >
             Add Friends
           </Typography>
-          {/* <form>
-            <FormControl type="submit" className="friendModal__formControl">
-              <TextField
-                autoFocus="true"
-                placeholder="Search for a friend (username)"
-                value={input}
-                onChange={(event) => setInput(event.target.value)}
-                className="friendModal__input"
-                inputProps={{ style: { color: "white", width: "100%" } }} // Not doing anything
-              />
-              <IconButton
-                className="friendModal__iconButton"
-                variant="contained"
-                color="primary"
-                type="submit"
-                disabled={!input}
-                onClick={handleAddFriend}
-              >
-                <SearchIcon />
-              </IconButton>
-            </FormControl>
-          </form> */}
+          <form>
+            <TextField
+              autoFocus={true}
+              placeholder="Search for a friend (username)"
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+              className="friendModal__input"
+              inputProps={{ style: { color: "white", width: "100%" } }} // Not doing anything
+            />
+            <IconButton
+              className="friendModal__iconButton"
+              color="primary"
+              type="submit"
+              disabled={!input}
+              onClick={handleAddFriend}
+            >
+              <SearchIcon />
+            </IconButton>
+          </form>
         </Box>
       </Modal>
     </div>

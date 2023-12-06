@@ -21,7 +21,7 @@ const Results = () => {
         setAnimeData(JSON.parse(localStorage.getItem("animeSearchResultData")));
         setResultsExists(true);
       } catch (error) {
-        console.log("Error occured in Results", error);
+        console.error("Error occured in Results", error);
         setResultsExists(false);
       }
     }

@@ -26,9 +26,7 @@ const AnimeCard = (props) => {
   };
 
   const onClickHandler2 = () => {
-    console.log("Anime ID: : ", props.anime.mal_id);
     searchById(props.anime.mal_id).then((anime: any) => {
-      console.log("Show Data Click Handler: ", anime.data);
       setSingle(anime.data);
       localStorage.setItem("singleData", JSON.stringify(anime.data));
       navigate("/single-view");
