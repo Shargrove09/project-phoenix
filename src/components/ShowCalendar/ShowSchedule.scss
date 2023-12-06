@@ -1,5 +1,7 @@
 .showSchedule { 
 
+ 
+
   .mantine-dates-input { 
     text-align: center; 
   } 
@@ -14,11 +16,23 @@
   color: #C2C2C0
 }
 
+.mantine-DateInput-wrapper { 
+  margin: 8px; 
+}
+
 .mantine-DateInput-input { 
   background-color: #424242;
   color: #C2C2C0;
   font-weight: 800;
   text-align: center;
+  cursor: pointer; 
+  padding: 0; 
+
+
+}
+
+.mantine-DateInput-input:hover { 
+  background-color: #228be6; 
 }
 
 }

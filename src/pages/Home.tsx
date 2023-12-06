@@ -20,7 +20,7 @@ import RedditCard from "../components/RedditCard/RedditCard";
 import ShowCalendar from "../components/ShowCalendar/ShowSchedule";
 
 const Home = () => {
-  const { search, setAnimeData, setSingle } = useSearchContext();
+  const { search, setAnimeData, setSingle, searchById } = useSearchContext();
 
   const [input, setInput] = useState("");
   const [airingShows, setAiringShows] = useState<Anime[]>([]);
@@ -48,10 +48,8 @@ const Home = () => {
   const navigate = useNavigate();
 
   const topAiringAnimeToShow = expanded
-    ? airingShows.slice(0, 10)
-    : airingShows.slice(0, 5);
-
-  console.log("topAiring", topAiringAnimeToShow);
+    ? airingShows?.slice(0, 10)
+    : airingShows?.slice(0, 5);
 
   // User searches anime
   const handleAnimeSearch = (event: SyntheticEvent) => {
@@ -75,7 +73,7 @@ const Home = () => {
       setAiringShows(airingShowsResult.data);
 
       // Extract carousel images and set loading state to false
-      const images = airingShowsResult.data.map((show: Anime) => show);
+      const images = airingShowsResult?.data.map((show: Anime) => show);
       setCarouselShows(images);
       setIsAiringShowsLoading(false);
     } catch (error) {
@@ -83,21 +81,21 @@ const Home = () => {
     }
   };
 
-  const handleAiringShowEntryClick = (show: Anime) => {
+  const handleAiringShowEntryClick = async (show: Anime) => {
     // When a currently airing entry is clicked user should be directed to single anime page
     // for that entry
-    console.log("Handling SHow for: ", show);
 
-    // Can reuse data from airing data fetch
-    setSingle(show);
-    localStorage.setItem("singleData", JSON.stringify(show));
+    // Get Complete Anime resource data and provide to single
+    const fullShow = await searchById(show.mal_id);
+
+    console.log("Airing Show click test: id: ", show.mal_id, fullShow);
+    setSingle(fullShow.data);
+    localStorage.setItem("singleData", JSON.stringify(fullShow.data));
     navigate("/single-view");
   };
 
   const handleDateSelect = (selectedDate: Date) => {
-    console.log("Handling date seelct for: ", selectedDate);
     // Filter shows based on the selected date and update the state
-    console.log("Airing Shows: ", airingShows);
     const filteredShows = airingShows.filter((show) => {
       const startDate = new Date(show.aired.from);
       const numberOfEpisodes = show.episodes || 0;
@@ -113,7 +111,6 @@ const Home = () => {
       );
     });
 
-    console.log("Filtered Shows: ", filteredShows);
     setSelectedDateShows(filteredShows);
   };
 
@@ -168,7 +165,6 @@ const Home = () => {
                 className="home__scheduled_shows"
                 key={show.title}
                 onClick={() => {
-                  console.log("Clicked: ", show);
                   handleAiringShowEntryClick(show);
                 }}
               >

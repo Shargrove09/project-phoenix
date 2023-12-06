@@ -13,7 +13,7 @@ const AnimeCard = (props) => {
   // Old Way
   // const search = useContext(SearchContext);
 
-  const { setSingle } = useSearchContext();
+  const { setSingle, searchById } = useSearchContext();
 
   const onClickHandler = () => {
     fetch(`https://api.jikan.moe/v4/anime/${props.anime.mal_id}/full`)
@@ -23,6 +23,16 @@ const AnimeCard = (props) => {
         localStorage.setItem("singleData", JSON.stringify(data));
         navigate("/single-view");
       });
+  };
+
+  const onClickHandler2 = () => {
+    console.log("Anime ID: : ", props.anime.mal_id);
+    searchById(props.anime.mal_id).then((anime: any) => {
+      console.log("Show Data Click Handler: ", anime.data);
+      setSingle(anime.data);
+      localStorage.setItem("singleData", JSON.stringify(anime.data));
+      navigate("/single-view");
+    });
   };
 
   const title =
@@ -65,7 +75,7 @@ const AnimeCard = (props) => {
             component="button"
             variant="body1"
             style={{ marginBottom: 0 }}
-            onClick={onClickHandler}
+            onClick={onClickHandler2}
           >
             Learn More
           </Link>

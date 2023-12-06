@@ -1,6 +1,7 @@
 .singleAnime__container { 
   margin-top: 50px !important;
   min-height: 412px;
+  width:100%
 }
 
 .singleAnime__image { 
@@ -9,8 +10,7 @@
 }
 
 .singleAnime__title { 
-  color: white; 
-  padding-left: 25px; 
+  color: rgb(194, 192, 192);
   padding-bottom: 30px;
   font-size: 3rem; 
 }
@@ -21,32 +21,107 @@
   margin: 100px;
 }
 
-.singleAnime__synopsis { 
-  max-height: 400px; 
-  padding-top: 10px;
-  width:100%;
-  color: white; 
+.singleAnime__synopsis_container { 
+  color: rgb(194, 192, 192);
+  font-weight: 600; 
+
 }
 
-.singleAnime__container { 
-  width:100%
+.singleAnime__synopsis { 
+  max-height: 400px; 
+  width:100%;
+}
+
+
+.singleAnime__info_container { 
+  background-color: #424242; 
+  display: flex; 
+  margin-bottom: 20px; 
+  width: fit-content; 
 }
 
 .singleAnime__info { 
   padding: 10px;
+  background-color: #424242;
+  border-radius: 4px;
+  color: rgb(194, 192, 192);
+
 }
 
 .singleAnime__additionalInfo {
   margin-left: 20px  !important;
   margin-bottom: 5px !important; 
-  color: white
+  color: white;
+
+
 }
 
 .singleAnime__additionalInfoContainer { 
-  margin-left:20px;
-
+  width: fit-content; 
 }
 
 .singleAnime__linkButton { 
   width: 45%;
+}
+
+
+
+
+.singleAnime__section_header { 
+  color: rgb(194, 192, 192);
+  font-weight: 700; 
+}
+
+.singleAnime__related_container { 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.singleAnime__related_entry_group { 
+  display: inline-block;
+  overflow: hidden; 
+  white-space: nowrap;
+  width: 50rem; 
+}
+
+.singleAnime__related_entry_container { 
+font-weight: 400; 
+  display: flex; 
+  margin-bottom: 10px;
+}
+
+.singleAnime__related_entry_container > .MuiTypography-root { 
+  font-weight: 500; 
+}
+
+.singleAnime__related_entry {                                               
+  cursor: pointer;
+  white-space: normal;
+  text-overflow: ellipsis;
+  margin-right: 8px;
+  font-size: 14px; 
+  color: #1a6cb4
+}
+
+.singleAnime__related_entry:hover { 
+  color: rgb(194, 192, 192);
+}
+
+// Right Section 
+.singleAnime__right_section { 
+  align-items: flex-end;
+  color: rgb(194, 192, 192);
+}
+
+.singleAnime__trailer_container { 
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600; 
+  text-decoration: underline;
+  
+}
+
+.singleAnime__recommended_container { 
+  max-width:100%;
 }

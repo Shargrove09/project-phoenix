@@ -50,6 +50,7 @@ export const SearchProvider: React.FC<Props> = ({ children }) => {
   };
 
   const searchById = async (searchId: string) => {
+    console.log("Searching Id: ", searchId);
     const response = await fetch(
       `https://api.jikan.moe/v4/anime/${searchId}/full`
     );
