@@ -73,7 +73,7 @@ const Home = () => {
       setAiringShows(airingShowsResult.data);
 
       // Extract carousel images and set loading state to false
-      const images = airingShowsResult.data.map((show: Anime) => show);
+      const images = airingShowsResult?.data.map((show: Anime) => show);
       setCarouselShows(images);
       setIsAiringShowsLoading(false);
     } catch (error) {

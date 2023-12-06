@@ -9,7 +9,24 @@
 }
 
 .animeCarousel__slide { 
+  display: flex; 
+  flex-direction: column;
   align-items: center;
   margin-bottom: 32px; 
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
 
+.animeCarousel__slide:hover {
+  filter: brightness(0.8);
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.animeCarousel__slide_title { 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  // Not sure if these are needed? 
+  line-height: 1em;
+  height: 1em; 
 }
