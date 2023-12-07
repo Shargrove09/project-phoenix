@@ -41,7 +41,7 @@ const FriendsView = () => {
       {/* className="friendsView__modal" <- Removed from friend modal component below*/}
       <FriendModal></FriendModal>
       <Box mt={2}>
-        {(dataExists && <FriendList data={friendsList} />) || (
+        {(dataExists && <FriendList />) || (
           <Typography variant="h4">
             No friends loaded. Click The "Add Friends" button to add some
             friends here!

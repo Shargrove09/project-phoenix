@@ -23,11 +23,11 @@ const FriendModal = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const { friendSearch, setFriendsList } = useFriendsContext();
+  const { friendSearch, addToFriendsList } = useFriendsContext();
 
   const [input, setInput] = useState("");
 
-  const appenedToLocalStorage = (data) => {
+  const appendToLocalStorage = (data) => {
     var oldStorage = JSON.parse(localStorage.getItem("myFriendsData")) || [];
 
     oldStorage.push(data[0]);
@@ -37,11 +37,16 @@ const FriendModal = () => {
   const handleAddFriend = (event) => {
     event.preventDefault(); // I think i need the page to refresh so maybe delete this
     friendSearch(input).then((data) => {
-      console.log("FriendModal data in", data);
-      const dataValues = Object.values(data);
-      console.log("DataVALUES IN MODAL", dataValues);
-      setFriendsList(dataValues);
-      appenedToLocalStorage(dataValues);
+      console.log("FriendModal data from friendSearch", data);
+
+      // Need to add this data to the friendslist - Should Check if Data is valid somewhere
+      addToFriendsList(data);
+
+      // Set to local storage as backup
+      appendToLocalStorage(data);
+
+      // Close Modal on Successful Friend Add
+      handleClose();
     });
   };
 

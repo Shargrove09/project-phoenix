@@ -17,7 +17,7 @@ const backUpImg = () => {
   );
 };
 
-const FriendsCard = (props) => {
+const FriendCard = (props) => {
   // const jikanjs = require("@mateoaranda/jikanjs"); Do this later
 
   const { searchById, setAnimeData } = useSearchContext();
@@ -36,8 +36,10 @@ const FriendsCard = (props) => {
     img_url = friendData?.images?.jpg?.image_url || backUpImg; // Try 225 x 334
     userName = friendData?.username || "NULL";
     lastOnline = new Date(friendData?.last_online);
-    recentlyWatched = friendData?.updates.anime;
-    recentlyRead = friendData?.updates.manga;
+
+    // recentlyWatched = friendData?.updates.anime;
+
+    // recentlyRead = friendData?.updates.manga;
 
     // Only take Month date year from lastOnline Date object
     var lastOnlineMonth = lastOnline.getUTCMonth() + 1;
@@ -123,11 +125,11 @@ const FriendsCard = (props) => {
                       className="friendCard__recentlyWatchedListThumbnail"
                     >
                       <img
-                        src={anime.entry.images.jpg.image_url}
-                        alt={anime.entry.title}
+                        src={anime?.entry.images.jpg.image_url}
+                        alt={anime?.entry.title}
                         className="friendCard__recentlyWatchedThumbnail"
                         onClick={() =>
-                          handleRecentlyWatchedImageClick2(anime.entry.mal_id)
+                          handleRecentlyWatchedImageClick2(anime?.entry.mal_id)
                         }
                       />
                     </Grid>
@@ -140,13 +142,13 @@ const FriendsCard = (props) => {
                         className="friendCard__recentlyWatchedTitle"
                         href={anime.entry.url}
                       >
-                        {anime.entry.title.length > 24
-                          ? `${anime.entry.title.substring(0, 24)}...`
-                          : anime.entry.title}
+                        {anime?.entry.title.length > 24
+                          ? `${anime?.entry.title.substring(0, 24)}...`
+                          : anime?.entry.title}
                       </a>
                       <Grid item className="friendCard__recentlyWatchedStatus">
                         Status:
-                        {anime.status} Score: {anime.score}
+                        {anime?.status} Score: {anime?.score}
                       </Grid>
                     </Grid>
                   </Grid>
@@ -211,4 +213,4 @@ const FriendsCard = (props) => {
   );
 };
 
-export default FriendsCard;
+export default FriendCard;
