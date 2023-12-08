@@ -1,48 +1,97 @@
-//TODO: finish definting types for attributes
-// optional params are part of complete anime object
+import {
+  JikanImages,
+  JikanNamedResource,
+  JikanResource,
+  JikanResourcePeriod,
+  JikanResourceRelation,
+  JikanResourceTitle,
+} from './types';
+
+import { AnimeYoutubeVideo } from './types';
+
 export interface Anime {
-  aired: {from: string}; 
-  airing: boolean; 
-  approved: boolean; 
-  background: any; 
-  broadcast: {day: string, string: string; time: string; timezone: string}; 
-  demographics:{}[]; 
-  duration: string; 
-  episodes: number; 
-  explicit_genres: [];
-  favorites: number; 
-  genres: [{mal_id: string, type: string, name: string, url: string}];
-  images: {jpg: {image_url: string; small_image_url: string; large_image_url: string}, png: {image_url: string; small_image_url: string; large_image_url: string}}; 
-  licesnsors: {}[]
-  mal_id: number; 
-  members: number; 
-  popularity: number; 
-  producers: {}[]; 
-  rank: number; 
-  relations?: [{relation: string, entry: [{mal_id: number, type: string, name: string, url: string}]}] // TODO: Type Manga object and add union here
-  rating: string; 
-  score: number; 
-  scored_by: number; 
-  season: any; 
-  source: string; 
-  status: string; 
-  studios: {}[]; 
-  synopsis: string; 
-  themes: any[]; 
-  title: string; 
-  title_english: string; 
-  title_japanese: string; 
-  title_synonyms: string[], 
-  titles: {type: string, title: string}[]
-  trailer: {embed_url: string, images: { 
-    image_url: string; 
-    small_image_url: string; 
-    medium_image_url: string; 
-    large_image_url: string; 
+  mal_id: number;
+  url: string;
+  images: JikanImages;
+  trailer: AnimeYoutubeVideo;
+  approved: boolean;
+  titles: JikanResourceTitle[];
+  title: string;
+  title_english: string;
+  title_japanese: string;
+  title_synonyms: string[];
+  type: AnimeType;
+  source: string;
+  episodes: number;
+  status: AnimeStatus;
+  airing: boolean;
+  aired: JikanResourcePeriod;
+  duration: string;
+  rating: AnimeRating;
+  score: number;
+  scored_by: number;
+  rank: number;
+  popularity: number;
+  members: number;
+  favorites: number;
+  synopsis: string;
+  background: string;
+  season?: AnimeSeason;
+  year: number;
+  broadcast: AnimeBroadcast;
+  producers: JikanResource[];
+  licensors: JikanResource[];
+  studios: JikanResource[];
+  genres: JikanResource[];
+  explicit_genres: JikanResource[];
+  themes: JikanResource[];
+  demographics: JikanResource[];
+  relations?: JikanResourceRelation[];
+  theme?: AnimeTheme;
+  external?: JikanNamedResource[];
+  streaming: JikanNamedResource[];
+}
 
+export interface AnimeBroadcast {
+  day: string;
+  time: string;
+  timezone: string;
+  string: string;
+}
 
-  }, url: string, youtube_id: string}, 
-  url: string; 
-  year: number; 
+export interface AnimeTheme {
+  openings: string[];
+  endings: string[];
+}
 
+export enum AnimeType {
+  tv = 'TV',
+  movie = 'Movie',
+  ova = 'Ova',
+  special = 'Special',
+  ona = 'Ona',
+  music = 'Music',
+}
+
+export enum AnimeStatus {
+  finished = 'Finished Airing',
+  airing = 'Currently Airing',
+  complete = 'Complete',
+  upcoming = 'Not yet aired',
+}
+
+export enum AnimeRating {
+  g = 'g',
+  pg = 'pg',
+  pg13 = 'pg13',
+  r17 = 'r17',
+  r = 'r',
+  rx = 'rx',
+}
+
+export enum AnimeSeason {
+  spring = 'spring',
+  summer = 'summer',
+  fall = 'fall',
+  winter = 'winter',
 }
