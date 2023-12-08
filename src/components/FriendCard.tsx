@@ -5,22 +5,11 @@ import { useSearchContext } from "../context/useSearchContext";
 
 import "./FriendCard.scss";
 
-const backUpImg = () => {
-  return (
-    <img
-      alt="Gurren Lagann"
-      src={`${process.env.PUBLIC_URL}/gurren_lagann_logo.png`}
-      height={25}
-      width={25}
-      className="MainNavigation__logo"
-    />
-  );
-};
+interface Props {}
 
 const FriendCard = (props) => {
-  // const jikanjs = require("@mateoaranda/jikanjs"); Do this later
-
   const { searchById, setAnimeData } = useSearchContext();
+  console.log("props in friend card", props);
 
   var img_url = "BLANK";
   var userName = "NO USER";
@@ -29,8 +18,19 @@ const FriendCard = (props) => {
   var recentlyWatched = [];
   var recentlyRead = [];
 
-  console.log("props in FRIEND CARD", props);
   var friendData = props?.friend || {};
+
+  const backUpImg = () => {
+    return (
+      <img
+        alt="Gurren Lagann"
+        src={`${process.env.PUBLIC_URL}/gurren_lagann_logo.png`}
+        height={25}
+        width={25}
+        className="MainNavigation__logo"
+      />
+    );
+  };
 
   if (!props.isLoading) {
     img_url = friendData?.images?.jpg?.image_url || backUpImg; // Try 225 x 334
@@ -84,9 +84,12 @@ const FriendCard = (props) => {
   }
 
   return (
-    <ImageListItem className="friendCard__container">
+    <ImageListItem className="friendCard__listItem">
       <Grid container item xs={12}>
-        <Paper className="friendCard__paper">
+        <Paper
+          className="friendCard__paper"
+          sx={{ backgroundColor: "#424242" }}
+        >
           <div className="friendCard__header">
             {" "}
             {/* Grid Item Applicable*/}

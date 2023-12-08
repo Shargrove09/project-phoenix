@@ -32,10 +32,9 @@ export const FriendsProvider: React.FC<Props> = ({ children }) => {
   const [friendsList, setFriendsList] = useState<Friend[]>([]);
 
   const addToFriendsList = (newFriendData: Friend) => {
-    console.log("Friend Data to be added in app", newFriendData);
+    console.log("Adding This To Friend List ", newFriendData);
 
     if (friendsList.indexOf(newFriendData) === -1) {
-      console.log("APP if entered");
       setFriendsList((friendData) => [...friendData, newFriendData]);
     }
     console.log("Friend Data after push in App", friendsList);

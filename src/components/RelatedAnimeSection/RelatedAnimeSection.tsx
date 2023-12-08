@@ -37,7 +37,7 @@ const RelatedAnimeSection = (props: Props) => {
 
   return (
     <div>
-      {relations.map((relation) => (
+      {relations?.map((relation) => (
         <>
           <div className="singleAnime__related_entry_container">
             <Typography
