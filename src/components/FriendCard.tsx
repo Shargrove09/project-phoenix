@@ -3,6 +3,7 @@ import { Typography, Paper, ImageListItem, Button } from "@mui/material";
 import { Avatar } from "@mui/material";
 import { useSearchContext } from "../context/useSearchContext";
 import Grid from "@mui/material/Unstable_Grid2";
+import AutorenewIcon from "@mui/icons-material/Autorenew";
 
 import "./FriendCard.scss";
 
@@ -75,14 +76,15 @@ const FriendCard = (props) => {
 
   return (
     <ImageListItem className="friendCard__listItem">
-      <Grid container xs={12}>
-        <Paper
-          className="friendCard__paper"
-          sx={{ backgroundColor: "#424242" }}
-        >
-          <div className="friendCard__header">
-            {/* Grid Item Applicable*/}
-            <StyledAvatar className="friendCard__avatar" children={undefined} />
+      <Grid
+        container
+        xs={12}
+        className="friendCard__paper"
+        sx={{ backgroundColor: "#424242" }}
+      >
+        <div className="friendCard__header">
+          <StyledAvatar className="friendCard__avatar" children={undefined} />
+          <div className="friendCard__header_text">
             <Typography
               variant="h5"
               component="h2"
@@ -93,108 +95,110 @@ const FriendCard = (props) => {
             <Typography className="friendCard__last_online">
               Last online: {lastOnlineDate}
             </Typography>
-            <Button>F</Button>
           </div>
-          <div className="friendCard__recent_header">Latest Updates</div>
-          <Grid container className="friendCard__recent_grid">
-            <div
-              style={{
-                margin: "auto",
-                width: "auto",
 
-                color: "#C2C0C0",
-              }}
-            ></div>
-            <Grid container className="friendCard__recently_watched" xs={6}>
-              <div style={{ textAlign: "center" }}>Anime Updates </div>
-              {recentlyWatched.map(function (anime, idx) {
-                return (
+          <Button className="friendCard__flip_btn">
+            <AutorenewIcon />
+          </Button>
+        </div>
+        <div className="friendCard__recent_header">Latest Updates</div>
+        <Grid container className="friendCard__recent_grid" direction={"row"}>
+          <div
+            style={{
+              margin: "auto",
+              width: "auto",
+
+              color: "#C2C0C0",
+            }}
+          ></div>
+          <Grid container className="friendCard__recently_watched" xs={6}>
+            <div style={{ textAlign: "center" }}>Anime Updates </div>
+            {recentlyWatched.map(function (anime, idx) {
+              return (
+                <Grid
+                  container
+                  xs={12}
+                  key={idx}
+                  className="friendCard__recently_watched_list_item_container"
+                >
+                  <img
+                    src={anime?.entry.images.jpg.image_url}
+                    alt={anime?.entry.title}
+                    className="friendCard__recentlyWatchedThumbnail"
+                    onClick={() =>
+                      handleRecentlyWatchedImageClick2(anime?.entry.mal_id)
+                    }
+                  />
                   <Grid
-                    container
-                    xs={12}
-                    key={idx}
-                    className="friendCard__recently_watched_list_item_container"
-                    spacing={0}
+                    xs={6}
+                    className="friendCard__recentlyWatchedInfoContainer"
+                  >
+                    <a
+                      className="friendCard__recentlyWatchedTitle"
+                      href={anime.entry.url}
+                    >
+                      {anime?.entry.title.length > 24
+                        ? `${anime?.entry.title.substring(0, 24)}...`
+                        : anime?.entry.title}
+                    </a>
+                    <Grid className="friendCard__recentlyWatchedStatus">
+                      Status:
+                      {anime?.status} Score: {anime?.score}
+                    </Grid>
+                  </Grid>
+                </Grid>
+              );
+            })}
+          </Grid>
+
+          {/*MANGA ENTRY */}
+          <Grid className="friendCard__recentlyRead" xs={6}>
+            <div style={{ textAlign: "center" }}>Manga Updates </div>
+            {/* Need a component for recentlyWatchedList and then for recentlyWatched Anime*/}
+            {recentlyRead.map((manga, idx) => {
+              return (
+                <Grid
+                  container
+                  xs={12}
+                  key={idx}
+                  className="friendCard__recentlyWatchedListItemContainer"
+                  spacing={0}
+                >
+                  <Grid
+                    xs={4}
+                    className="friendCard__recentlyWatchedListThumbnail"
                   >
                     <img
-                      src={anime?.entry.images.jpg.image_url}
-                      alt={anime?.entry.title}
+                      src={manga.entry.images.jpg.image_url}
+                      alt={manga.entry.title}
                       className="friendCard__recentlyWatchedThumbnail"
                       onClick={() =>
-                        handleRecentlyWatchedImageClick2(anime?.entry.mal_id)
+                        handleRecentlyWatchedImageClick2(manga.entry.mal_id)
                       }
                     />
-                    <Grid
-                      xs={6}
-                      className="friendCard__recentlyWatchedInfoContainer"
-                    >
-                      <a
-                        className="friendCard__recentlyWatchedTitle"
-                        href={anime.entry.url}
-                      >
-                        {anime?.entry.title.length > 24
-                          ? `${anime?.entry.title.substring(0, 24)}...`
-                          : anime?.entry.title}
-                      </a>
-                      <Grid className="friendCard__recentlyWatchedStatus">
-                        Status:
-                        {anime?.status} Score: {anime?.score}
-                      </Grid>
-                    </Grid>
                   </Grid>
-                );
-              })}
-            </Grid>
-
-            {/*MANGA ENTRY */}
-            <Grid className="friendCard__recentlyRead" xs={6}>
-              <div style={{ textAlign: "center" }}>Manga Updates </div>
-              {/* Need a component for recentlyWatchedList and then for recentlyWatched Anime*/}
-              {recentlyRead.map((manga, idx) => {
-                return (
                   <Grid
-                    container
-                    xs={12}
-                    key={idx}
-                    className="friendCard__recentlyWatchedListItemContainer"
-                    spacing={0}
+                    xs={6}
+                    className="friendCard__recentlyWatchedInfoContainer"
                   >
-                    <Grid
-                      xs={4}
-                      className="friendCard__recentlyWatchedListThumbnail"
+                    <a
+                      className="friendCard__recentlyWatchedTitle"
+                      href={manga.entry.url}
                     >
-                      <img
-                        src={manga.entry.images.jpg.image_url}
-                        alt={manga.entry.title}
-                        className="friendCard__recentlyWatchedThumbnail"
-                        onClick={() =>
-                          handleRecentlyWatchedImageClick2(manga.entry.mal_id)
-                        }
-                      />
-                    </Grid>
-                    <Grid
-                      xs={6}
-                      className="friendCard__recentlyWatchedInfoContainer"
-                    >
-                      <a
-                        className="friendCard__recentlyWatchedTitle"
-                        href={manga.entry.url}
-                      >
-                        {manga.entry.title.length > 24
-                          ? `${manga.entry.title.substring(0, 24)}...`
-                          : manga.entry.title}
-                      </a>
-                      <Grid className="friendCard__recentlyWatchedStatus">
-                        Status:
-                        {manga.status} Score: {manga.score}
-                      </Grid>
+                      {manga.entry.title.length > 24
+                        ? `${manga.entry.title.substring(0, 24)}...`
+                        : manga.entry.title}
+                    </a>
+                    <Grid className="friendCard__recentlyWatchedStatus">
+                      Status:
+                      {manga.status} Score: {manga.score}
                     </Grid>
                   </Grid>
-                );
-              })}
-            </Grid>
+                </Grid>
+              );
+            })}
           </Grid>
-        </Paper>
+        </Grid>
       </Grid>
     </ImageListItem>
   );

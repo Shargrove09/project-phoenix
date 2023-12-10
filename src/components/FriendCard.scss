@@ -31,24 +31,29 @@
 .friendCard__header { 
   display: flex; 
   position: relative; 
-  flex-direction: row;
   flex-wrap: wrap;
   width: 100%; 
   color: rgb(194, 192, 192);
 }
 
-.friendCard__userName { 
+.friendCard__header_text { 
   padding: 10px; 
+}
+
+.friendCard__userName { 
   flex-wrap: wrap;
   flex-direction: row;
   right: 0px;
+  margin-bottom: 10px; 
 }
 
 .friendCard__last_online { 
-  align-items: flex-end ;
-  position: absolute;
-  top: 50px;
-  right: 0px;
+
+}
+
+.friendCard__flip_btn { 
+  width: 24px; 
+  height: 24px; 
 }
 
 // Latest Updates Section 
