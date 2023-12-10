@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Typography, Paper, ImageListItem, Grid } from "@mui/material";
+import { Typography, Paper, ImageListItem, Button } from "@mui/material";
 import { Avatar } from "@mui/material";
 import { useSearchContext } from "../context/useSearchContext";
+import Grid from "@mui/material/Unstable_Grid2";
 
 import "./FriendCard.scss";
 
@@ -13,7 +14,7 @@ const FriendCard = (props) => {
 
   var img_url = "BLANK";
   var userName = "NO USER";
-  // TODO: get right date
+
   var lastOnline: Date = new Date();
   var recentlyWatched = [];
   var recentlyRead = [];
@@ -37,7 +38,7 @@ const FriendCard = (props) => {
     userName = friendData?.username || "NULL";
     lastOnline = new Date(friendData?.last_online);
 
-    // recentlyWatched = friendData?.updates.anime;
+    recentlyWatched = friendData?.updates?.anime ?? [];
 
     // recentlyRead = friendData?.updates.manga;
 
@@ -60,17 +61,6 @@ const FriendCard = (props) => {
     </Avatar>
   );
 
-  /*
-  const handleRecentlyWatchedImageClick = (mal_id) => {
-    console.log("MAL ID ", mal_id);
-    /*
-    search.searchById(mal_id).then((data) => {
-      search.setData(data.results);
-      localStorage.setItem("animeSearchResultData", JSON.stringify(data.results));
-      navigate("/results");
-    }); 
-  }; */
-
   function handleRecentlyWatchedImageClick2(mal_id) {
     console.log("MAL ID ", mal_id);
     //event.preventDefault();
@@ -85,13 +75,12 @@ const FriendCard = (props) => {
 
   return (
     <ImageListItem className="friendCard__listItem">
-      <Grid container item xs={12}>
+      <Grid container xs={12}>
         <Paper
           className="friendCard__paper"
           sx={{ backgroundColor: "#424242" }}
         >
           <div className="friendCard__header">
-            {" "}
             {/* Grid Item Applicable*/}
             <StyledAvatar className="friendCard__avatar" children={undefined} />
             <Typography
@@ -101,43 +90,41 @@ const FriendCard = (props) => {
             >
               {userName}
             </Typography>
-            <Typography className="friendCard__lastOnline">
+            <Typography className="friendCard__last_online">
               Last online: {lastOnlineDate}
             </Typography>
+            <Button>F</Button>
           </div>
-          <div style={{ margin: "auto", width: "auto", paddingTop: "5px" }}>
-            Latest Updates{" "}
-          </div>
-          <Grid container className="friendCard__recentGrid">
-            <Grid item container className="friendCard__recentlyWatched" xs={6}>
+          <div className="friendCard__recent_header">Latest Updates</div>
+          <Grid container className="friendCard__recent_grid">
+            <div
+              style={{
+                margin: "auto",
+                width: "auto",
+
+                color: "#C2C0C0",
+              }}
+            ></div>
+            <Grid container className="friendCard__recently_watched" xs={6}>
               <div style={{ textAlign: "center" }}>Anime Updates </div>
-              {/* Need a component for recentlyWatchedList and then for recentlyWatched Anime*/}
               {recentlyWatched.map(function (anime, idx) {
                 return (
                   <Grid
                     container
-                    item
                     xs={12}
                     key={idx}
-                    className="friendCard__recentlyWatchedListItemContainer"
+                    className="friendCard__recently_watched_list_item_container"
                     spacing={0}
                   >
+                    <img
+                      src={anime?.entry.images.jpg.image_url}
+                      alt={anime?.entry.title}
+                      className="friendCard__recentlyWatchedThumbnail"
+                      onClick={() =>
+                        handleRecentlyWatchedImageClick2(anime?.entry.mal_id)
+                      }
+                    />
                     <Grid
-                      item
-                      xs={4}
-                      className="friendCard__recentlyWatchedListThumbnail"
-                    >
-                      <img
-                        src={anime?.entry.images.jpg.image_url}
-                        alt={anime?.entry.title}
-                        className="friendCard__recentlyWatchedThumbnail"
-                        onClick={() =>
-                          handleRecentlyWatchedImageClick2(anime?.entry.mal_id)
-                        }
-                      />
-                    </Grid>
-                    <Grid
-                      item
                       xs={6}
                       className="friendCard__recentlyWatchedInfoContainer"
                     >
@@ -149,7 +136,7 @@ const FriendCard = (props) => {
                           ? `${anime?.entry.title.substring(0, 24)}...`
                           : anime?.entry.title}
                       </a>
-                      <Grid item className="friendCard__recentlyWatchedStatus">
+                      <Grid className="friendCard__recentlyWatchedStatus">
                         Status:
                         {anime?.status} Score: {anime?.score}
                       </Grid>
@@ -160,21 +147,19 @@ const FriendCard = (props) => {
             </Grid>
 
             {/*MANGA ENTRY */}
-            <Grid item className="friendCard__recentlyRead" xs={6}>
+            <Grid className="friendCard__recentlyRead" xs={6}>
               <div style={{ textAlign: "center" }}>Manga Updates </div>
               {/* Need a component for recentlyWatchedList and then for recentlyWatched Anime*/}
               {recentlyRead.map((manga, idx) => {
                 return (
                   <Grid
                     container
-                    item
                     xs={12}
                     key={idx}
                     className="friendCard__recentlyWatchedListItemContainer"
                     spacing={0}
                   >
                     <Grid
-                      item
                       xs={4}
                       className="friendCard__recentlyWatchedListThumbnail"
                     >
@@ -188,7 +173,6 @@ const FriendCard = (props) => {
                       />
                     </Grid>
                     <Grid
-                      item
                       xs={6}
                       className="friendCard__recentlyWatchedInfoContainer"
                     >
@@ -200,7 +184,7 @@ const FriendCard = (props) => {
                           ? `${manga.entry.title.substring(0, 24)}...`
                           : manga.entry.title}
                       </a>
-                      <Grid item className="friendCard__recentlyWatchedStatus">
+                      <Grid className="friendCard__recentlyWatchedStatus">
                         Status:
                         {manga.status} Score: {manga.score}
                       </Grid>

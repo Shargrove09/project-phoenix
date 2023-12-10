@@ -44,7 +44,7 @@
   right: 0px;
 }
 
-.friendCard__lastOnline { 
+.friendCard__last_online { 
   align-items: flex-end ;
   position: absolute;
   top: 50px;
@@ -52,6 +52,24 @@
 }
 
 // Latest Updates Section 
+.friendCard__recently_watched_list_item_container { 
+  color: rgb(194, 192, 192);
+
+}
+
+.friendCard__recent_header { 
+  color:rgb(194, 192, 192); 
+  display: flex; 
+  justify-content: center;
+  width: 100%; 
+  margin-top: 8px;
+}
+
+.friendCard__recent_grid { 
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100%; 
+}
 
 // Anime Section 
 
@@ -61,7 +79,7 @@
   margin: 0; 
 }
 
-.friendCard__recentlyWatched { 
+.friendCard__recently_watched { 
   padding-top: 10px;
 }
 
@@ -110,7 +128,6 @@
 // Manga Section 
 .friendCard__recentlyRead { 
   padding-top: 10px;
-  
 }
 
 

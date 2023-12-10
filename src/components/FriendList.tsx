@@ -9,7 +9,7 @@ const FriendList = (props) => {
   useEffect(() => {}, [friendsList]);
 
   return (
-    <ImageList style={{ justifyContent: "center" }}>
+    <ImageList cols={3} style={{ justifyContent: "center" }}>
       {friendsList.map((friend) => (
         <FriendCard key={friend?.mal_id} friend={friend} />
       ))}
