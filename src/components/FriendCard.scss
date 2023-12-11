@@ -8,7 +8,7 @@
   box-sizing: content-box !important; // Overwritse border-box css of .MUIImageListItem - root
 }
 
-.friendCard__paper {
+.friendCard {
   display: flex; 
   align-items: flex-start;
   align-content: center;
@@ -20,6 +20,30 @@
   background-color: #424242; 
   color: rgb(194, 192, 192);
 
+  // Flipping Stuff 
+  transform-style: preserve-3d;
+  transition: 150ms; 
+  transform: perspective(1000px) rotateY(var(--rotate-y, 0)) 
+    translateY(var(--translate-y, 0));
+}
+
+.friendCard:hover { 
+  --translate-y: -2px; 
+  box-shadow: 0 0 5px 2-x rbga(0,0,0,0.5); 
+  opacity: 1; 
+}
+
+.friendCard.flip { 
+  --rotate-y: 180deg; 
+}
+
+.friendCard .friendCard__front, 
+.friendCard .friendCard__back { 
+  backface-visibility: hidden;
+}
+
+.friendCard .friendCard__back { 
+  transform: rotateY(180deg); 
 }
 
 .friendCard__avatar { 
@@ -71,8 +95,8 @@
 }
 
 .friendCard__recent_grid { 
-  display: flex !important;
-  flex-direction: column !important;
+
+
   width: 100%; 
 }
 

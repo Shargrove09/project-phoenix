@@ -12,7 +12,7 @@ const FriendsView = () => {
     validateFriends(friendsList);
     if (friendsList === (undefined || null) || friendsList?.length === 0) {
       try {
-        var localStorage_myFriendsData = JSON.parse(
+        let localStorage_myFriendsData = JSON.parse(
           localStorage.getItem("myFriendsData")
         );
         if (localStorage_myFriendsData === null) {

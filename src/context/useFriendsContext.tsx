@@ -45,7 +45,9 @@ export const FriendsProvider: React.FC<Props> = ({ children }) => {
     const validatedFriendArray = [];
 
     const unique = dataArr.filter((element) => {
-      const isDuplicate = validatedFriendArray.includes(element.mal_id);
+      const isDuplicate = validatedFriendArray.includes(
+        element.mal_id ?? undefined
+      );
 
       if (!isDuplicate) {
         validatedFriendArray.push(element.mal_id);
