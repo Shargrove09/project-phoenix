@@ -22,7 +22,7 @@
 
   // Flipping Stuff 
   transform-style: preserve-3d;
-  transition: 150ms; 
+  transition: 250ms; 
   transform: perspective(1000px) rotateY(var(--rotate-y, 0)) 
     translateY(var(--translate-y, 0));
 }
