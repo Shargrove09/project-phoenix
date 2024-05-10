@@ -1,58 +1,198 @@
-# Project Phoenix
+<!--
+Hey, thanks for using the awesome-readme-template template.  
+If you have any enhancements, then fork this project and create a pull request 
+or just open an issue with the label "enhancement".
 
-This project allows users to search for any anime/manga that exists on MyAnimeList (MAL) and see all the available information on each entry. Users are able to view their friends most recent activity/entries. In the future a calendar will be availble to view simulcasts to keep up with currently airing shows. 
+Don't forget to give this project a star for additional support ;)
+Maybe you can mention me or this repo in the acknowledgements too
+-->
 
-## Current Functionality 
+<!--
+This README is a slimmed down version of the original one.
+Removed sections:
+- Screenshots
+- Running Test
+- Deployment
+- FAQ
+-->
+
+<div align="center">
+  <img src="assets/logo.png" alt="logo" width="200" height="auto" />
+  <h1>Project Phoenix</h1>
+  
+  <p>
+This project allows users to search for any anime/manga on MyAnimeList (MAL) and see all the available information on each entry.  Users can view their friends' most recent activity/entries. In the future, a calendar will be available to view simulcasts to keep up with currently airing shows. 
+  </p>
+
+  
+<!-- Badges -->
+<!--
+<p>
+  <a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/Louis3797/awesome-readme-template" alt="contributors" />
+  </a>
+  <a href="">
+    <img src="https://img.shields.io/github/last-commit/Louis3797/awesome-readme-template" alt="last update" />
+  </a>
+  <a href="https://github.com/Louis3797/awesome-readme-template/network/members">
+    <img src="https://img.shields.io/github/forks/Louis3797/awesome-readme-template" alt="forks" />
+  </a>
+  <a href="https://github.com/Louis3797/awesome-readme-template/stargazers">
+    <img src="https://img.shields.io/github/stars/Louis3797/awesome-readme-template" alt="stars" />
+  </a>
+  <a href="https://github.com/Louis3797/awesome-readme-template/issues/">
+    <img src="https://img.shields.io/github/issues/Louis3797/awesome-readme-template" alt="open issues" />
+  </a>
+  <a href="https://github.com/Louis3797/awesome-readme-template/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/Louis3797/awesome-readme-template.svg" alt="license" />
+  </a>
+</p> 
+-->
+   
+<h4>
+    <a href="https://github.com/Shargrove09/project-phoenix">View Demo</a>
+  <span> · </span>
+    <a href="https://github.com/Shargrove09/project-phoenix">Documentation</a>
+  <span> · </span>
+    <a href="https://github.com/Shargrove09/project-phoenix">Report Bug</a>
+  <span> · </span>
+    <a href="https://github.com/Shargrove09/project-phoenix">Request Feature</a>
+  </h4>
+</div>
+
+<br />
+
+<!-- Table of Contents -->
+# :notebook_with_decorative_cover: Table of Contents
+
+- [About the Project](#star2-about-the-project)
+  * [Tech Stack](#space_invader-tech-stack)
+  * [Current Features](#dart-current-features)
+  <!-- * [Color Reference](#art-color-reference) -->
+  * [Environment Variables](#key-environment-variables)
+- [Getting Started](#toolbox-getting-started)
+  * [Prerequisites](#bangbang-prerequisites)
+  * [Installation](#gear-installation)
+  * [Run Locally](#running-run-locally)
+- [Usage](#eyes-usage)
+- [Roadmap](#compass-roadmap)
+- [Contributing](#wave-contributing)
+  * [Code of Conduct](#scroll-code-of-conduct)
+- [License](#warning-license)
+- [Contact](#handshake-contact)
+- [Acknowledgements](#gem-acknowledgements)
+  
+
+<!-- About the Project -->
+## :star2: About the Project
+
+<div align="center"> 
+  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+</div>
+
+
+<!-- TechStack -->
+### :space_invader: Tech Stack
+
+<details>
+  <summary>Client</summary>
+  <ul>
+    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
+    <li>[Jikan](https://jikan.moe/) API (an unofficial API for MyAnimeList)</li>
+    <li><a href="https://reactjs.org/">React.js</a></li>
+    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
+    <li>MaterialUI was utilized for most of the base components (AppBar, Drawer, Icons)</li>
+    <li>Bootstrapped with [Create React App](https://github.com/facebook/create-react-app)</li>
+    <li>[FullCalendar]( https://fullcalendar.io/) will be used for future calendar feature</li>
+  </ul>
+</details>
+
+<!-- Features -->
+### :dart: Current Features
 - Search Anime 
 - Search Manga 
-- Anime statistics (Score, title, airing status, popularity, rank and link to MAL entry) 
+- Anime statistics (Score, title, airing status, popularity, rank, and link to MAL entry) 
 - Lookup users on MAL via username 
 
 
-## Planned Functionality 
-- Users log-in
-- Recommend shows based on users log in 
-- Calendar feature to view simulcasts dates
+<!-- Env Variables -->
+### :key: Environment Variables
 
-## Technologies Used
-- Project Phoenix utilizes [Jikan](https://jikan.moe/) API (an unofficial API for MyAnimeList). 
-- MaterialUI was utilized for most of the base components (AppBar, Drawer, Icons)
-- Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-- [FullCalendar]( https://fullcalendar.io/) will be used for future calendar feature
+To run this project, you will need to add the following environment variables to your .env file
 
-## Available Scripts
+`API_KEY`
 
-In the project directory, you can run:
+`ANOTHER_API_KEY`
 
-### `npm start`
+<!-- Getting Started -->
+## 	:toolbox: Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- Prerequisites -->
+### :bangbang: Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This project uses NPM as package manager
 
-### `npm test`
+```bash
+ npm install --global yarn
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<!-- Installation -->
+### :gear: Installation
 
-### `npm run build`
+Install my-project with npm
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  yarn install my-project
+  cd my-project
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- Run Locally -->
+### :running: Run Locally
 
-### `npm run eject`
+Clone the project
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+  git clone https://github.com/Shargrove09/project-phoenix.git
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Go to the project directory
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+  cd my-project
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Install dependencies
+
+```bash
+  npm install
+```
+
+
+<!-- Usage -->
+## :eyes: Usage
+
+Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
+
+
+<!-- Roadmap -->
+## :compass: Roadmap / Planned Functionality
+
+* [x] Calendar
+* [ ] User log-in
+* [ ] Recommend shows based on users log in
+* [ ] Calendar feature to view simulcast dates
+
+<!-- License -->
+## :warning: License
+
+Distributed under the no License. See LICENSE.txt for more information.
+
+
+<!-- Acknowledgments -->
+## :gem: Acknowledgements
+
+ - [Awesome README](https://github.com/matiassingers/awesome-readme)
+ - [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
+ - [Readme Template](https://github.com/othneildrew/Best-README-Template)
+
