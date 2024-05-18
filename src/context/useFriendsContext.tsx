@@ -11,11 +11,12 @@
 // });
 
 import React, { createContext, useContext, useState } from "react";
+import { Friend } from "../common/Friend";
 
 interface FriendsContextValue {
-  addFriend: (data: any) => void;
+  addToFriendsList: (data: any) => void;
   friendsList: any[];
-  friendSearch: (data) => Promise<any>;
+  friendSearch: (friendName: string) => Promise<any>;
   setFriendsList: React.Dispatch<React.SetStateAction<any[]>>;
   validateFriends: (dataArr) => void;
 }
@@ -28,14 +29,13 @@ const FriendsContext = createContext<FriendsContextValue>(undefined);
 
 export const FriendsProvider: React.FC<Props> = ({ children }) => {
   // TODO: Type this appropriately
-  const [friendsList, setFriendsList] = useState<any[]>([]);
+  const [friendsList, setFriendsList] = useState<Friend[]>([]);
 
-  const addFriend = (data) => {
-    console.log("Friend Data to be added in app", data);
+  const addToFriendsList = (newFriendData: Friend) => {
+    console.log("Adding This To Friend List ", newFriendData);
 
-    if (friendsList.indexOf(data) === -1) {
-      console.log("APP if entered");
-      setFriendsList((friendData) => [...friendData, data]);
+    if (friendsList.indexOf(newFriendData) === -1) {
+      setFriendsList((friendData) => [...friendData, newFriendData]);
     }
     console.log("Friend Data after push in App", friendsList);
   };
@@ -45,7 +45,9 @@ export const FriendsProvider: React.FC<Props> = ({ children }) => {
     const validatedFriendArray = [];
 
     const unique = dataArr.filter((element) => {
-      const isDuplicate = validatedFriendArray.includes(element.mal_id);
+      const isDuplicate = validatedFriendArray.includes(
+        element.mal_id ?? undefined
+      );
 
       if (!isDuplicate) {
         validatedFriendArray.push(element.mal_id);
@@ -57,18 +59,18 @@ export const FriendsProvider: React.FC<Props> = ({ children }) => {
     setFriendsList(unique);
   };
 
-  const friendSearch = async (friendName) => {
-    // Do I need an async function?
+  const friendSearch = async (friendName: string) => {
     const response = await fetch(
       `https://api.jikan.moe/v4/users/${friendName}/full`
     );
+
     return await response.json();
   };
 
   return (
     <FriendsContext.Provider
       value={{
-        addFriend,
+        addToFriendsList,
         friendsList,
         setFriendsList,
         friendSearch,

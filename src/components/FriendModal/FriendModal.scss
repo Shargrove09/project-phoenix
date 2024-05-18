@@ -1,6 +1,11 @@
 .friendModal__button {
   margin-top: 15px !important; //Overrides MUI button root
-  margin-left: 10px !important;
+  margin-right: 10px !important;
+  border-radius: 50% !important;
+  padding: 0 !important; 
+  height: 50px; 
+  width: 50px; 
+
 }
 
 .friendModal__modalTitle { 
@@ -12,4 +17,9 @@
 
 .friendModal__formControl { 
   width: 100%
+}
+
+.friendModal__container { 
+  display: flex; 
+  flex-direction: row-reverse;
 }

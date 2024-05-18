@@ -4,23 +4,12 @@ import { Typography } from "@mui/material";
 import { useSearchContext } from "../../context/useSearchContext";
 import { useNavigate } from "react-router-dom";
 import { Divider } from "@mui/material";
+import { JikanResourceRelation } from "../../common/types";
 
 // CSS handled in SingleAnime.scss
 
 interface Props {
-  relations: [
-    {
-      relation: string;
-      entry: [
-        {
-          mal_id: number;
-          type: string;
-          name: string;
-          url: string;
-        }
-      ];
-    }
-  ];
+  relations: JikanResourceRelation[];
 }
 
 const RelatedAnimeSection = (props: Props) => {
@@ -37,7 +26,7 @@ const RelatedAnimeSection = (props: Props) => {
 
   return (
     <div>
-      {relations.map((relation) => (
+      {relations?.map((relation) => (
         <>
           <div className="singleAnime__related_entry_container">
             <Typography

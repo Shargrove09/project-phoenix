@@ -1,4 +1,4 @@
-.friendCard__container { 
+.friendCard__listItem { 
   display: flex; 
   align-items: center;
   height: 100%;
@@ -6,10 +6,9 @@
   min-width: 480px;
   max-width: 480px;
   box-sizing: content-box !important; // Overwritse border-box css of .MUIImageListItem - root
-
 }
 
-.friendCard__paper {
+.friendCard {
   display: flex; 
   align-items: flex-start;
   align-content: center;
@@ -17,7 +16,34 @@
   flex-direction: column;
   padding: 10px;
   min-width: 460px;
-  width:100%
+  width:100%; 
+  background-color: #424242; 
+  color: rgb(194, 192, 192);
+
+  // Flipping Stuff 
+  transform-style: preserve-3d;
+  transition: 250ms; 
+  transform: perspective(1000px) rotateY(var(--rotate-y, 0)) 
+    translateY(var(--translate-y, 0));
+}
+
+.friendCard:hover { 
+  --translate-y: -2px; 
+  box-shadow: 0 0 5px 2-x rbga(0,0,0,0.5); 
+  opacity: 1; 
+}
+
+.friendCard.flip { 
+  --rotate-y: 180deg; 
+}
+
+.friendCard .friendCard__front, 
+.friendCard .friendCard__back { 
+  backface-visibility: hidden;
+}
+
+.friendCard .friendCard__back { 
+  transform: rotateY(180deg); 
 }
 
 .friendCard__avatar { 
@@ -29,40 +55,51 @@
 .friendCard__header { 
   display: flex; 
   position: relative; 
-  flex-direction: row;
   flex-wrap: wrap;
-  width: 100%
+  width: 100%; 
+  color: rgb(194, 192, 192);
+}
+
+.friendCard__header_text { 
+  padding: 10px; 
 }
 
 .friendCard__userName { 
-  padding: 10px; 
   flex-wrap: wrap;
   flex-direction: row;
   right: 0px;
+  margin-bottom: 10px; 
 }
 
-.friendCard__lastOnline { 
-  align-items: flex-end ;
-  position: absolute;
-  top: 50px;
-  right: 0px;
+.friendCard__flip_btn { 
+  width: 24px; 
+  height: 24px; 
 }
 
-// Latest Updates Section 
-
-// Anime Section 
-
-.friendCard__recentlyWatchedEntry {  // Rename to recentlyWatchedContainer
+// Latest Updates General 
+.friendCard__recent_header { 
+  color:rgb(194, 192, 192); 
   display: flex; 
-  padding: 5px; 
-  margin: 0; 
+  justify-content: center;
+  width: 100%; 
+  margin-top: 8px;
 }
 
-.friendCard__recentlyWatched { 
-  padding-top: 10px;
+.friendCard__recent_grid { 
+  width: 100%; 
 }
 
-.friendCard__recentlyWatchedTitle { 
+.friendCard__recent_thumbnail {
+  width: 60px; 
+  height: 90px;
+}
+
+.friendCard__recent_thumbnail:hover { 
+  transform: scale(4);
+  z-index: 1000;
+}
+
+.friendCard__recent_entry_title { 
   color: white; 
   text-decoration: none;
   overflow: hidden;
@@ -70,44 +107,39 @@
    display: -webkit-box;
    -webkit-line-clamp: 2; /* number of lines to show */
            line-clamp: 2; 
-  /*
-  position: relative; 
-  bottom: 70px;
-  padding-left: 5px;
-  z-index: 2;
-  */
 }
 
-.friendCard__recentlyWatchedTitle:hover { 
+.friendCard__recent_entry_title:hover { 
   color: #3f51b5; 
 }
 
-.friendCard__recentlyWatchedThumbnail {
-  width: 60px; 
-  height: 90px;
+// Anime Section 
+
+
+
+.friendCard__recently_watched { 
+  padding-top: 10px;
 }
 
-.friendCard__recentlyWatchedThumbnail:hover { 
-  transform: scale(4);
-  z-index: 1000;
-}
 
-.friendCard__recentlyWatchedInfo {   // DONT NEED ONCE REWORK
-  position: relative; 
-  bottom: 70px; 
-  left: 60px;
-  padding-left: 5px;
-  z-index: 1;
-}
 
-.friendCard__recentlyWatchedStatus {
+
+
+
+.friendCard__recently_watched_status {
   padding-top: 10px; 
 }
 
 // Manga Section 
 .friendCard__recentlyRead { 
   padding-top: 10px;
-  
 }
+
+.friendCard__recently_read_list_item_container { 
+  display: flex; 
+  flex-direction: row; 
+  flex-wrap: nowrap !important;
+}
+
 
 
