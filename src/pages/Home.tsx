@@ -1,8 +1,8 @@
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
+
 import {
-  Card,
   CardContent,
   CardHeader,
   IconButton,
@@ -11,11 +11,14 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import Grid from "@mui/material/Unstable_Grid2";
+import { Grid } from '@mantine/core';
 import SearchIcon from "@mui/icons-material/Search";
 import "./Home.scss";
 import { Anime } from "../common/Anime";
-import SwipeableTextMobileStepper from "../components/SeasonalCarousel/SeasonalCarouselSwipeable";
+import { Card } from '@mantine/core';
+
+// import SwipeableTextMobileStepper from "../components/SeasonalCarousel/SeasonalCarouselSwipeable";
+
 import RedditCard from "../components/RedditCard/RedditCard";
 import ShowCalendar from "../components/ShowCalendar/ShowSchedule";
 
@@ -140,22 +143,12 @@ const Home = () => {
   }
 
   return (
-    <Grid
-      container
-      className={"home__grid"}
-      direction="column"
-      justifyContent="center"
-      alignContent="center"
-      alignItems="center"
-    >
+    <>
       <Grid
-        container
         className={"home__grid-row-1"}
-        justifyContent="center"
-        alignItems="center"
       >
-        <Grid className="home__schedule_container" lg={3}>
-          <Card className="home__schedule" sx={{ backgroundColor: "#424242" }}>
+        <Grid.Col className="home__schedule_container" span={4}>
+          <Card className="home__schedule">
             <CardHeader className="home__card_header" title="Daily Schedule" />
             <ShowCalendar onDateSelect={handleDateSelect} />{" "}
             {/* Display the shows for the selected date */}
@@ -165,109 +158,98 @@ const Home = () => {
                 key={show.title}
                 onClick={() => {
                   handleAiringShowEntryClick(show);
-                }}
+                } }
               >
                 {show.title} - {show.broadcast.string}
               </div>
             ))}
           </Card>
-        </Grid>
-        <Grid xs={12} sm={6} md={6} className="home__searchBarImg_container">
-          <img
-            alt="Gurren Lagann"
-            src={`${process.env.PUBLIC_URL}/searchbar_img.jpeg`}
-            height={240}
-            width={800}
-            className="home__searchBarImage"
-          />
-          <form className="home__form">
-            <TextField
-              autoFocus={true}
-              placeholder="Search for an anime..."
-              value={input}
-              onChange={(event) => setInput(event.target.value)}
-              className="home__input"
-              inputProps={{ style: { color: "white" } }}
-            ></TextField>
-            <IconButton
-              className="home__iconButton"
-              color="primary"
-              type="submit"
-              disabled={!input}
-              onClick={handleAnimeSearch}
+        </Grid.Col>
+      {/* <Grid className="home__searchBarImg_container"> */}
+        {/* <img
+      alt="Gurren Lagann"
+      src={`${process.env.PUBLIC_URL}/searchbar_img.jpeg`}
+      height={240}
+      width={800}
+      className="home__searchBarImage"
+    /> */}
+    <Grid.Col span={4}>
+        <form className="home__form">
+          <TextField
+            autoFocus={true}
+            placeholder="Search for an anime..."
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
+            className="home__input"
+            inputProps={{ style: { color: "white" } }}
+          ></TextField>
+          <IconButton
+            className="home__iconButton"
+            color="primary"
+            type="submit"
+            disabled={!input}
+            onClick={handleAnimeSearch}
+          >
+            <SearchIcon />
+          </IconButton>
+        </form>
+    </Grid.Col>
+      <Grid.Col className="home__airing_container" span={4}>
+        <Card className="home__airing">
+          <CardHeader
+            className="home__airing_header home__card_header"
+            title="Top Airing Anime"
+            action={<IconButton
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
             >
-              <SearchIcon />
-            </IconButton>
-          </form>
-        </Grid>
-        <Grid xs={12} sm={6} md={3} lg={3} className="home__airing_container">
-          <Card className="home__airing" sx={{ backgroundColor: "#424242" }}>
-            <CardHeader
-              className="home__airing_header home__card_header"
-              title="Top Airing Anime"
-              action={
-                <IconButton
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon sx={{ color: "#c2c0c0" }} />
-                </IconButton>
-              }
-            />
-            <CardContent className="home__airing_entry_content">
-              {topAiringAnimeToShow.map((anime, index) => (
-                <div
-                  key={index}
-                  className="home__airing_entry"
-                  onClick={() => handleAiringShowEntryClick(anime)}
-                >
-                  {}
-                  <img
-                    src={anime.images.jpg.small_image_url}
-                    alt={anime + "small-image-card"}
-                    className="home__airing_entry_img"
-                  />
-                  <strong>{anime.title}</strong>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-        </Grid>
+              <ExpandMoreIcon sx={{ color: "#c2c0c0" }} />
+            </IconButton>} />
+          <CardContent className="home__airing_entry_content">
+            {topAiringAnimeToShow.map((anime, index) => (
+              <div
+                key={index}
+                className="home__airing_entry"
+                onClick={() => handleAiringShowEntryClick(anime)}
+              >
+
+                <img
+                  src={anime.images.jpg.small_image_url}
+                  alt={anime + "small-image-card"}
+                  className="home__airing_entry_img" />
+                <strong>{anime.title}</strong>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </Grid.Col>
       </Grid>
-      <Grid
-        container
-        className={"home__grid-row-2"}
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid lg={3}>
+    
+    <Grid
+      className={"home__grid-row-2"}
+    >
+        <Grid.Col span={6}>
           {" "}
           <RedditCard />
-        </Grid>
-        <Grid
-          xs={12}
-          sm={6}
-          md={6}
-          className="home__searchBar_container"
-        ></Grid>
-        <Grid xs={12} sm={6} md={3} lg={3} className="home__seasonal_container">
-          <Card className="home__seasonal" sx={{ backgroundColor: "#424242" }}>
+        </Grid.Col>
+        <Grid.Col className="home__seasonal_container" span={6}>
+          <Card className="home__seasonal">
             <CardHeader
               className="home__seasonal_header home__card_header"
-              title="Seasonal Anime"
-            />
+              title="Seasonal Anime" />
             <CardContent className="home__seasonal_entry_content">
               {isAiringShowsLoading ? (
                 <Typography>Loading...</Typography>
               ) : (
-                <SwipeableTextMobileStepper shows={carouselShows} />
+                // <SwipeableTextMobileStepper shows={carouselShows} />
+                <></>
               )}
             </CardContent>
           </Card>
-        </Grid>
+        </Grid.Col>
       </Grid>
-    </Grid>
+      </>
   );
 };
 

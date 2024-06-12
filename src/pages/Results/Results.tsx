@@ -9,6 +9,7 @@ import ListView from "../../components/ListView/ListView";
 
 const Results = () => {
   const { animeData, setAnimeData, searchTerm } = useSearchContext();
+  console.log("Anime Data: ", animeData)
 
   const [resultsExists, setResultsExists] = useState(true);
 
@@ -18,7 +19,9 @@ const Results = () => {
   useEffect(() => {
     if (animeData === undefined || animeData.length === 0) {
       try {
-        setAnimeData(JSON.parse(localStorage.getItem("animeSearchResultData")));
+        const storedData = localStorage.getItem("animeSearchResultData");
+        const parsedData = storedData ? JSON.parse(storedData) : [];
+        setAnimeData(parsedData);
         setResultsExists(true);
       } catch (error) {
         console.error("Error occured in Results", error);

@@ -22,6 +22,8 @@ interface Props {
   shows: Anime[];
 }
 
+// TODO: https://www.npmjs.com/package/react-slick
+
 const SwipeableTextMobileStepper = ({ shows }: Props) => {
   const theme = useTheme();
   const { setSingle } = useSearchContext();

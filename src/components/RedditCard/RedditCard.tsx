@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Typography, CircularProgress } from "@mui/material";
+import { CardContent, CircularProgress } from "@mui/material";
+import { Card, Text } from "@mantine/core";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 import "./RedditCard.scss";
+import { Reddit } from "@mui/icons-material";
 
 const RedditCard = () => {
-  const [topPosts, setTopPosts] = useState([]);
+  const [topPosts, setTopPosts] = useState<RedditPost[]>([]);
   const [loading, setLoading] = useState(true);
+
+  interface RedditPost {
+  id: string;
+  title: string;
+  url: string;
+  score: number;
+  // add other fields you need from the post
+}
 
   useEffect(() => {
     const fetchTopPosts = async () => {
@@ -15,7 +25,15 @@ const RedditCard = () => {
           "https://www.reddit.com/r/anime/top.json?t=day&limit=5"
         );
         const postsResults = await response.json();
-        setTopPosts(postsResults.data.children);
+
+        const redditPosts = postsResults.data.children.map((post: any) => ({
+          id: post.data.id,
+          title: post.data.title,
+          url: post.data.url,
+          score: post.data.score,
+        }));
+
+        setTopPosts(redditPosts);
       } catch (error) {
         console.error("Error fetching data from Reddit:", error);
       } finally {
@@ -26,13 +44,12 @@ const RedditCard = () => {
     fetchTopPosts();
   }, []);
 
-  const renderImage = (post) => {
+  const renderImage = (post: any): JSX.Element => {
     // Need to implement OAuth usage for reddit api to grab thumbnail images
     // Defaulting to reddit placeholder until auth is implemented
-    if (
-      post.data.preview &&
-      post.data.preview.images[0].resolutions[0] &&
-      false
+    if ( false
+      // post.data.preview &&
+      // post.data.preview.images[0].resolutions[0] && false
     ) {
       return (
         <img
@@ -58,47 +75,37 @@ const RedditCard = () => {
       {loading ? (
         <CircularProgress />
       ) : (
-        <Card className="redditCard" sx={{ backgroundColor: "#424242" }}>
-          <Typography variant="h5" className="redditCard__header">
-            {" "}
+        <Card className="redditCard">
+          <Text className="redditCard__header">
             Top Reddit Posts{" "}
-          </Typography>
-          {topPosts.map((post) => (
+          </Text>
+          {topPosts.map((post:RedditPost) => (
             <Card
               className="redditCard__entry"
-              key={post.data.id}
-              sx={{ backgroundColor: "#424242" }}
+              key={post.id}
             >
               <CardContent className="redditCard__content">
-                <Typography
+                <Text
                   className="redditCard__title"
                   variant="body1"
-                  gutterBottom
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
                 >
                   {renderImage(post)}
                   <a
-                    href={post.data.url}
+                    href={post.url}
                     style={{ textDecoration: "none", color: "#C2C2C0" }}
                     target="blank"
                   >
-                    {post.data.title}
+                    {post.title}
                   </a>
-                </Typography>
-                <Typography
+                </Text>
+                <Text
                   variant="body2"
                   color="#C2C2C0"
                   className="redditCard__entry_stats"
                 >
                   <ArrowUpwardIcon sx={{ color: "#FE4515" }} />
-                  {post.data.score}
-                </Typography>
-                {/* <Typography variant="body1" style={{ marginTop: "8px" }}>
-                {post.data.selftext || "No additional text"}
-              </Typography> */}
+                  {post.score}
+                </Text>
               </CardContent>
             </Card>
           ))}

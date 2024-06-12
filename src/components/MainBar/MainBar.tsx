@@ -21,7 +21,6 @@ import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
 import SavedSearchIcon from "@mui/icons-material/SavedSearch";
 import PeopleIcon from "@mui/icons-material/People";
 import { Link } from "react-router-dom";
-import NavDrawer from "../NavDrawer";
 
 import "./MainBar.scss";
 
@@ -89,7 +88,7 @@ export default function SearchAppBar() {
 
   const drawerWidth = 240;
 
-  const toggleDrawer = (open: boolean) => (event) => {
+  const toggleDrawer = (open: boolean) => (event: any) => {
     if (
       event &&
       event.type === "keydown" &&
@@ -115,13 +114,13 @@ export default function SearchAppBar() {
             <MenuIcon />
           </IconButton>
           <Link to="/">
-            <img
+            {/* <img
               alt="Gurren Lagann"
               src={`${process.env.PUBLIC_URL}/gurren_lagann_logo.png`}
               height={25}
               width={25}
               className="MainNavigation__logo"
-            />
+            /> */}
           </Link>
           <Typography
             variant="h6"

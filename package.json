@@ -1,63 +1,41 @@
 {
-  "name": "project-phoenix",
-  "version": "0.1.0",
+  "name": "projectphoenix",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
   "dependencies": {
-    "@babel/core": "^7.23.2",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mantine/carousel": "^7.2.2",
-    "@mantine/core": "^7.2.2",
-    "@mantine/dates": "^7.2.2",
-    "@mantine/hooks": "^7.2.2",
-    "@mateoaranda/jikanjs": "^1.2.4",
-    "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.14.13",
-    "@mui/styles": "^5.14.13",
-    "@mui/system": "^5.14.16",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "babel-plugin-import": "^1.13.8",
-    "clsx": "^2.0.0",
-    "dayjs": "^1.11.10",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mantine/carousel": "^7.10.0",
+    "@mantine/core": "^7.10.0",
+    "@mantine/dates": "^7.10.0",
+    "@mui/icons-material": "^5.15.18",
+    "@mui/material": "^5.15.18",
+    "dayjs": "^1.11.11",
     "embla-carousel-react": "^7.1.0",
-    "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.18.0",
-    "react-scripts": "^5.0.1",
-    "react-swipeable-views": "^0.14.0",
-    "react-youtube": "^10.1.0",
-    "typescript": "^5.2.2",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "react-router-dom": "^6.23.1",
+    "react-youtube": "^10.1.0"
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "^11.11.0",
-    "webpack": "^5.74.0"
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "sass": "^1.77.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
   }
 }

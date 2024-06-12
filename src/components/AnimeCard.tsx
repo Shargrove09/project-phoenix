@@ -7,7 +7,7 @@ import { Typography, Link, Card, ImageListItem, Grid } from "@mui/material";
 
 import "./AnimeCard.scss";
 
-const AnimeCard = (props) => {
+const AnimeCard = (props: any) => {
   const navigate = useNavigate();
 
   // Old Way

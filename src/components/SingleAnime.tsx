@@ -8,6 +8,7 @@ import "./SingleAnime.scss";
 import { Anime } from "../common/Anime";
 import { useSearchContext } from "../context/useSearchContext";
 import Example from "./VideoPlayer/VideoPlayer";
+
 import RelatedAnimeSection from "./RelatedAnimeSection/RelatedAnimeSection";
 import { useNavigate } from "react-router";
 import AnimeCarousel from "./AnimeCarousel/AnimeCarousel";
@@ -18,7 +19,7 @@ interface Props {
 
 const SingleAnime = (props: Props) => {
   const { anime } = props;
-  const { searchById, setSingle } = useSearchContext();
+  
   const navigate = useNavigate();
 
   const [recommendedShows, setRecommendedShows] = useState<any[]>([]);

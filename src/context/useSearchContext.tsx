@@ -15,20 +15,28 @@ import React, { createContext, useContext, useState } from "react";
 import { Anime } from "../common/Anime";
 
 interface SearchContextValue {
-  animeData: any[];
-  singleData: Anime;
-  search: (searchterm) => Promise<any>;
-  searchById: (searchId) => Promise<any>;
+  animeData: Anime[];
+  singleData: Anime | null;
+  search: (searchterm: any) => Promise<any>;
+  searchById: (searchId: any) => Promise<any>;
   searchTerm: string;
-  setSingle: (data) => void;
-  setAnimeData: React.Dispatch<React.SetStateAction<any[]>>;
+  setSingle: (data: any) => void;
+  setAnimeData: React.Dispatch<React.SetStateAction<Anime[]>>;
 }
 
 interface Props {
   children: React.ReactNode;
 }
 
-const SearchContext = createContext<SearchContextValue>(undefined);
+const SearchContext = createContext<SearchContextValue>({
+  animeData: [],
+  singleData: null,
+  search: async (searchTerm) => ({}),
+  searchById: async (searchId) => ({}),
+  searchTerm: "",
+  setSingle: (data) => {},
+  setAnimeData: () => {},
+});
 
 export const SearchProvider: React.FC<Props> = ({ children }) => {
   const [animeData, setAnimeData] = useState([]);
@@ -60,10 +68,10 @@ export const SearchProvider: React.FC<Props> = ({ children }) => {
     <SearchContext.Provider
       value={{
         animeData,
-        singleData,
+        singleData: singleData || null,
         search,
         searchById,
-        setAnimeData,
+        setAnimeData: setAnimeData as React.Dispatch<React.SetStateAction<never[] | Anime[]>>,
         setSingle,
         searchTerm,
       }}

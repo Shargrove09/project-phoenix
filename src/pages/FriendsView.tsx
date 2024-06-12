@@ -12,8 +12,8 @@ const FriendsView = () => {
     validateFriends(friendsList);
     if (friendsList === (undefined || null) || friendsList?.length === 0) {
       try {
-        var localStorage_myFriendsData = JSON.parse(
-          localStorage.getItem("myFriendsData")
+        let localStorage_myFriendsData = JSON.parse(
+          localStorage.getItem("myFriendsData") || "[]"
         );
         if (localStorage_myFriendsData === null) {
           // Going in this if statement no matter what
@@ -41,7 +41,7 @@ const FriendsView = () => {
       {/* className="friendsView__modal" <- Removed from friend modal component below*/}
       <FriendModal></FriendModal>
       <Box mt={2}>
-        {(dataExists && <FriendList data={friendsList} />) || (
+        {(dataExists && <FriendList />) || (
           <Typography variant="h4">
             No friends loaded. Click The "Add Friends" button to add some
             friends here!

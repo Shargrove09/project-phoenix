@@ -3,6 +3,7 @@ import { Box, Button, Typography, Modal } from "@mui/material";
 import { FormControl, IconButton, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useFriendsContext } from "../../context/useFriendsContext";
+import AddIcon from "@mui/icons-material/Add";
 
 import "./FriendModal.scss";
 
@@ -23,36 +24,49 @@ const FriendModal = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const { friendSearch, setFriendsList } = useFriendsContext();
+  const { friendSearch, addToFriendsList } = useFriendsContext();
 
   const [input, setInput] = useState("");
 
-  const appenedToLocalStorage = (data) => {
-    var oldStorage = JSON.parse(localStorage.getItem("myFriendsData")) || [];
+  //
+  const appendToLocalStorage = (data:any) => {
+    let oldStorage = JSON.parse(localStorage.getItem("myFriendsData") || "[]");
 
-    oldStorage.push(data[0]);
+    oldStorage.push(data);
     localStorage.setItem("myFriendsData", JSON.stringify(oldStorage));
   };
 
-  const handleAddFriend = (event) => {
+  const handleAddFriend = (event: any) => {
     event.preventDefault(); // I think i need the page to refresh so maybe delete this
     friendSearch(input).then((data) => {
-      console.log("FriendModal data in", data);
-      const dataValues = Object.values(data);
-      console.log("DataVALUES IN MODAL", dataValues);
-      setFriendsList(dataValues);
-      appenedToLocalStorage(dataValues);
+      // Need to add this data to the friendslist - Should Check if Data is valid somewhere
+      addToFriendsList(data.data);
+
+      // Set to local storage as backup
+      appendToLocalStorage(data.data);
+
+      // Close Modal on Successful Friend Add
+      handleClose();
     });
   };
 
   return (
-    <div>
+    <div className="friendModal__container">
       <Button
         className="friendModal__button"
         onClick={handleOpen}
         variant="contained"
+        sx={{
+          marginTop: 15,
+          marginRight: 15,
+          borderRadius: "50%",
+          padding: 0,
+          height: 50,
+          width: 50,
+          minWidth: 50,
+        }}
       >
-        Add Friends
+        <AddIcon />
       </Button>
       <Modal
         open={open}
@@ -69,7 +83,7 @@ const FriendModal = () => {
           >
             Add Friends
           </Typography>
-          <form>
+          <form className="friendModal__form">
             <TextField
               autoFocus={true}
               placeholder="Search for a friend (username)"

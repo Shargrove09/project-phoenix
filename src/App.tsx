@@ -9,10 +9,15 @@ import FriendsView from "./pages/FriendsView";
 import { SearchProvider } from "./context/useSearchContext";
 import { FriendsProvider } from "./context/useFriendsContext";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles"; // Import from @mui/material
 import CssBaseline from "@mui/material/CssBaseline"; // Import CssBaselin
+import { createTheme, MantineProvider, virtualColor } from "@mantine/core";
+import { Global, css } from '@emotion/react';
 
+ 
+import '@mantine/core/styles.css';
 import "./App.css";
+
+
 
 <>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,33 +28,51 @@ import "./App.css";
   />
 </>;
 
+const globalStyles = css`
+body {
+  background-color: #f7f7f7; /* Light grey background */
+  color: #333; /* Dark grey text */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}`;
+
 const theme = createTheme({
-  palette: {
-    // type: "dark",
-    primary: {
-      main: "#3f51b5",
-    },
-    secondary: {
-      main: "#f50057",
-    },
-    background: {
-      default: "#3A3A3A ",
-    },
-  },
-  typography: {
-    fontFamily: "Poppins, sans-serif",
+  colors: {
+    primary: virtualColor({
+      name: 'primary',
+      dark: 'pink',
+      light: 'cyan',
+    }),
+    background: virtualColor({
+      name: 'primary',
+      dark: 'pink',
+      light: 'cyan',
+    }),
+    brand: [
+      '#f8f9fa', // Shade 0: Lightest
+      '#e9ecef', // Shade 1
+      '#dee2e6', // Shade 2
+      '#ced4da', // Shade 3
+      '#adb5bd', // Shade 4
+      '#6c757d', // Shade 5
+      '#495057', // Shade 6
+      '#343a40', // Shade 7
+      '#212529', // Shade 8
+      '#121416', // Shade 9: Darkest
+    ],
   },
 });
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    
+    <MantineProvider theme={theme}>
       <CssBaseline />
       <SearchProvider>
         <FriendsProvider>
           <Router>
             <MainBar />
-            <main>
+            <main className="bg-black">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/results" element={<Results />} />
@@ -61,7 +84,8 @@ function App() {
           </Router>
         </FriendsProvider>
       </SearchProvider>
-    </ThemeProvider>
+    </MantineProvider>
+
   );
 }
 
