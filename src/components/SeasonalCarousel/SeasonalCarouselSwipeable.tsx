@@ -7,10 +7,24 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+
 import { useSearchContext } from "../../context/useSearchContext";
 import { useNavigate } from "react-router-dom";
+import { Carousel } from '@mantine/carousel';
+
+function Demo() {
+  return (
+    <Carousel withIndicators height={200}>
+      <Carousel.Slide>1</Carousel.Slide>
+      <Carousel.Slide>2</Carousel.Slide>
+      <Carousel.Slide>3</Carousel.Slide>
+      {/* ...other slides */}
+    </Carousel>
+  );
+}
 
 import "./SeasonalCarouselSwipeable.scss";
 import { Anime } from "../../common/Anime";

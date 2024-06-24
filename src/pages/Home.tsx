@@ -17,10 +17,11 @@ import "./Home.scss";
 import { Anime } from "../common/Anime";
 import { Card } from '@mantine/core';
 
-// import SwipeableTextMobileStepper from "../components/SeasonalCarousel/SeasonalCarouselSwipeable";
+import SwipeableTextMobileStepper from "../components/SeasonalCarousel/SeasonalCarouselSwipeable";
 
 import RedditCard from "../components/RedditCard/RedditCard";
 import ShowCalendar from "../components/ShowCalendar/ShowSchedule";
+import SeasonalCarousel from "../components/SeasonalCarousel/SeasonalCarousel";
 
 const Home = () => {
   const { search, setAnimeData, setSingle, searchById } = useSearchContext();
@@ -242,8 +243,7 @@ const Home = () => {
               {isAiringShowsLoading ? (
                 <Typography>Loading...</Typography>
               ) : (
-                // <SwipeableTextMobileStepper shows={carouselShows} />
-                <></>
+                <SeasonalCarousel animeList={carouselShows} />
               )}
             </CardContent>
           </Card>

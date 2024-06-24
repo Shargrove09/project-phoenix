@@ -15,6 +15,7 @@ import { Global, css } from '@emotion/react';
 
  
 import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
 import "./App.css";
 
 
