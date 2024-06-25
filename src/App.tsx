@@ -11,14 +11,12 @@ import { FriendsProvider } from "./context/useFriendsContext";
 
 import CssBaseline from "@mui/material/CssBaseline"; // Import CssBaselin
 import { createTheme, MantineProvider, virtualColor } from "@mantine/core";
-import { Global, css } from '@emotion/react';
+import { Global, css } from "@emotion/react";
 
- 
-import '@mantine/core/styles.css';
-import '@mantine/carousel/styles.css';
+import "@mantine/core/styles.css";
+import "@mantine/carousel/styles.css";
 import "./App.css";
-
-
+import MainToolBar from "./components/MainToolBar/MainToolBar";
 
 <>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,49 +28,49 @@ import "./App.css";
 </>;
 
 const globalStyles = css`
-body {
-  background-color: #f7f7f7; /* Light grey background */
-  color: #333; /* Dark grey text */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}`;
+  body {
+    background-color: #f7f7f7; /* Light grey background */
+    color: #333; /* Dark grey text */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+`;
 
 const theme = createTheme({
   colors: {
     primary: virtualColor({
-      name: 'primary',
-      dark: 'pink',
-      light: 'cyan',
+      name: "primary",
+      dark: "pink",
+      light: "cyan",
     }),
     background: virtualColor({
-      name: 'primary',
-      dark: 'pink',
-      light: 'cyan',
+      name: "primary",
+      dark: "pink",
+      light: "cyan",
     }),
     brand: [
-      '#f8f9fa', // Shade 0: Lightest
-      '#e9ecef', // Shade 1
-      '#dee2e6', // Shade 2
-      '#ced4da', // Shade 3
-      '#adb5bd', // Shade 4
-      '#6c757d', // Shade 5
-      '#495057', // Shade 6
-      '#343a40', // Shade 7
-      '#212529', // Shade 8
-      '#121416', // Shade 9: Darkest
+      "#f8f9fa", // Shade 0: Lightest
+      "#e9ecef", // Shade 1
+      "#dee2e6", // Shade 2
+      "#ced4da", // Shade 3
+      "#adb5bd", // Shade 4
+      "#6c757d", // Shade 5
+      "#495057", // Shade 6
+      "#343a40", // Shade 7
+      "#212529", // Shade 8
+      "#121416", // Shade 9: Darkest
     ],
   },
 });
 
 function App() {
   return (
-    
     <MantineProvider theme={theme}>
       <CssBaseline />
       <SearchProvider>
         <FriendsProvider>
           <Router>
-            <MainBar />
+            <MainToolBar />
             <main className="bg-black">
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -86,7 +84,6 @@ function App() {
         </FriendsProvider>
       </SearchProvider>
     </MantineProvider>
-
   );
 }
 

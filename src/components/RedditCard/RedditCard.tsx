@@ -4,19 +4,18 @@ import { Card, Text } from "@mantine/core";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 import "./RedditCard.scss";
-import { Reddit } from "@mui/icons-material";
 
 const RedditCard = () => {
   const [topPosts, setTopPosts] = useState<RedditPost[]>([]);
   const [loading, setLoading] = useState(true);
 
   interface RedditPost {
-  id: string;
-  title: string;
-  url: string;
-  score: number;
-  // add other fields you need from the post
-}
+    id: string;
+    title: string;
+    url: string;
+    score: number;
+    // add other fields you need from the post
+  }
 
   useEffect(() => {
     const fetchTopPosts = async () => {
@@ -47,7 +46,8 @@ const RedditCard = () => {
   const renderImage = (post: any): JSX.Element => {
     // Need to implement OAuth usage for reddit api to grab thumbnail images
     // Defaulting to reddit placeholder until auth is implemented
-    if ( false
+    if (
+      false
       // post.data.preview &&
       // post.data.preview.images[0].resolutions[0] && false
     ) {
@@ -76,19 +76,11 @@ const RedditCard = () => {
         <CircularProgress />
       ) : (
         <Card className="redditCard">
-          <Text className="redditCard__header">
-            Top Reddit Posts{" "}
-          </Text>
-          {topPosts.map((post:RedditPost) => (
-            <Card
-              className="redditCard__entry"
-              key={post.id}
-            >
+          <Text className="redditCard__header">Top Reddit Posts </Text>
+          {topPosts.map((post: RedditPost) => (
+            <Card className="redditCard__entry" key={post.id}>
               <CardContent className="redditCard__content">
-                <Text
-                  className="redditCard__title"
-                  variant="body1"
-                >
+                <Text className="redditCard__title" variant="body1">
                   {renderImage(post)}
                   <a
                     href={post.url}

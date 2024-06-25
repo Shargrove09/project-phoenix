@@ -1,0 +1,26 @@
+.mainToolBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainToolBar__header { 
+  background-color: lightblue;
+  display: flex; 
+  align-items: center;
+}
+
+.mainToolBar__burger { 
+  margin-right: auto; 
+  padding: 20px; ; 
+}
+
+.mainToolBar__logo { 
+  height: 48px;
+  margin: 10px;
+}
+
+.mainToolBar__searchInput { 
+  margin-left: auto; 
+  padding: 20px; 
+}

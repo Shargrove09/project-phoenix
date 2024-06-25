@@ -11,11 +11,10 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import { Grid } from '@mantine/core';
+import { Grid, Card } from "@mantine/core";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Home.scss";
 import { Anime } from "../common/Anime";
-import { Card } from '@mantine/core';
 
 import SwipeableTextMobileStepper from "../components/SeasonalCarousel/SeasonalCarouselSwipeable";
 
@@ -145,9 +144,7 @@ const Home = () => {
 
   return (
     <>
-      <Grid
-        className={"home__grid-row-1"}
-      >
+      <Grid className={"home__grid-row-1"}>
         <Grid.Col className="home__schedule_container" span={4}>
           <Card className="home__schedule">
             <CardHeader className="home__card_header" title="Daily Schedule" />
@@ -159,14 +156,14 @@ const Home = () => {
                 key={show.title}
                 onClick={() => {
                   handleAiringShowEntryClick(show);
-                } }
+                }}
               >
                 {show.title} - {show.broadcast.string}
               </div>
             ))}
           </Card>
         </Grid.Col>
-      {/* <Grid className="home__searchBarImg_container"> */}
+        {/* <Grid className="home__searchBarImg_container"> */}
         {/* <img
       alt="Gurren Lagann"
       src={`${process.env.PUBLIC_URL}/searchbar_img.jpeg`}
@@ -174,82 +171,84 @@ const Home = () => {
       width={800}
       className="home__searchBarImage"
     /> */}
-    <Grid.Col span={4}>
-        <form className="home__form">
-          <TextField
-            autoFocus={true}
-            placeholder="Search for an anime..."
-            value={input}
-            onChange={(event) => setInput(event.target.value)}
-            className="home__input"
-            inputProps={{ style: { color: "white" } }}
-          ></TextField>
-          <IconButton
-            className="home__iconButton"
-            color="primary"
-            type="submit"
-            disabled={!input}
-            onClick={handleAnimeSearch}
-          >
-            <SearchIcon />
-          </IconButton>
-        </form>
-    </Grid.Col>
-      <Grid.Col className="home__airing_container" span={4}>
-        <Card className="home__airing">
-          <CardHeader
-            className="home__airing_header home__card_header"
-            title="Top Airing Anime"
-            action={<IconButton
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
+        <Grid.Col span={4}>
+          <form className="home__form">
+            <TextField
+              autoFocus={true}
+              placeholder="Search for an anime..."
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+              className="home__input"
+              inputProps={{ style: { color: "white" } }}
+            ></TextField>
+            <IconButton
+              className="home__iconButton"
+              color="primary"
+              type="submit"
+              disabled={!input}
+              onClick={handleAnimeSearch}
             >
-              <ExpandMoreIcon sx={{ color: "#c2c0c0" }} />
-            </IconButton>} />
-          <CardContent className="home__airing_entry_content">
-            {topAiringAnimeToShow.map((anime, index) => (
-              <div
-                key={index}
-                className="home__airing_entry"
-                onClick={() => handleAiringShowEntryClick(anime)}
-              >
-
-                <img
-                  src={anime.images.jpg.small_image_url}
-                  alt={anime + "small-image-card"}
-                  className="home__airing_entry_img" />
-                <strong>{anime.title}</strong>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </Grid.Col>
+              <SearchIcon />
+            </IconButton>
+          </form>
+        </Grid.Col>
+        <Grid.Col className="home__airing_container" span={4}>
+          <Card className="home__airing">
+            <CardHeader
+              className="home__airing_header home__card_header"
+              title="Top Airing Anime"
+              action={
+                <IconButton
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon sx={{ color: "#c2c0c0" }} />
+                </IconButton>
+              }
+            />
+            <CardContent className="home__airing_entry_content">
+              {topAiringAnimeToShow.map((anime, index) => (
+                <div
+                  key={index}
+                  className="home__airing_entry"
+                  onClick={() => handleAiringShowEntryClick(anime)}
+                >
+                  <img
+                    src={anime.images.jpg.small_image_url}
+                    alt={anime + "small-image-card"}
+                    className="home__airing_entry_img"
+                  />
+                  <strong>{anime.title}</strong>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </Grid.Col>
       </Grid>
-    
-    <Grid
-      className={"home__grid-row-2"}
-    >
+
+      <Grid className={"home__grid-row-2"}>
         <Grid.Col span={6}>
           {" "}
           <RedditCard />
         </Grid.Col>
         <Grid.Col className="home__seasonal_container" span={6}>
           <Card className="home__seasonal">
-            <CardHeader
+            <div
               className="home__seasonal_header home__card_header"
-              title="Seasonal Anime" />
-            <CardContent className="home__seasonal_entry_content">
+              title="Seasonal Anime"
+            />
+            <div className="home__seasonal_entry_content">
               {isAiringShowsLoading ? (
                 <Typography>Loading...</Typography>
               ) : (
                 <SeasonalCarousel animeList={carouselShows} />
               )}
-            </CardContent>
+            </div>
           </Card>
         </Grid.Col>
       </Grid>
-      </>
+    </>
   );
 };
 
