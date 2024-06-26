@@ -1,17 +1,14 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Results from "./pages/Results/Results";
 import SingleView from "./pages/SingleView";
 // import MainNavigation from "./components/MainNavigation";
-import MainBar from "./components/MainBar/MainBar";
 import FriendsView from "./pages/FriendsView";
 import { SearchProvider } from "./context/useSearchContext";
 import { FriendsProvider } from "./context/useFriendsContext";
 
 import CssBaseline from "@mui/material/CssBaseline"; // Import CssBaselin
 import { createTheme, MantineProvider, virtualColor } from "@mantine/core";
-import { Global, css } from "@emotion/react";
 
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
@@ -27,14 +24,6 @@ import MainToolBar from "./components/MainToolBar/MainToolBar";
   />
 </>;
 
-const globalStyles = css`
-  body {
-    background-color: #f7f7f7; /* Light grey background */
-    color: #333; /* Dark grey text */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  }
-`;
 
 const theme = createTheme({
   colors: {
@@ -66,12 +55,12 @@ const theme = createTheme({
 function App() {
   return (
     <MantineProvider theme={theme}>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <SearchProvider>
         <FriendsProvider>
           <Router>
             <MainToolBar />
-            <main className="bg-black">
+            <main>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/results" element={<Results />} />
