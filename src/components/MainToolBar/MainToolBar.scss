@@ -24,3 +24,35 @@
   margin-left: auto; 
   padding: 20px; 
 }
+
+.mainToolBar__burger{
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mainToolBar__burger {
+    display: block;
+  }
+}
+
+.mainToolBar__title { 
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .mainToolBar__title {
+    display: none;
+  }
+}
+
+.mainToolBar__navLinks_container { 
+  display: flex; 
+  justify-content: center;
+  width: 50%; 
+}
+
+@media (max-width: 768px) {
+  .mainToolBar__navLinks_container {
+    display: none;
+  }
+}

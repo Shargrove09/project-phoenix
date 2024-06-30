@@ -7,7 +7,6 @@ import FriendsView from "./pages/FriendsView";
 import { SearchProvider } from "./context/useSearchContext";
 import { FriendsProvider } from "./context/useFriendsContext";
 
-import CssBaseline from "@mui/material/CssBaseline"; // Import CssBaselin
 import { createTheme, MantineProvider, virtualColor } from "@mantine/core";
 
 import "@mantine/core/styles.css";
@@ -55,7 +54,6 @@ const theme = createTheme({
 function App() {
   return (
     <MantineProvider theme={theme}>
-      {/* <CssBaseline /> */}
       <SearchProvider>
         <FriendsProvider>
           <Router>
