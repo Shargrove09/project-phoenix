@@ -1,20 +1,25 @@
-import { Drawer } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { Drawer } from "@mantine/core";
 
-interface Props { 
+import "./NavDrawer.scss";
+
+interface Props {
   opened: boolean;
-  open: () => void;
-  close: () => void;
-
+  onClose: () => void;
 }
 
 const NavDrawer = (props: Props) => {
-  const { opened, open, close } = props;
+  const { opened, onClose } = props;
 
   return (
-    <Drawer opened={opened} onClose={close} title="Nav Drawer">
+    <Drawer
+      position="top"
+      opened={opened}
+      onClose={onClose}
+      title="Nav Drawer"
+      size={"100%"}
+    >
       <Drawer.Title>Drawer title</Drawer.Title>
-
+      <p> HELLO I AM SOME TEXT</p>
     </Drawer>
   );
 };

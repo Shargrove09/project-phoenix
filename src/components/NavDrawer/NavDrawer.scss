@@ -1,0 +1,11 @@
+/* Position needs to be absolute because drawer contents appear offscreen otherwise */
+.mantine-Drawer-root { 
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 10rem;
+}
+
+.mantine-Drawer-content { 
+  height: 50%
+}

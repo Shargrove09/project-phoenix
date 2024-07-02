@@ -143,7 +143,10 @@ const Home = () => {
   return (
     <>
       <Grid className={"home__grid-row-1"}>
-        <Grid.Col className="home__schedule_container" span={{base: 12, md: 4}}>
+        <Grid.Col
+          className="home__schedule_container"
+          span={{ base: 12, md: 4 }}
+        >
           <Card className="home__schedule">
             <CardHeader className="home__card_header" title="Daily Schedule" />
             <ShowCalendar onDateSelect={handleDateSelect} />{" "}
@@ -169,7 +172,7 @@ const Home = () => {
       width={800}
       className="home__searchBarImage"
     /> */}
-        <Grid.Col span={{base: 12, md: 4}}>
+        <Grid.Col className="home__form-container" span={{ base: 12, md: 4 }}>
           <form className="home__form">
             <TextField
               autoFocus={true}
@@ -190,7 +193,7 @@ const Home = () => {
             </IconButton>
           </form>
         </Grid.Col>
-        <Grid.Col className="home__airing_container" span={{base: 12, md: 4}}>
+        <Grid.Col className="home__airing_container" span={{ base: 12, md: 4 }}>
           <Card className="home__airing">
             <CardHeader
               className="home__airing_header home__card_header"
@@ -226,11 +229,14 @@ const Home = () => {
       </Grid>
 
       <Grid className={"home__grid-row-2"}>
-        <Grid.Col span={{base: 12, md: 6}}>
+        <Grid.Col span={{ base: 12, md: 6 }}>
           {" "}
           <RedditCard />
         </Grid.Col>
-        <Grid.Col className="home__seasonal_container" span={{base: 12, md: 6}}>
+        <Grid.Col
+          className="home__seasonal_container"
+          span={{ base: 12, md: 6 }}
+        >
           <Card className="home__seasonal">
             <div
               className="home__seasonal_header home__card_header"

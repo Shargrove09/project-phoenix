@@ -7,20 +7,22 @@ import "./MainToolBar.scss";
 import NavDrawer from "../NavDrawer/NavDrawer";
 
 const MainToolBar = () => {
-  const [opened, { open, close }] = useDisclosure(false);
+  const [opened, { open, close }] = useDisclosure();
+
   return (
     <AppShell
       className="mainToolBar"
-      header={{ height: { base: 50, md: 60} }}
-      navbar={{
-        width: 300,
-        breakpoint: "sm",
-        collapsed: { mobile: !opened },
-      }}
+      header={{ height: { base: 50, md: 60 } }}
       padding="md"
     >
-      <AppShell.Header className="mainToolBar__header">
-        <Burger className="mainToolBar__burger" opened={opened} onClick={open} size="md" aria-label="Toggle navigation" />
+      <AppShell.Header className="mainToolBar__header" id="mainToolBar__header">
+        <Burger
+          className="mainToolBar__burger"
+          opened={opened}
+          onClick={open}
+          size="md"
+          aria-label="Toggle navigation"
+        />
         <img
           src={phoenixLogo}
           alt="Phoenix Logo"
@@ -34,7 +36,7 @@ const MainToolBar = () => {
         </div>
         <TextInput className="mainToolBar__searchInput" />
       </AppShell.Header>
-      <NavDrawer opened={opened} open={open} close={close} />
+      <NavDrawer opened={opened} onClose={close}></NavDrawer>
     </AppShell>
   );
 };
