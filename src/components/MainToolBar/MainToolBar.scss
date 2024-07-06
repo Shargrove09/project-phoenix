@@ -27,6 +27,7 @@
 
 .mainToolBar__burger{
   display: none;
+  z-index: 2000;
 }
 
 @media (max-width: 768px) {

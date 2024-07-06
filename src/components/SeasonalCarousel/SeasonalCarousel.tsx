@@ -1,12 +1,19 @@
-import React from 'react';
-import { Carousel, CarouselSlide } from '@mantine/carousel';
+import React from "react";
+import { Carousel, CarouselSlide } from "@mantine/carousel";
 import { Anime } from "../../common/Anime";
 
 type SeasonalCarouselProps = {
   animeList: Anime[];
 };
 
-const SeasonalCarousel: React.FC<SeasonalCarouselProps> = ({ animeList }) => {
+interface Props {
+  animeList: Anime[];
+}
+
+const SeasonalCarousel = (props: Props) => {
+  const { animeList } = props;
+  console.log("Anime List: ", animeList);
+
   return (
     <Carousel>
       {animeList.map((anime) => (

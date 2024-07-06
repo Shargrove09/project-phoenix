@@ -7,5 +7,25 @@
 }
 
 .mantine-Drawer-content { 
-  height: 50%
+  height: 50%; 
 }
+
+.mantine-Drawer-close { 
+  left: 0;
+  margin: 16px;
+  display: block;
+}
+
+.navDrawer__content { 
+  height: 100%;
+  padding: 0;  
+}
+
+.navDrawer__header { 
+  display: flex; 
+}
+
+.mantine-Drawer-body { 
+  padding-left: 0; 
+}
+
