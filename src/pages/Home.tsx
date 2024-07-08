@@ -28,7 +28,7 @@ const Home = () => {
   const [expanded, setExpanded] = useState(false);
   const [isAiringShowsLoading, setIsAiringShowsLoading] =
     useState<boolean>(true);
-  const [carouselShows, setCarouselShows] = useState([]);
+  const [carouselShows, setCarouselShows] = useState<Anime[]>([]);
   const [selectedDateShows, setSelectedDateShows] = useState<Anime[]>([]);
 
   const handleExpandClick = () => {
@@ -71,16 +71,35 @@ const Home = () => {
         `https://api.jikan.moe/v4/seasons/now`
       );
       const airingShowsResult = await airingResponse.json();
-      setAiringShows(airingShowsResult.data);
+
+      const verifiedAiringShows = verifyNoAnimeDuplicates(airingShowsResult.data)
+      setAiringShows(verifiedAiringShows);
+
+      console.log("Airing Shows: ", airingShowsResult)
 
       // Extract carousel images and set loading state to false
-      const images = airingShowsResult?.data.map((show: Anime) => show);
+      const images = verifiedAiringShows.map((show: Anime) => show);
       setCarouselShows(images);
       setIsAiringShowsLoading(false);
     } catch (error) {
       console.error("Error fetching airing shows", error);
     }
   };
+
+  const verifyNoAnimeDuplicates = (animeList: Anime[]) => { 
+    const idSet = new Set<number>();
+    const animeResults: Anime[] = [];
+  
+    for (const obj of animeList) {
+  
+      if (!idSet.has(obj.mal_id)) {
+        idSet.add(obj.mal_id);
+        animeResults.push(obj);
+      }
+    }
+  
+    return animeResults;
+  }
 
   const handleAiringShowEntryClick = async (show: Anime) => {
     // When a currently airing entry is clicked user should be directed to single anime page
