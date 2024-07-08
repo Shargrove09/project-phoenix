@@ -1,5 +1,5 @@
 import { Box, Drawer, NavLink } from "@mantine/core";
-import { IconHome2 } from "@tabler/icons-react";
+import { IconHome2, IconChecklist, IconHistory} from "@tabler/icons-react";
 
 import "./NavDrawer.scss";
 
@@ -26,8 +26,12 @@ const NavDrawer = (props: Props) => {
               leftSection={<IconHome2 size="1rem" stroke={1.5} />}
             />
 
-            <NavLink label="Results" href="/results" />
-            <NavLink label="Last Searched Anime" href="/single-view" />
+            <NavLink label="Results" href="/results" leftSection={<IconChecklist size="1rem" stroke={1.5}/>} />
+            <NavLink 
+              label="Last Searched Anime" 
+              href="/single-view" 
+              leftSection={<IconHistory size="1rem" stroke={1.5} />}
+            />
           </Box>
         </Drawer.Body>
       </Drawer.Content>
