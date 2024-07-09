@@ -2,19 +2,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Results from "./pages/Results/Results";
 import SingleView from "./pages/SingleView";
-// import MainNavigation from "./components/MainNavigation";
 import FriendsView from "./pages/FriendsView";
 import { SearchProvider } from "./context/useSearchContext";
 import { FriendsProvider } from "./context/useFriendsContext";
+import { createTheme, MantineProvider } from "@mantine/core";
+import MainToolBar from "./components/MainToolBar/MainToolBar";
+import { ColorSchemeProvider } from "./context/useColorSchemeContext";
 
-import { createTheme, MantineProvider, virtualColor } from "@mantine/core";
-import { useState } from "react";
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
 import "./App.css";
-import MainToolBar from "./components/MainToolBar/MainToolBar";
-import { ColorSchemeProvider} from './context/useColorSchemeContext';
-
 
 <>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,58 +22,32 @@ import { ColorSchemeProvider} from './context/useColorSchemeContext';
   />
 </>;
 
-const [colorScheme, setColorScheme] = useState('light');
-
-
-
 const theme = createTheme({
-  colors: {
-    primary: virtualColor({
-      name: "primary",
-      dark: "pink",
-      light: "cyan",
-    }),
-    background: virtualColor({
-      name: "primary",
-      dark: "pink",
-      light: "cyan",
-    }),
-    brand: [
-      "#f8f9fa", // Shade 0: Lightest
-      "#e9ecef", // Shade 1
-      "#dee2e6", // Shade 2
-      "#ced4da", // Shade 3
-      "#adb5bd", // Shade 4
-      "#6c757d", // Shade 5
-      "#495057", // Shade 6
-      "#343a40", // Shade 7
-      "#212529", // Shade 8
-      "#121416", // Shade 9: Darkest
-    ],
-  },
+  primaryColor: "cyan",
+  primaryShade: { dark: 6, light: 7 },
 });
 
 function App() {
   return (
     <ColorSchemeProvider>
-    <MantineProvider theme={theme}>
-      <SearchProvider>
-        <FriendsProvider>
-          <Router>
-            <MainToolBar />
-            <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/results" element={<Results />} />
-                <Route path="/single-view" element={<SingleView />} />
-                <Route path="/friends" element={<FriendsView />} />
-                {/*Need to add Navigate component here in future*/}
-              </Routes>
-            </main>
-          </Router>
-        </FriendsProvider>
-      </SearchProvider>
-    </MantineProvider>
+      <MantineProvider theme={theme}>
+        <SearchProvider>
+          <FriendsProvider>
+            <Router>
+              <MainToolBar />
+              <main>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/results" element={<Results />} />
+                  <Route path="/single-view" element={<SingleView />} />
+                  <Route path="/friends" element={<FriendsView />} />
+                  {/*Need to add Navigate component here in future*/}
+                </Routes>
+              </main>
+            </Router>
+          </FriendsProvider>
+        </SearchProvider>
+      </MantineProvider>
     </ColorSchemeProvider>
   );
 }

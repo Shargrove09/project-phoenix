@@ -4,8 +4,8 @@
   justify-content: center;
 }
 
-.mainToolBar__header { 
-  background-color: lightblue;
+.mainToolBar__header {
+  background: var(--mantine-color-indigo-8) !important;
   display: flex; 
   align-items: center;
 }
@@ -18,6 +18,10 @@
 .mainToolBar__logo { 
   height: 48px;
   margin: 10px;
+}
+
+.mainToolBar__info { 
+  width: 25%;
 }
 
 .mainToolBar__searchInput { 
@@ -47,9 +51,7 @@
 }
 
 .mainToolBar__navLinks_container { 
-  display: flex; 
-  justify-content: center;
-  width: 50%; 
+  width: 75%; 
 }
 
 @media (max-width: 768px) {
