@@ -192,6 +192,7 @@ const Home = () => {
       className="home__searchBarImage"
     /> */}
         <Grid.Col className="home__form-container" span={{ base: 12, md: 4 }}>
+          <p className="home__form_header"> Project Phoenix</p>
           <form className="home__form">
             <TextField
               autoFocus={true}

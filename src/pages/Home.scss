@@ -1,3 +1,11 @@
+.home__form-container { 
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+
+}
+
 .home__form{ 
   border-radius: 5px;
   padding: 15px; 
@@ -12,6 +20,10 @@
 .home__formControl { 
   display: flex !important; // Overrides 
   flex-direction: row !important;
+}
+
+.home__form_header { 
+  font: bold;
 }
 
 .home__input { 
@@ -88,12 +100,7 @@
   justify-content: center; 
 }
 
-.home__form-container { 
-  display: flex; 
-  justify-content: center; 
-  align-items: center;
 
-}
 
 .home__airing_container { 
   position: relative; 

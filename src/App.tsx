@@ -8,11 +8,13 @@ import { SearchProvider } from "./context/useSearchContext";
 import { FriendsProvider } from "./context/useFriendsContext";
 
 import { createTheme, MantineProvider, virtualColor } from "@mantine/core";
-
+import { useState } from "react";
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
 import "./App.css";
 import MainToolBar from "./components/MainToolBar/MainToolBar";
+import { ColorSchemeProvider} from './context/useColorSchemeContext';
+
 
 <>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,6 +24,9 @@ import MainToolBar from "./components/MainToolBar/MainToolBar";
     rel="stylesheet"
   />
 </>;
+
+const [colorScheme, setColorScheme] = useState('light');
+
 
 
 const theme = createTheme({
@@ -53,6 +58,7 @@ const theme = createTheme({
 
 function App() {
   return (
+    <ColorSchemeProvider>
     <MantineProvider theme={theme}>
       <SearchProvider>
         <FriendsProvider>
@@ -71,6 +77,7 @@ function App() {
         </FriendsProvider>
       </SearchProvider>
     </MantineProvider>
+    </ColorSchemeProvider>
   );
 }
 
