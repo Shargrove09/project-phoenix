@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import { Grid, Card } from "@mantine/core";
+import { Grid, Card, Text } from "@mantine/core";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Home.scss";
 import { Anime } from "../common/Anime";
@@ -72,10 +72,12 @@ const Home = () => {
       );
       const airingShowsResult = await airingResponse.json();
 
-      const verifiedAiringShows = verifyNoAnimeDuplicates(airingShowsResult.data)
+      const verifiedAiringShows = verifyNoAnimeDuplicates(
+        airingShowsResult.data
+      );
       setAiringShows(verifiedAiringShows);
 
-      console.log("Airing Shows: ", airingShowsResult)
+      console.log("Airing Shows: ", airingShowsResult);
 
       // Extract carousel images and set loading state to false
       const images = verifiedAiringShows.map((show: Anime) => show);
@@ -86,20 +88,19 @@ const Home = () => {
     }
   };
 
-  const verifyNoAnimeDuplicates = (animeList: Anime[]) => { 
+  const verifyNoAnimeDuplicates = (animeList: Anime[]) => {
     const idSet = new Set<number>();
     const animeResults: Anime[] = [];
-  
+
     for (const obj of animeList) {
-  
       if (!idSet.has(obj.mal_id)) {
         idSet.add(obj.mal_id);
         animeResults.push(obj);
       }
     }
-  
+
     return animeResults;
-  }
+  };
 
   const handleAiringShowEntryClick = async (show: Anime) => {
     // When a currently airing entry is clicked user should be directed to single anime page
@@ -192,7 +193,15 @@ const Home = () => {
       className="home__searchBarImage"
     /> */}
         <Grid.Col className="home__form-container" span={{ base: 12, md: 4 }}>
-          <p className="home__form_header"> Project Phoenix</p>
+          <Text
+            className="home__form-header"
+            fw={900}
+            gradient={{ from: "yellow", to: "red", deg: 90 }}
+            size="xl"
+            variant="gradient"
+          >
+            Project Phoenix
+          </Text>
           <form className="home__form">
             <TextField
               autoFocus={true}

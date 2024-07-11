@@ -90,11 +90,11 @@
   padding: 8px 12px;
   border-radius: var(--mantine-radius-sm);
   text-decoration: none;
-  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0)) !important;
   font-size: var(--mantine-font-size-sm);
   font-weight: 500;
 
   @mixin hover {
-    background-color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-dark-));
+    color: light-dark(var(--mantine-color-blue-9), var(--mantine-color-dark-7)) !important;
   }
 }
