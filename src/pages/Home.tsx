@@ -200,7 +200,6 @@ const Home = () => {
               value={input}
               onChange={(event) => setInput(event.target.value)}
               className="home__input"
-              inputProps={{ style: { color: "white" } }}
             ></TextField>
             <IconButton
               className="home__iconButton"

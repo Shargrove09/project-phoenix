@@ -7,7 +7,9 @@
 .mainToolBar__header {
   background: var(--mantine-color-indigo-8) !important;
   display: flex; 
+  justify-content: space-between;
   align-items: center;
+  width: 100%; 
 }
 
 .mainToolBar__burger { 
@@ -22,6 +24,12 @@
 
 .mainToolBar__info { 
   width: 25%;
+}
+
+@media (max-width: 768px) {
+  .mainToolBar__info { 
+    width: 100%; 
+  }
 }
 
 .mainToolBar__searchInput { 
@@ -50,12 +58,43 @@
   }
 }
 
-.mainToolBar__navLinks_container { 
-  width: 75%; 
+.mainToolBar__right { 
+  width: 100%; 
 }
 
 @media (max-width: 768px) {
-  .mainToolBar__navLinks_container {
+  .mainToolBar__right {
     display: none;
+  }
+}
+
+.header {
+  // height: rem(56px);
+  // margin-bottom: rem(120px);
+  background-color: var(--mantine-color-body);
+  border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+}
+
+.inner {
+  // height: rem(56px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainToolBar__navLink {
+  display: block;
+  line-height: 1;
+  padding: 8px 12px;
+  border-radius: var(--mantine-radius-sm);
+  text-decoration: none;
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+
+  @mixin hover {
+    background-color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-dark-));
   }
 }

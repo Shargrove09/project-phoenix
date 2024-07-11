@@ -11,9 +11,9 @@
 }
 
 .mantine-Drawer-close { 
-  left: 0;
   margin: 16px;
   display: block;
+  margin-inline-start: 0 !important;
 }
 
 .navDrawer__content { 
