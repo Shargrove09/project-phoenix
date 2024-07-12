@@ -11,17 +11,15 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import phoenixLogo from "../../assets/PhoenixLogo_v1.png";
-import { TextInput } from "@mantine/core";
 import NavDrawer from "../NavDrawer/NavDrawer";
 import { IconSun, IconMoon, IconSearch } from "@tabler/icons-react";
 
-import "./MainToolBar.scss";
+import classes  from "./MainToolBar.module.scss"
 
 const navLinks = [
-  { link: '/about', label: 'Features' },
-  { link: '/pricing', label: 'Pricing' },
-  { link: '/learn', label: 'Learn' },
-  { link: '/community', label: 'Community' },
+  { link: '/about', label: 'Home' },
+  { link: '/single-anime', label: 'Results' },
+  { link: '/learn', label: 'Last Searched' },
 ];
 
 const MainToolBar = () => {
@@ -34,7 +32,7 @@ const MainToolBar = () => {
     <a
       key={link.label}
       href={link.link}
-      className={"mainToolBar__navLink"}
+      className={classes.mainToolBar__navLink}
       onClick={(event) => event.preventDefault()}
     >
       {link.label}
@@ -43,15 +41,15 @@ const MainToolBar = () => {
 
   return (
     <AppShell
-      className="mainToolBar"
+      className={classes.mainToolBar}
       header={{ height: { base: 50, md: 60 } }}
       padding="md"
     >
-      <AppShell.Header className="mainToolBar__header" id="mainToolBar__header">
-        <Group className="mainToolBar__info">
-          <Group className="mainToolBar__leftSubMenu" gap={0}>
+      <AppShell.Header className={classes.mainToolBar__header} id="mainToolBar__header">
+        <Group className={classes.mainToolBar__info}>
+          <Group className={classes.mainToolBar__leftSubMenu} gap={0}>
             <Burger
-              className="mainToolBar__burger"
+              className={classes.mainToolBar__burger}
               opened={opened}
               onClick={open}
               size="md"
@@ -60,21 +58,21 @@ const MainToolBar = () => {
             <img
               src={phoenixLogo}
               alt="Phoenix Logo"
-              className="mainToolBar__logo"
+              className={classes.mainToolBar__logo}
             />
           </Group>
 
-          <Title className="mainToolBar__title" size="h4">
+          <Title className={classes.mainToolBar__title} size="h4">
             Project Phoenix
           </Title>
         </Group>
 
-        <Group className={"mainToolBar_right"}>
-          <Group ml={50} gap={5} className={"mainToolBar__navLinkContainer"} visibleFrom="sm">
+        <Group className={classes.mainToolBar_right}>
+          <Group ml={50} gap={5} className={classes.mainToolBar__navLinkContainer} visibleFrom="sm">
             {items}
           </Group>
           <Autocomplete
-            className={"mainToolBar__search"}
+            className={classes.mainToolBar__search}
             placeholder="Search"
             leftSection={<IconSearch style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}
             data={['React', 'Angular', 'Vue', 'Next.js', 'Riot.js', 'Svelte', 'Blitz.js']}
@@ -82,11 +80,14 @@ const MainToolBar = () => {
           />
                  <div>
             <ActionIcon
-              size={"md"}
-              variant="outline"
               color={darkMode ? "yellow" : "blue"}
+              className={classes.mainToolBar__darkModeToggle}
               onClick={() => setColorScheme(darkMode ? "light" : "dark")}
+
+              size={"md"}
               title="Toggle Color Scheme"
+
+              variant="outline"
             >
               {darkMode ? (
                 <IconSun style={{ width: 18, height: 18 }} />

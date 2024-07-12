@@ -69,8 +69,6 @@
 }
 
 .header {
-  // height: rem(56px);
-  // margin-bottom: rem(120px);
   background-color: var(--mantine-color-body);
   border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
   padding-left: var(--mantine-spacing-md);
@@ -78,7 +76,6 @@
 }
 
 .inner {
-  // height: rem(56px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -90,11 +87,22 @@
   padding: 8px 12px;
   border-radius: var(--mantine-radius-sm);
   text-decoration: none;
-  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0)) !important;
+  color: var(--mantine-color-gray-2);
   font-size: var(--mantine-font-size-sm);
   font-weight: 500;
-
-  @mixin hover {
-    color: light-dark(var(--mantine-color-blue-9), var(--mantine-color-dark-7)) !important;
+  border-bottom: 2px solid transparent;
+  transition: border-color 100ms ease, color 100ms ease;
+  
+  &:hover {
+    color: light-dark(var(--mantine-color-black-8), var(--mantine-color-white-9));
   }
+    
+  &[data-active] {
+    color: light-dark(var(--mantine-color-black-8), var(--mantine-color-white-9));
+    border-bottom-color: var(--mantine-color-blue-6);
+  }
+}
+
+.mainToolBar__darkModeToggle { 
+  margin-right: 16px; 
 }

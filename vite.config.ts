@@ -15,7 +15,15 @@ export default defineConfig({
       jsxImportSource: '@emotion/react',
       babel: {
         plugins: ['@emotion/babel-plugin'],
+        
       },
     }),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "./src/_mantine";`,
+      },
+    },
+  },
 })
