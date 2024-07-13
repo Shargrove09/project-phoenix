@@ -14,14 +14,14 @@
   grid-template-columns: 1fr repeat(3, auto) 1fr;
   justify-items: center;
 
-  div:nth-child(1) {
-    grid-column-start: 2;
-  }
+  // div:nth-child(1) {
+  //   grid-column-start: 2;
+  // }
 
-  div:nth-child(2) {
-    grid-column-start: 5;
-    justify-self: end; /* Right-align the .results__viewpill div */
-  }
+  // div:nth-child(2) {
+  //   grid-column-start: 5;
+  //   justify-self: end; /* Right-align the .results__viewpill div */
+  // }
 
   width: 100%;
 }

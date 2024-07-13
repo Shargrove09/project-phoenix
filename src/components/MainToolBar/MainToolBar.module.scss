@@ -17,13 +17,19 @@
   padding: 20px; ; 
 }
 
+.mainToolBar__logoContainer {
+  height: 48px; 
+  margin-left: rem(10px);
+}
+
 .mainToolBar__logo { 
   height: 48px;
-  margin: 10px;
+
 }
 
 .mainToolBar__info { 
   width: 25%;
+  display: flex; 
 }
 
 @media (max-width: 768px) {
@@ -50,6 +56,7 @@
 
 .mainToolBar__title { 
   display: block;
+  color: var(--mantine-color-gray-2)
 }
 
 @media (max-width: 768px) {
@@ -59,7 +66,11 @@
 }
 
 .mainToolBar__right { 
-  width: 100%; 
+  padding-top: var(--mantine-spacing-lg); 
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
@@ -82,16 +93,16 @@
 }
 
 .mainToolBar__navLink {
-  display: block;
-  line-height: 1;
-  padding: 8px 12px;
-  border-radius: var(--mantine-radius-sm);
-  text-decoration: none;
-  color: var(--mantine-color-gray-2);
-  font-size: var(--mantine-font-size-sm);
-  font-weight: 500;
-  border-bottom: 2px solid transparent;
-  transition: border-color 100ms ease, color 100ms ease;
+  text-transform: uppercase;
+  font-size: var(--mantine-font-size-xs);
+  color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-1));
+  padding: rem(7px) var(--mantine-spacing-sm);
+  font-weight: 700;
+  border-bottom: rem(2px) solid transparent;
+  transition:
+    border-color 100ms ease,
+    color 100ms ease;
+
   
   &:hover {
     color: light-dark(var(--mantine-color-black-8), var(--mantine-color-white-9));
@@ -101,8 +112,4 @@
     color: light-dark(var(--mantine-color-black-8), var(--mantine-color-white-9));
     border-bottom-color: var(--mantine-color-blue-6);
   }
-}
-
-.mainToolBar__darkModeToggle { 
-  margin-right: 16px; 
 }
