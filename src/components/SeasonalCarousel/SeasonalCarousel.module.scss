@@ -1,0 +1,13 @@
+.seasonalCarousel__slide { 
+  width: 100%; 
+}
+
+.seasonalCarousel { 
+  width: 100%; 
+  height: 100%; 
+}
+
+
+.seasonalCarousel__indicator {
+  background-color: light-dark(var(--mantine-color-blue-3), var(--mantine-color-blue-7)) !important;
+}

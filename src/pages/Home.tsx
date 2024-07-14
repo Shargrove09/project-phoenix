@@ -13,12 +13,13 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { Grid, Card, Text } from "@mantine/core";
 import SearchIcon from "@mui/icons-material/Search";
-import "./Home.scss";
 import { Anime } from "../common/Anime";
 
 import RedditCard from "../components/RedditCard/RedditCard";
 import ShowCalendar from "../components/ShowCalendar/ShowSchedule";
 import SeasonalCarousel from "../components/SeasonalCarousel/SeasonalCarousel";
+
+import classes from "./Home.module.scss";
 
 const Home = () => {
   const { search, setAnimeData, setSingle, searchById } = useSearchContext();
@@ -162,18 +163,21 @@ const Home = () => {
 
   return (
     <>
-      <Grid className={"home__grid-row-1"}>
+      <Grid className={classes.home__gridRow1}>
         <Grid.Col
-          className="home__schedule_container"
+          className={classes.home__scheduleContainer}
           span={{ base: 12, md: 4 }}
         >
-          <Card className="home__schedule">
-            <CardHeader className="home__card_header" title="Daily Schedule" />
+          <Card className={classes.home__schedule}>
+            <CardHeader
+              className={classes.home__card_header}
+              title="Daily Schedule"
+            />
             <ShowCalendar onDateSelect={handleDateSelect} />{" "}
             {/* Display the shows for the selected date */}
             {selectedDateShows.map((show) => (
               <div
-                className="home__scheduled_shows"
+                className={classes.home__scheduledShows}
                 key={show.title}
                 onClick={() => {
                   handleAiringShowEntryClick(show);
@@ -184,17 +188,12 @@ const Home = () => {
             ))}
           </Card>
         </Grid.Col>
-        {/* <Grid className="home__searchBarImg_container"> */}
-        {/* <img
-      alt="Gurren Lagann"
-      src={`${process.env.PUBLIC_URL}/searchbar_img.jpeg`}
-      height={240}
-      width={800}
-      className="home__searchBarImage"
-    /> */}
-        <Grid.Col className="home__form-container" span={{ base: 12, md: 4 }}>
+        <Grid.Col
+          className={classes.home__formContainer}
+          span={{ base: 12, md: 4 }}
+        >
           <Text
-            className="home__form-header"
+            className={classes.home__formHeader}
             fw={900}
             gradient={{ from: "yellow", to: "red", deg: 90 }}
             size="xl"
@@ -202,16 +201,16 @@ const Home = () => {
           >
             Project Phoenix
           </Text>
-          <form className="home__form">
+          <form className={classes.home__form}>
             <TextField
               autoFocus={true}
               placeholder="Search for an anime..."
               value={input}
               onChange={(event) => setInput(event.target.value)}
-              className="home__input"
+              className={classes.home__input}
             ></TextField>
             <IconButton
-              className="home__iconButton"
+              className={classes.home__iconButton}
               color="primary"
               type="submit"
               disabled={!input}
@@ -221,10 +220,13 @@ const Home = () => {
             </IconButton>
           </form>
         </Grid.Col>
-        <Grid.Col className="home__airing_container" span={{ base: 12, md: 4 }}>
-          <Card className="home__airing">
+        <Grid.Col
+          className={classes.home__airingContainer}
+          span={{ base: 12, md: 4 }}
+        >
+          <Card className={classes.home__airing}>
             <CardHeader
-              className="home__airing_header home__card_header"
+              className={classes.home__airingHeader}
               title="Top Airing Anime"
               action={
                 <IconButton
@@ -236,17 +238,17 @@ const Home = () => {
                 </IconButton>
               }
             />
-            <CardContent className="home__airing_entry_content">
+            <CardContent className={classes.home__airingEntryContent}>
               {topAiringAnimeToShow.map((anime, index) => (
                 <div
                   key={index}
-                  className="home__airing_entry"
+                  className={classes.home__airingEntry}
                   onClick={() => handleAiringShowEntryClick(anime)}
                 >
                   <img
                     src={anime.images.jpg.small_image_url}
                     alt={anime + "small-image-card"}
-                    className="home__airing_entry_img"
+                    className={classes.home__airingEntryImg}
                   />
                   <strong>{anime.title}</strong>
                 </div>
@@ -256,21 +258,23 @@ const Home = () => {
         </Grid.Col>
       </Grid>
 
-      <Grid className={"home__grid-row-2"}>
+      <Grid className={classes.home__gridRow2}>
         <Grid.Col span={{ base: 12, md: 6 }}>
           {" "}
           <RedditCard />
         </Grid.Col>
         <Grid.Col
-          className="home__seasonal_container"
+          className={classes.home__seasonalContainer}
           span={{ base: 12, md: 6 }}
         >
-          <Card className="home__seasonal">
+          <Card className={classes.home__seasonal}>
             <div
-              className="home__seasonal_header home__card_header"
+              className={
+                classes.home__seasonalHeader + classes.home__cardHeader
+              }
               title="Seasonal Anime"
             />
-            <div className="home__seasonal_entry_content">
+            <div className={classes.home__seasonalEntryContent}>
               {isAiringShowsLoading ? (
                 <Typography>Loading...</Typography>
               ) : (

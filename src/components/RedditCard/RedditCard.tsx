@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CardContent, CircularProgress } from "@mui/material";
 import { Card, Text } from "@mantine/core";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
-import "./RedditCard.scss";
+import classes from "./RedditCard.module.scss";
 
 const RedditCard = () => {
   const [topPosts, setTopPosts] = useState<RedditPost[]>([]);
@@ -75,12 +75,12 @@ const RedditCard = () => {
       {loading ? (
         <CircularProgress />
       ) : (
-        <Card className="redditCard">
-          <Text className="redditCard__header">Top Reddit Posts </Text>
+        <Card className={classes.redditCard}>
+          <Text className={classes.redditCard__header}>Top Reddit Posts </Text>
           {topPosts.map((post: RedditPost) => (
-            <Card className="redditCard__entry" key={post.id}>
-              <CardContent className="redditCard__content">
-                <Text className="redditCard__title" variant="body1">
+            <Card className={classes.redditCard__entry} key={post.id}>
+              <CardContent className={classes.redditCard__content}>
+                <Text className={classes.redditCard__title} variant="body1">
                   {renderImage(post)}
                   <a
                     href={post.url}
