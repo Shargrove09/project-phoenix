@@ -1,1 +1,8 @@
 // This is where I would put additional CSS IF I HAD ANY!
+.redditCard__entry { 
+  justify-content: flex-start !important;
+  align-items: center !important;
+  flex-direction: row !important;
+  padding: 0;
+  margin: 0; 
+}

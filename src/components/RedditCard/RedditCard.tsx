@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Card, Text } from "@mantine/core";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import { Card, Group, Text } from "@mantine/core";
+import { IconArrowUp } from "@tabler/icons-react";
 
 import classes from "./RedditCard.module.scss";
 
@@ -63,7 +63,7 @@ const RedditCard = () => {
         <img
           src="https://www.redditinc.com/assets/images/site/reddit-logo.png"
           alt="Reddit Placeholder"
-          style={{ maxWidth: "10%", height: "auto", marginRight: "12px" }}
+          style={{ maxWidth: "8%", height: "auto", marginRight: "12px" }}
         />
       );
     }
@@ -74,47 +74,37 @@ const RedditCard = () => {
       {loading ? (
         <Text>Loading...</Text>
       ) : (
-        <Card className={classes.redditCard}>
-          <Text className={classes.redditCard__header} fw={900} size={"xl"}>
-            Top Reddit Posts{" "}
-          </Text>
+        <Card className={classes.redditCard} display={"flex"}>
+          <Card.Section>
+            <Text className={classes.redditCard__header} fw={900} size={"xl"}>
+              Top Reddit Posts{" "}
+            </Text>
+          </Card.Section>
+
           {topPosts.map((post: RedditPost) => (
-            <Card
+            <Card.Section
               className={classes.redditCard__entry}
               key={post.id}
-              w={"100%"}
               mx={20}
               my={20}
+              display={"flex"}
             >
-              <Card.Section
-                className={classes.redditCard__entrySection}
-                display={"flex"}
-              >
-                <Card.Section
-                  className={classes.redditCard__title}
-                  display={"flex"}
-                  variant="body1"
+              <Group>
+                {renderImage(post)}
+                <a
+                  href={post.url}
+                  style={{ textDecoration: "none" }}
+                  target="blank"
                 >
-                  {renderImage(post)}
-                  <a
-                    href={post.url}
-                    style={{ textDecoration: "none", color: "#C2C2C0" }}
-                    target="blank"
-                  >
-                    {post.title}
-                  </a>
-                </Card.Section>
-                <Text
-                  variant="body2"
-                  c="#C2C2C0"
-                  className="redditCard__entry_stats"
-                  mr={20}
-                >
-                  <ArrowUpwardIcon sx={{ color: "#FE4515" }} />
-                  {post.score}
-                </Text>
-              </Card.Section>
-            </Card>
+                  {post.title}
+                </a>
+              </Group>
+
+              <Group>
+                <Text>{post.score}</Text>
+                <IconArrowUp />
+              </Group>
+            </Card.Section>
           ))}
         </Card>
       )}
