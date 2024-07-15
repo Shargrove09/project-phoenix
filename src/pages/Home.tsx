@@ -2,17 +2,11 @@ import { SyntheticEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
 
-import {
-  CardContent,
-  CardHeader,
-  IconButton,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { CardContent, CardHeader, IconButton, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import { Grid, Card, Text } from "@mantine/core";
-import SearchIcon from "@mui/icons-material/Search";
+import { Grid, Card, Text, TextInput, ActionIcon } from "@mantine/core";
+import { IconSearch } from "@tabler/icons-react";
 import { Anime } from "../common/Anime";
 
 import RedditCard from "../components/RedditCard/RedditCard";
@@ -64,6 +58,14 @@ const Home = () => {
       ); //Allowed to set Strings
       navigate("/results");
     });
+  };
+
+  const AnimeSearchIcon = () => {
+    return (
+      <ActionIcon onClick={handleAnimeSearch}>
+        <IconSearch />
+      </ActionIcon>
+    );
   };
 
   const getAiringShows = async () => {
@@ -202,22 +204,14 @@ const Home = () => {
             Project Phoenix
           </Text>
           <form className={classes.home__form}>
-            <TextField
+            <TextInput
               autoFocus={true}
-              placeholder="Search for an anime..."
-              value={input}
-              onChange={(event) => setInput(event.target.value)}
               className={classes.home__input}
-            ></TextField>
-            <IconButton
-              className={classes.home__iconButton}
-              color="primary"
-              type="submit"
-              disabled={!input}
-              onClick={handleAnimeSearch}
-            >
-              <SearchIcon />
-            </IconButton>
+              onChange={(event) => setInput(event.target.value)}
+              placeholder="Search for an anime..."
+              rightSection={<AnimeSearchIcon />}
+              value={input}
+            ></TextInput>
           </form>
         </Grid.Col>
         <Grid.Col
@@ -268,6 +262,11 @@ const Home = () => {
           span={{ base: 12, md: 6 }}
         >
           <Card className={classes.home__seasonal}>
+            <Text mb={10} size="xl">
+              {" "}
+              Anime Airing This Season
+            </Text>
+
             <div
               className={
                 classes.home__seasonalHeader + classes.home__cardHeader

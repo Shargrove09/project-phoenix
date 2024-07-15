@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { CardContent, CircularProgress } from "@mui/material";
 import { Card, Text } from "@mantine/core";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
@@ -73,14 +72,29 @@ const RedditCard = () => {
   return (
     <div>
       {loading ? (
-        <CircularProgress />
+        <Text>Loading...</Text>
       ) : (
         <Card className={classes.redditCard}>
-          <Text className={classes.redditCard__header}>Top Reddit Posts </Text>
+          <Text className={classes.redditCard__header} fw={900} size={"xl"}>
+            Top Reddit Posts{" "}
+          </Text>
           {topPosts.map((post: RedditPost) => (
-            <Card className={classes.redditCard__entry} key={post.id}>
-              <CardContent className={classes.redditCard__content}>
-                <Text className={classes.redditCard__title} variant="body1">
+            <Card
+              className={classes.redditCard__entry}
+              key={post.id}
+              w={"100%"}
+              mx={20}
+              my={20}
+            >
+              <Card.Section
+                className={classes.redditCard__entrySection}
+                display={"flex"}
+              >
+                <Text
+                  className={classes.redditCard__title}
+                  display={"flex"}
+                  variant="body1"
+                >
                   {renderImage(post)}
                   <a
                     href={post.url}
@@ -92,13 +106,14 @@ const RedditCard = () => {
                 </Text>
                 <Text
                   variant="body2"
-                  color="#C2C2C0"
+                  c="#C2C2C0"
                   className="redditCard__entry_stats"
+                  mr={20}
                 >
                   <ArrowUpwardIcon sx={{ color: "#FE4515" }} />
                   {post.score}
                 </Text>
-              </CardContent>
+              </Card.Section>
             </Card>
           ))}
         </Card>
