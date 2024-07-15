@@ -90,7 +90,7 @@ const RedditCard = () => {
                 className={classes.redditCard__entrySection}
                 display={"flex"}
               >
-                <Text
+                <Card.Section
                   className={classes.redditCard__title}
                   display={"flex"}
                   variant="body1"
@@ -103,7 +103,7 @@ const RedditCard = () => {
                   >
                     {post.title}
                   </a>
-                </Text>
+                </Card.Section>
                 <Text
                   variant="body2"
                   c="#C2C2C0"

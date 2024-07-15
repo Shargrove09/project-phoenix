@@ -2,11 +2,10 @@ import { SyntheticEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
 
-import { CardContent, CardHeader, IconButton, Typography } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { CardContent, IconButton, Typography } from "@mui/material";
 
 import { Grid, Card, Text, TextInput, ActionIcon } from "@mantine/core";
-import { IconSearch } from "@tabler/icons-react";
+import { IconSearch, IconCaretDown } from "@tabler/icons-react";
 import { Anime } from "../common/Anime";
 
 import RedditCard from "../components/RedditCard/RedditCard";
@@ -171,7 +170,7 @@ const Home = () => {
           span={{ base: 12, md: 4 }}
         >
           <Card className={classes.home__schedule}>
-            <CardHeader
+            <Card.Section
               className={classes.home__card_header}
               title="Daily Schedule"
             />
@@ -219,19 +218,18 @@ const Home = () => {
           span={{ base: 12, md: 4 }}
         >
           <Card className={classes.home__airing}>
-            <CardHeader
+            <Text
               className={classes.home__airingHeader}
               title="Top Airing Anime"
-              action={
-                <IconButton
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon sx={{ color: "#c2c0c0" }} />
-                </IconButton>
-              }
-            />
+            >
+              <ActionIcon
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <IconCaretDown />
+              </ActionIcon>
+            </Text>
             <CardContent className={classes.home__airingEntryContent}>
               {topAiringAnimeToShow.map((anime, index) => (
                 <div
@@ -262,10 +260,7 @@ const Home = () => {
           span={{ base: 12, md: 6 }}
         >
           <Card className={classes.home__seasonal}>
-            <Text mb={10} size="xl">
-              {" "}
-              Anime Airing This Season
-            </Text>
+            <Card.Section mb={10}> Anime Airing This Season</Card.Section>
 
             <div
               className={
