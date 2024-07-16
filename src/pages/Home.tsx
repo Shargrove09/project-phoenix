@@ -1,7 +1,14 @@
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
-import { Grid, Card, Text, TextInput, ActionIcon } from "@mantine/core";
+import {
+  Grid,
+  Card,
+  Text,
+  TextInput,
+  ActionIcon,
+  ScrollArea,
+} from "@mantine/core";
 import { IconSearch, IconCaretDown } from "@tabler/icons-react";
 import { Anime } from "../common/Anime";
 import RedditCard from "../components/RedditCard/RedditCard";
@@ -40,7 +47,7 @@ const Home = () => {
 
   const topAiringAnimeToShow = expanded
     ? airingShows?.slice(0, 10)
-    : airingShows?.slice(0, 5);
+    : airingShows?.slice(0, 10);
 
   // User searches anime
   const handleAnimeSearch = (event: SyntheticEvent) => {
@@ -165,7 +172,7 @@ const Home = () => {
           className={classes.home__scheduleContainer}
           span={{ base: 12, md: 4 }}
         >
-          <Card className={classes.home__schedule} radius={"lg"}>
+          <Card className={classes.home__schedule} h={250} radius={"lg"}>
             <Card.Section className={classes.home__card_header}>
               <Text fw={700} size={"xl"}>
                 {" "}
@@ -233,7 +240,7 @@ const Home = () => {
               </ActionIcon>
             </Card.Section>
 
-            <div className={classes.home__airingEntryContent}>
+            <ScrollArea className={classes.home__airingEntryContent} h={250}>
               {topAiringAnimeToShow.map((anime, index) => (
                 <div
                   key={index}
@@ -248,7 +255,7 @@ const Home = () => {
                   <strong>{anime.title}</strong>
                 </div>
               ))}
-            </div>
+            </ScrollArea>
           </Card>
         </Grid.Col>
       </Grid>
