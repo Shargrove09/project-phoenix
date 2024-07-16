@@ -81,7 +81,7 @@ const MainToolBar = () => {
         <Box className={classes.mainToolBar__right}>
           <Group
             ml={50}
-            gap={5}
+            gap={15}
             className={classes.mainToolBar__navLinkContainer}
             visibleFrom="sm"
             mr={10}
