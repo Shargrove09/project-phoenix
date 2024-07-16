@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Group, Text } from "@mantine/core";
+import { Anchor, Card, Group, Text } from "@mantine/core";
 import { IconArrowUp } from "@tabler/icons-react";
 
 import classes from "./RedditCard.module.scss";
@@ -82,29 +82,26 @@ const RedditCard = () => {
           </Card.Section>
 
           {topPosts.map((post: RedditPost) => (
-            <Card.Section
+            <Anchor
+              bd={"1px solid"}
               className={classes.redditCard__entry}
-              key={post.id}
+              href={post.url}
+              my={10}
               mx={20}
-              my={20}
-              display={"flex"}
+              p={8}
+              style={{ textDecoration: "none" }}
+              target="_blank"
+              truncate={"end"}
             >
-              <Group>
+              <Group display={"flex"} key={post.id}>
                 {renderImage(post)}
-                <a
-                  href={post.url}
-                  style={{ textDecoration: "none" }}
-                  target="blank"
-                >
+                <Text w={"70%"} truncate={"end"}>
                   {post.title}
-                </a>
-              </Group>
-
-              <Group>
+                </Text>
                 <Text>{post.score}</Text>
                 <IconArrowUp />
               </Group>
-            </Card.Section>
+            </Anchor>
           ))}
         </Card>
       )}
