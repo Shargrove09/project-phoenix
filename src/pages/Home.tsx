@@ -9,7 +9,7 @@ import {
   ActionIcon,
   ScrollArea,
 } from "@mantine/core";
-import { IconSearch, IconCaretDown } from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-react";
 import { Anime } from "../common/Anime";
 import RedditCard from "../components/RedditCard/RedditCard";
 import ShowCalendar from "../components/ShowCalendar/ShowSchedule";
@@ -22,15 +22,10 @@ const Home = () => {
 
   const [input, setInput] = useState("");
   const [airingShows, setAiringShows] = useState<Anime[]>([]);
-  const [expanded, setExpanded] = useState(false);
   const [isAiringShowsLoading, setIsAiringShowsLoading] =
     useState<boolean>(true);
   const [carouselShows, setCarouselShows] = useState<Anime[]>([]);
   const [selectedDateShows, setSelectedDateShows] = useState<Anime[]>([]);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   useEffect(() => {
     getAiringShows();
@@ -45,9 +40,7 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  const topAiringAnimeToShow = expanded
-    ? airingShows?.slice(0, 10)
-    : airingShows?.slice(0, 10);
+  const topAiringAnimeToShow = airingShows?.slice(0, 9);
 
   // User searches anime
   const handleAnimeSearch = (event: SyntheticEvent) => {
@@ -172,7 +165,7 @@ const Home = () => {
           className={classes.home__scheduleContainer}
           span={{ base: 12, md: 4 }}
         >
-          <Card className={classes.home__schedule} h={250} radius={"lg"}>
+          <Card className={classes.home__schedule} h={350} radius={"lg"}>
             <Card.Section className={classes.home__card_header}>
               <Text fw={700} size={"xl"}>
                 {" "}
@@ -222,7 +215,7 @@ const Home = () => {
           className={classes.home__airingContainer}
           span={{ base: 12, md: 4 }}
         >
-          <Card className={classes.home__airing} p={32} radius={"lg"}>
+          <Card className={classes.home__airing} h={350} p={32} radius={"lg"}>
             <Card.Section
               className={classes.home__airingHeader}
               display={"flex"}
@@ -230,17 +223,9 @@ const Home = () => {
               <Text className={classes.home__airingTitle} fw={700} size={"xl"}>
                 Top Airing Anime
               </Text>
-              <ActionIcon
-                aria-expanded={expanded}
-                aria-label="show more"
-                onClick={handleExpandClick}
-                ml={10}
-              >
-                <IconCaretDown />
-              </ActionIcon>
             </Card.Section>
 
-            <ScrollArea className={classes.home__airingEntryContent} h={250}>
+            <ScrollArea className={classes.home__airingEntryContent}>
               {topAiringAnimeToShow.map((anime, index) => (
                 <div
                   key={index}
