@@ -169,7 +169,7 @@ const Home = () => {
           className={classes.home__scheduleContainer}
           span={{ base: 12, md: 4 }}
         >
-          <Card className={classes.home__schedule}>
+          <Card className={classes.home__schedule} radius={"lg"}>
             <Card.Section
               className={classes.home__card_header}
               title="Daily Schedule"
@@ -217,7 +217,7 @@ const Home = () => {
           className={classes.home__airingContainer}
           span={{ base: 12, md: 4 }}
         >
-          <Card className={classes.home__airing}>
+          <Card className={classes.home__airing} radius={"lg"}>
             <Text
               className={classes.home__airingHeader}
               title="Top Airing Anime"
@@ -259,7 +259,7 @@ const Home = () => {
           className={classes.home__seasonalContainer}
           span={{ base: 12, md: 6 }}
         >
-          <Card className={classes.home__seasonal}>
+          <Card className={classes.home__seasonal} radius={"lg"}>
             <Card.Section mb={10}> Anime Airing This Season</Card.Section>
 
             <div

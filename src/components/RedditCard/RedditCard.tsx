@@ -10,9 +10,11 @@ const RedditCard = () => {
 
   interface RedditPost {
     id: string;
+    permalink: string;
+    score: number;
     title: string;
     url: string;
-    score: number;
+
     // add other fields you need from the post
   }
 
@@ -26,9 +28,10 @@ const RedditCard = () => {
 
         const redditPosts = postsResults.data.children.map((post: any) => ({
           id: post.data.id,
+          permalink: "https://www.reddit.com" + post.data.permalink,
+          score: post.data.score,
           title: post.data.title,
           url: post.data.url,
-          score: post.data.score,
         }));
 
         setTopPosts(redditPosts);
@@ -74,7 +77,7 @@ const RedditCard = () => {
       {loading ? (
         <Text>Loading...</Text>
       ) : (
-        <Card className={classes.redditCard} display={"flex"}>
+        <Card className={classes.redditCard} display={"flex"} radius={"md"}>
           <Card.Section>
             <Text className={classes.redditCard__header} fw={900} size={"xl"}>
               Top Reddit Posts{" "}
@@ -85,7 +88,7 @@ const RedditCard = () => {
             <Anchor
               bd={"1px solid"}
               className={classes.redditCard__entry}
-              href={post.url}
+              href={post.permalink}
               my={10}
               mx={20}
               p={8}
