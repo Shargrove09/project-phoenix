@@ -66,7 +66,7 @@ const RedditCard = () => {
         <img
           src="https://www.redditinc.com/assets/images/site/reddit-logo.png"
           alt="Reddit Placeholder"
-          style={{ maxWidth: "8%", height: "auto", marginRight: "12px" }}
+          style={{ maxWidth: "8%", height: "auto", marginRight: "2px" }}
         />
       );
     }
@@ -79,7 +79,7 @@ const RedditCard = () => {
       ) : (
         <Card className={classes.redditCard} display={"flex"} radius={"md"}>
           <Card.Section>
-            <Text className={classes.redditCard__header} fw={900} size={"xl"}>
+            <Text className={classes.redditCard__header} fw={700} size={"xl"}>
               Top Reddit Posts{" "}
             </Text>
           </Card.Section>
@@ -96,13 +96,15 @@ const RedditCard = () => {
               target="_blank"
               truncate={"end"}
             >
-              <Group display={"flex"} key={post.id}>
+              <Group display={"flex"} key={post.id} mr={0}>
                 {renderImage(post)}
                 <Text w={"70%"} truncate={"end"}>
                   {post.title}
                 </Text>
-                <Text>{post.score}</Text>
-                <IconArrowUp />
+                <div style={{ display: "flex" }}>
+                  <Text>{post.score}</Text>
+                  <IconArrowUp />
+                </div>
               </Group>
             </Anchor>
           ))}

@@ -1,13 +1,9 @@
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
-
-import { CardContent, IconButton, Typography } from "@mui/material";
-
 import { Grid, Card, Text, TextInput, ActionIcon } from "@mantine/core";
 import { IconSearch, IconCaretDown } from "@tabler/icons-react";
 import { Anime } from "../common/Anime";
-
 import RedditCard from "../components/RedditCard/RedditCard";
 import ShowCalendar from "../components/ShowCalendar/ShowSchedule";
 import SeasonalCarousel from "../components/SeasonalCarousel/SeasonalCarousel";
@@ -170,10 +166,12 @@ const Home = () => {
           span={{ base: 12, md: 4 }}
         >
           <Card className={classes.home__schedule} radius={"lg"}>
-            <Card.Section
-              className={classes.home__card_header}
-              title="Daily Schedule"
-            />
+            <Card.Section className={classes.home__card_header}>
+              <Text fw={700} size={"xl"}>
+                {" "}
+                Simulcast Schedule
+              </Text>
+            </Card.Section>
             <ShowCalendar onDateSelect={handleDateSelect} />{" "}
             {/* Display the shows for the selected date */}
             {selectedDateShows.map((show) => (
@@ -217,20 +215,25 @@ const Home = () => {
           className={classes.home__airingContainer}
           span={{ base: 12, md: 4 }}
         >
-          <Card className={classes.home__airing} radius={"lg"}>
-            <Text
+          <Card className={classes.home__airing} p={32} radius={"lg"}>
+            <Card.Section
               className={classes.home__airingHeader}
-              title="Top Airing Anime"
+              display={"flex"}
             >
+              <Text className={classes.home__airingTitle} fw={700} size={"xl"}>
+                Top Airing Anime
+              </Text>
               <ActionIcon
-                onClick={handleExpandClick}
                 aria-expanded={expanded}
                 aria-label="show more"
+                onClick={handleExpandClick}
+                ml={10}
               >
                 <IconCaretDown />
               </ActionIcon>
-            </Text>
-            <CardContent className={classes.home__airingEntryContent}>
+            </Card.Section>
+
+            <div className={classes.home__airingEntryContent}>
               {topAiringAnimeToShow.map((anime, index) => (
                 <div
                   key={index}
@@ -245,7 +248,7 @@ const Home = () => {
                   <strong>{anime.title}</strong>
                 </div>
               ))}
-            </CardContent>
+            </div>
           </Card>
         </Grid.Col>
       </Grid>
@@ -260,7 +263,12 @@ const Home = () => {
           span={{ base: 12, md: 6 }}
         >
           <Card className={classes.home__seasonal} radius={"lg"}>
-            <Card.Section mb={10}> Anime Airing This Season</Card.Section>
+            <Card.Section mb={10}>
+              {" "}
+              <Text fw={700} size={"xl"}>
+                Anime Airing This Season
+              </Text>
+            </Card.Section>
 
             <div
               className={
@@ -270,7 +278,7 @@ const Home = () => {
             />
             <div className={classes.home__seasonalEntryContent}>
               {isAiringShowsLoading ? (
-                <Typography>Loading...</Typography>
+                <Text>Loading...</Text>
               ) : (
                 <SeasonalCarousel animeList={carouselShows} />
               )}
