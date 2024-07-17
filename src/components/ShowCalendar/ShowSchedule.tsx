@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { DateInput } from "@mantine/dates";
+import { DatePickerInput } from "@mantine/dates";
 
-import "./ShowSchedule.scss";
+import "@mantine/dates/styles.css";
+
+import classes from "./ShowSchedule.module.scss";
 
 interface Props {
   onDateSelect: (selectedDate: Date) => void;
@@ -19,15 +21,15 @@ const ShowSchedule = (props: Props) => {
 
   return (
     <>
-      <DateInput
-        className="showSchedule"
-        value={value}
+      <DatePickerInput
+        className={classes.showSchedule}
+        hideOutsideDates
         onChange={(selectedDate: Date | null) =>
           handleDateSelect(selectedDate as Date)
         }
-        label=""
-        placeholder="Select a day to view shows scheduled to air "
-        hideOutsideDates
+        value={value}
+        labelProps={{ ta: "center" }}
+        style={{ textAlign: "center" }}
       />
     </>
   );

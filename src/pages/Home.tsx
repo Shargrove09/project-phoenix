@@ -174,17 +174,21 @@ const Home = () => {
             </Card.Section>
             <ShowCalendar onDateSelect={handleDateSelect} />{" "}
             {/* Display the shows for the selected date */}
-            {selectedDateShows.map((show) => (
-              <div
-                className={classes.home__scheduledShows}
-                key={show.title}
-                onClick={() => {
-                  handleAiringShowEntryClick(show);
-                }}
-              >
-                {show.title} - {show.broadcast.string}
-              </div>
-            ))}
+            <ScrollArea>
+              {selectedDateShows
+                ? selectedDateShows.map((show) => (
+                    <div
+                      className={classes.home__scheduledShows}
+                      key={show.title}
+                      onClick={() => {
+                        handleAiringShowEntryClick(show);
+                      }}
+                    >
+                      {show.title} - {show.broadcast.string}
+                    </div>
+                  ))
+                : " No Shows "}
+            </ScrollArea>
           </Card>
         </Grid.Col>
         <Grid.Col
