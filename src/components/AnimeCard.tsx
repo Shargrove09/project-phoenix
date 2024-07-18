@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 // Old way
 // import { SearchContext } from "../context/useSearchContext";
 import { useSearchContext } from "../context/useSearchContext";
-import { Link, ImageListItem } from "@mui/material";
-import { Card, Text } from "@mantine/core";
+import { ImageListItem } from "@mui/material";
+import { Card, NavLink, Text } from "@mantine/core";
 
 import classes from "./AnimeCard.module.scss";
 
@@ -47,29 +47,27 @@ const AnimeCard = (props: any) => {
 
   // container item takes up only as much space as it needs and no more
   return (
-    <ImageListItem className="animeCard__container">
-      <Card className="animeCard__card">
-        <div className="animeCard__img_container">
-          <img className="animeCard__img" src={imageUrl} alt={title} />
-        </div>
-        <Text variant="h5" component="h3" className="animeCard__title">
-          {" "}
-          {/* component uses render of h2 (in this case) with size of h5 Takes h2 but turns into h5 */}
-          {title}
-        </Text>
-        <Text variant="body2" component="h2" className="animeCard__synopsis">
-          {synopsis}
-        </Text>
-        <Link
-          component="button"
-          variant="body1"
-          style={{ marginBottom: 0 }}
-          onClick={onClickHandler2}
-        >
-          Learn More
-        </Link>
-      </Card>
-    </ImageListItem>
+    <Card className="animeCard__card">
+      <div className="animeCard__img_container">
+        <img className="animeCard__img" src={imageUrl} alt={title} />
+      </div>
+      <Text variant="h5" component="h3" className="animeCard__title">
+        {" "}
+        {/* component uses render of h2 (in this case) with size of h5 Takes h2 but turns into h5 */}
+        {title}
+      </Text>
+      <Text variant="body2" component="h2" className="animeCard__synopsis">
+        {synopsis}
+      </Text>
+      <NavLink
+        component="button"
+        variant="body1"
+        style={{ marginBottom: 0 }}
+        onClick={onClickHandler2}
+      >
+        Learn More
+      </NavLink>
+    </Card>
   );
 };
 
