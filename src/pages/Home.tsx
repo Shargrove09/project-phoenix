@@ -204,7 +204,7 @@ const Home = () => {
           >
             Project Phoenix
           </Text>
-          <form className={classes.home__form}>
+          <form className={classes.home__form} onSubmit={handleAnimeSearch}>
             <TextInput
               autoFocus={true}
               className={classes.home__input}
