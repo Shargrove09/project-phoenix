@@ -1,11 +1,11 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 // Old way
 // import { SearchContext } from "../context/useSearchContext";
 import { useSearchContext } from "../context/useSearchContext";
-import { Typography, Link, Card, ImageListItem, Grid } from "@mui/material";
+import { Link, ImageListItem } from "@mui/material";
+import { Card, Text } from "@mantine/core";
 
-import "./AnimeCard.scss";
+import classes from "./AnimeCard.module.scss";
 
 const AnimeCard = (props: any) => {
   const navigate = useNavigate();
@@ -48,37 +48,27 @@ const AnimeCard = (props: any) => {
   // container item takes up only as much space as it needs and no more
   return (
     <ImageListItem className="animeCard__container">
-      <Grid container item xs={12}>
-        <Card
-          style={{ backgroundColor: "#424242" }}
-          className="animeCard__card"
+      <Card className="animeCard__card">
+        <div className="animeCard__img_container">
+          <img className="animeCard__img" src={imageUrl} alt={title} />
+        </div>
+        <Text variant="h5" component="h3" className="animeCard__title">
+          {" "}
+          {/* component uses render of h2 (in this case) with size of h5 Takes h2 but turns into h5 */}
+          {title}
+        </Text>
+        <Text variant="body2" component="h2" className="animeCard__synopsis">
+          {synopsis}
+        </Text>
+        <Link
+          component="button"
+          variant="body1"
+          style={{ marginBottom: 0 }}
+          onClick={onClickHandler2}
         >
-          <div className="animeCard__img_container">
-            <img className="animeCard__img" src={imageUrl} alt={title} />
-          </div>
-          <Typography variant="h5" component="h3" className="animeCard__title">
-            {" "}
-            {/* component uses render of h2 (in this case) with size of h5 Takes h2 but turns into h5 */}
-            {title}
-          </Typography>
-          <Typography
-            variant="body2"
-            component="h2"
-            paragraph={true}
-            className="animeCard__synopsis"
-          >
-            {synopsis}
-          </Typography>
-          <Link
-            component="button"
-            variant="body1"
-            style={{ marginBottom: 0 }}
-            onClick={onClickHandler2}
-          >
-            Learn More
-          </Link>
-        </Card>
-      </Grid>
+          Learn More
+        </Link>
+      </Card>
     </ImageListItem>
   );
 };

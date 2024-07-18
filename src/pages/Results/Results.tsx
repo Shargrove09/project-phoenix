@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AnimeList from "../../components/AnimeList";
 import { useSearchContext } from "../../context/useSearchContext"; //Wrap imports in curly braces when they aren't default exports
-import { Box } from "@mui/material";
+import { Box, Text } from "@mantine/core";
 import ResultsViewSwitch from "../../components/ToggleSwitch/ToggleSwitch";
-import Typography from "@mui/material/Typography";
-import "./Results.scss";
 import ListView from "../../components/ListView/ListView";
+
+import classes from "./Results.module.scss";
 
 const Results = () => {
   const { animeData, setAnimeData, searchTerm } = useSearchContext();
-  console.log("Anime Data: ", animeData)
+  console.log("Anime Data: ", animeData);
 
   const [resultsExists, setResultsExists] = useState(true);
 
@@ -31,16 +31,12 @@ const Results = () => {
   }, []);
 
   return (
-    <Box
-      className="results__content"
-      mt={2}
-      sx={{ justifyContent: "center", display: "flex" }}
-    >
-      <div className="results__searchResults_header">
-        <Typography variant="h5" component={"h2"}>
+    <Box className={classes.results__content} pt={20}>
+      <div className={classes.results__searchResults_header}>
+        <Text component={"h2"} variant="h5">
           Search Results for: '{searchTerm}'
-        </Typography>
-        <div className="results__viewpill">
+        </Text>
+        <div className={classes.results__viewpill}>
           <ResultsViewSwitch
             setShowDetailedView={setShowDetailedView}
             showDetailedView={showDetailedView}

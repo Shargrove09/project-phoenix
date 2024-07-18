@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
+import { CardActions, CardContent, CardMedia } from "@mui/material";
 import { styled } from "@mui/material/styles";
+
+import { ActionIcon, Box, Card } from "@mantine/core";
 
 import Typography from "@mui/material/Typography";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
@@ -15,7 +17,7 @@ import Collapse from "@mui/material/Collapse";
 import { useSearchContext } from "../../context/useSearchContext";
 import { useNavigate } from "react-router-dom";
 
-import "./DetailedAnimeCard.scss";
+import classes from "./DetailedAnimeCard.module.scss";
 
 interface Props {
   animeData: Anime;
@@ -62,27 +64,23 @@ const DetailedAnimeCard = (props: Props) => {
   };
 
   return (
-    <Card
-      sx={{ backgroundColor: "#424242", marginBottom: "10px" }}
-      className="dcard__container"
-      onClick={handleExpandClick}
-    >
-      <div className="dcard__header">
+    <Card className={classes.dcard__container} onClick={handleExpandClick}>
+      <div className={classes.dcard__header}>
         <Typography
-          className="dcard__header_text"
+          className={classes.dcard__header_text}
           sx={{ margin: "10px", fontWeight: 600, fontStyle: "italic" }}
           variant="h5"
         >
           {animeData.title}
         </Typography>
-        <CardActions className="dcard__actions">
-          <IconButton aria-label="more-info" onClick={handleInfoButtonClick}>
+        <Card.Section className="dcard__actions">
+          <ActionIcon aria-label="more-info" onClick={handleInfoButtonClick}>
             <InfoIcon />
-          </IconButton>
+          </ActionIcon>
 
-          <IconButton aria-label="share" onClick={handleShareBtnClick}>
+          <ActionIcon aria-label="share" onClick={handleShareBtnClick}>
             <ShareIcon />
-          </IconButton>
+          </ActionIcon>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -91,7 +89,7 @@ const DetailedAnimeCard = (props: Props) => {
           >
             <ExpandMoreIcon />
           </ExpandMore>
-        </CardActions>
+        </Card.Section>
       </div>
 
       <CardContent className="dcard__content">
