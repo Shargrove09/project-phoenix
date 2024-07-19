@@ -9,7 +9,6 @@ import classes from "./Results.module.scss";
 
 const Results = () => {
   const { animeData, setAnimeData, searchTerm } = useSearchContext();
-  console.log("Anime Data: ", animeData);
 
   const [resultsExists, setResultsExists] = useState(true);
 
@@ -31,18 +30,16 @@ const Results = () => {
   }, []);
 
   return (
-    <Box className={classes.results__content} pt={20}>
-      <div className={classes.results__searchResults_header}>
+    <Box className={classes.results__content}>
+      <Box className={classes.results__searchResults_header} py={40}>
         <Text component={"h2"} variant="h5">
           Search Results for: '{searchTerm}'
         </Text>
-        <div className={classes.results__viewpill}>
-          <ResultsViewSwitch
-            setShowDetailedView={setShowDetailedView}
-            showDetailedView={showDetailedView}
-          />
-        </div>
-      </div>
+        <ResultsViewSwitch
+          setShowDetailedView={setShowDetailedView}
+          showDetailedView={showDetailedView}
+        />
+      </Box>
 
       {(resultsExists && !showDetailedView && (
         <AnimeList data={animeData} />
