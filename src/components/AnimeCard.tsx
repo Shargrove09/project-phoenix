@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 // Old way
 // import { SearchContext } from "../context/useSearchContext";
 import { useSearchContext } from "../context/useSearchContext";
-import { ImageListItem } from "@mui/material";
 import { Card, NavLink, Text } from "@mantine/core";
 
 import classes from "./AnimeCard.module.scss";
@@ -10,20 +9,7 @@ import classes from "./AnimeCard.module.scss";
 const AnimeCard = (props: any) => {
   const navigate = useNavigate();
 
-  // Old Way
-  // const search = useContext(SearchContext);
-
   const { setSingle, searchById } = useSearchContext();
-
-  const onClickHandler = () => {
-    fetch(`https://api.jikan.moe/v4/anime/${props.anime.mal_id}/full`)
-      .then((response) => response.json())
-      .then((data) => {
-        setSingle(data);
-        localStorage.setItem("singleData", JSON.stringify(data));
-        navigate("/single-view");
-      });
-  };
 
   const onClickHandler2 = () => {
     searchById(props.anime.mal_id).then((anime: any) => {
@@ -33,13 +19,17 @@ const AnimeCard = (props: any) => {
     });
   };
 
+  // TODO: Prob can just use text truncation
   const title =
     props.anime.title.length > 15
       ? `${props.anime.title.substring(0, 15)}...`
       : props.anime.title;
+
   const imageUrl = props.anime.images.jpg.image_url;
 
-  const synopsisDef = props.anime.synopsis || "No Synopsis"; // Default to No Synopsis if anime doesn't have a synopsis
+  // Default to No Synopsis if anime doesn't have a synopsis
+  const synopsisDef = props.anime.synopsis || "No Synopsis Available";
+
   const synopsis =
     synopsisDef.length > 30
       ? `${synopsisDef.substring(0, 30)}...`
@@ -47,16 +37,20 @@ const AnimeCard = (props: any) => {
 
   // container item takes up only as much space as it needs and no more
   return (
-    <Card className="animeCard__card">
-      <div className="animeCard__img_container">
-        <img className="animeCard__img" src={imageUrl} alt={title} />
+    <Card className={classes.animeCard}>
+      <div className={classes.animeCard__img_container}>
+        <img className={classes.animeCard__img} src={imageUrl} alt={title} />
       </div>
-      <Text variant="h5" component="h3" className="animeCard__title">
+      <Text variant="h5" component="h3" className={classes.animeCard__title}>
         {" "}
         {/* component uses render of h2 (in this case) with size of h5 Takes h2 but turns into h5 */}
         {title}
       </Text>
-      <Text variant="body2" component="h2" className="animeCard__synopsis">
+      <Text
+        variant="body2"
+        component="h2"
+        className={classes.animeCard__synopsis}
+      >
         {synopsis}
       </Text>
       <NavLink
