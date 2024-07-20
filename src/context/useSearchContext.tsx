@@ -20,6 +20,7 @@ interface SearchContextValue {
   search: (searchterm: any) => Promise<any>;
   searchById: (searchId: any) => Promise<any>;
   searchTerm: string;
+  setSearchTerm: (searchTerm: string) => void;
   setSingle: (data: any) => void;
   setAnimeData: React.Dispatch<React.SetStateAction<Anime[]>>;
 }
@@ -34,6 +35,7 @@ const SearchContext = createContext<SearchContextValue>({
   search: async (searchTerm) => ({}),
   searchById: async (searchId) => ({}),
   searchTerm: "",
+  setSearchTerm: (searchTerm) => {},
   setSingle: (data) => {},
   setAnimeData: () => {},
 });
@@ -54,6 +56,8 @@ export const SearchProvider: React.FC<Props> = ({ children }) => {
       `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=20&sfw`
     );
     setSearchTerm(searchTerm);
+    localStorage.setItem("singleData", JSON.stringify(searchTerm));
+    localStorage.setItem("lastSearchTerm", JSON.stringify(searchTerm));
     return await response.json();
   };
 
@@ -71,7 +75,10 @@ export const SearchProvider: React.FC<Props> = ({ children }) => {
         singleData: singleData || null,
         search,
         searchById,
-        setAnimeData: setAnimeData as React.Dispatch<React.SetStateAction<never[] | Anime[]>>,
+        setAnimeData: setAnimeData as React.Dispatch<
+          React.SetStateAction<never[] | Anime[]>
+        >,
+        setSearchTerm,
         setSingle,
         searchTerm,
       }}

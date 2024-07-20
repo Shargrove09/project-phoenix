@@ -8,7 +8,8 @@ import ListView from "../../components/ListView/ListView";
 import classes from "./Results.module.scss";
 
 const Results = () => {
-  const { animeData, setAnimeData, searchTerm } = useSearchContext();
+  const { animeData, setAnimeData, setSearchTerm, searchTerm } =
+    useSearchContext();
 
   const [resultsExists, setResultsExists] = useState(true);
 
@@ -19,8 +20,13 @@ const Results = () => {
     if (animeData === undefined || animeData.length === 0) {
       try {
         const storedData = localStorage.getItem("animeSearchResultData");
+        const lastSearchTerm = localStorage.getItem("lastSearchTerm");
         const parsedData = storedData ? JSON.parse(storedData) : [];
+        const parsedSearchTerm = lastSearchTerm
+          ? JSON.parse(lastSearchTerm)
+          : "Oops";
         setAnimeData(parsedData);
+        setSearchTerm(parsedSearchTerm);
         setResultsExists(true);
       } catch (error) {
         console.error("Error occured in Results", error);
