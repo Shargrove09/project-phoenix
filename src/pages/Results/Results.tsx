@@ -29,6 +29,8 @@ const Results = () => {
     }
   }, []);
 
+  console.log("Search Term: ", searchTerm);
+
   return (
     <Box className={classes.results__content}>
       <Box className={classes.results__searchResults_header} py={40}>

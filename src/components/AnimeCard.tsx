@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
-// Old way
-// import { SearchContext } from "../context/useSearchContext";
 import { useSearchContext } from "../context/useSearchContext";
-import { ActionIcon, Box, Card, Text } from "@mantine/core";
+import { ActionIcon, Box, Card, Image, Text } from "@mantine/core";
 import { IconCaretRight } from "@tabler/icons-react";
 
 import classes from "./AnimeCard.module.scss";
@@ -20,12 +18,6 @@ const AnimeCard = (props: any) => {
     });
   };
 
-  // TODO: Prob can just use text truncation
-  // const title =
-  //   props.anime.title.length > 15
-  //     ? `${props.anime.title.substring(0, 15)}...`
-  //     : props.anime.title;
-
   const title = props.anime.title;
 
   const imageUrl = props.anime.images.jpg.image_url;
@@ -41,8 +33,22 @@ const AnimeCard = (props: any) => {
   // container item takes up only as much space as it needs and no more
   return (
     <Card className={classes.animeCard}>
-      <Card.Section className={classes.animeCard__img_container} pt={10}>
-        <img className={classes.animeCard__img} src={imageUrl} alt={title} />
+      {/* 321 is the default height of MAL image */}
+      <Card.Section
+        className={classes.animeCard__img_container}
+        h={340}
+        w={225}
+        pt={10}
+        m={"auto"}
+      >
+        <Image
+          className={classes.animeCard__img}
+          w="auto"
+          mah={321}
+          fit="contain"
+          src={imageUrl}
+          alt={title}
+        />
       </Card.Section>
       <Box display={"flex"} className={classes.animeCard__info}>
         <Text
