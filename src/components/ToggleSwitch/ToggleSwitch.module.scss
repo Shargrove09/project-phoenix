@@ -1,0 +1,13 @@
+.toggleSwitch__mobile {
+  @media (min-width: em(750px)) {
+    display: none;
+  }
+}
+
+.toggleSwitch__desktop {
+  display: none;
+
+  @media (min-width: em(750px)) {
+    display: block;
+  }
+}

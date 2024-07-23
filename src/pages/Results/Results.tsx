@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import AnimeList from "../../components/AnimeList";
 import { useSearchContext } from "../../context/useSearchContext"; //Wrap imports in curly braces when they aren't default exports
-import { Box, Text } from "@mantine/core";
+import { Avatar, Box, HoverCard, Text } from "@mantine/core";
 import ResultsViewSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 import ListView from "../../components/ListView/ListView";
 
 import classes from "./Results.module.scss";
+import { IconInfoCircle } from "@tabler/icons-react";
 
 const Results = () => {
   const { animeData, setAnimeData, setSearchTerm, searchTerm } =
@@ -39,14 +40,34 @@ const Results = () => {
 
   return (
     <Box className={classes.results__content}>
-      <Box className={classes.results__searchResults_header} py={40}>
-        <Text component={"h2"} variant="h5">
+      <Box className={classes.results__searchResultsHeader} py={40}>
+        <Text fw={700} size="xl">
           Search Results for: '{searchTerm}'
         </Text>
-        <ResultsViewSwitch
-          setShowDetailedView={setShowDetailedView}
-          showDetailedView={showDetailedView}
-        />
+        <Box
+          className={classes.results__viewpillContainer}
+          mb={20}
+          top={"3rem"}
+          pos={"absolute"}
+          right={{ md: "5rem" }}
+        >
+          <ResultsViewSwitch
+            setShowDetailedView={setShowDetailedView}
+            showDetailedView={showDetailedView}
+          />
+          <HoverCard>
+            <HoverCard.Target>
+              <Avatar size={"sm"} ml={10}>
+                <IconInfoCircle />
+              </Avatar>
+            </HoverCard.Target>
+            <HoverCard.Dropdown>
+              <Box>
+                <Text> Toggle between list and grid view</Text>
+              </Box>
+            </HoverCard.Dropdown>
+          </HoverCard>
+        </Box>
       </Box>
 
       {(resultsExists && !showDetailedView && (
