@@ -1,19 +1,8 @@
-import React, { useState } from "react";
-
-import { CardActions, CardContent, CardMedia } from "@mui/material";
-import { styled } from "@mui/material/styles";
-
-import { ActionIcon, Box, Card } from "@mantine/core";
-
-import Typography from "@mui/material/Typography";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-
+import { useState } from "react";
+import { ActionIcon, Box, Card, Image, Text } from "@mantine/core";
 import { Anime } from "../../common/Anime";
-
 import ShareIcon from "@mui/icons-material/Share";
 import InfoIcon from "@mui/icons-material/Info";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Collapse from "@mui/material/Collapse";
 import { useSearchContext } from "../../context/useSearchContext";
 import { useNavigate } from "react-router-dom";
 
@@ -22,21 +11,6 @@ import classes from "./DetailedAnimeCard.module.scss";
 interface Props {
   animeData: Anime;
 }
-
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
 
 const DetailedAnimeCard = (props: Props) => {
   const { animeData } = props;
@@ -65,15 +39,16 @@ const DetailedAnimeCard = (props: Props) => {
 
   return (
     <Card className={classes.dcard__container} onClick={handleExpandClick}>
-      <div className={classes.dcard__header}>
-        <Typography
-          className={classes.dcard__header_text}
-          sx={{ margin: "10px", fontWeight: 600, fontStyle: "italic" }}
-          variant="h5"
+      <Card.Section className={classes.dcard__header} display={"flex"}>
+        <Text
+          className={classes.dcard__headerText}
+          fw={700}
+          pl={10}
+          size={"lg"}
         >
           {animeData.title}
-        </Typography>
-        <Card.Section className="dcard__actions">
+        </Text>
+        <div>
           <ActionIcon aria-label="more-info" onClick={handleInfoButtonClick}>
             <InfoIcon />
           </ActionIcon>
@@ -81,32 +56,22 @@ const DetailedAnimeCard = (props: Props) => {
           <ActionIcon aria-label="share" onClick={handleShareBtnClick}>
             <ShareIcon />
           </ActionIcon>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more info"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
-        </Card.Section>
-      </div>
+        </div>
+      </Card.Section>
 
-      <CardContent className="dcard__content">
-        <CardMedia
-          sx={{ height: 120, minWidth: 84 }}
-          image={animeData.images.jpg.image_url}
-          title={`${animeData.title}_cover_picture`}
+      <Box className="dcard__content" display={"flex"} h={"50%"}>
+        <Image
           className="dcard__card_media"
+          src={animeData.images.jpg.image_url}
+          w={"auto"}
+          mah={{ base: 160, md: 321 }}
+          title={`${animeData.title}_cover_picture`}
         />
-        <Typography align="inherit" sx={{ color: "white" }}>
+        <Text mah={200} ml={20} lineClamp={4} truncate={"end"}>
           {" "}
           {animeData.synopsis}
-        </Typography>
-      </CardContent>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <div>More info coming soon</div>
-      </Collapse>
+        </Text>
+      </Box>
     </Card>
   );
 };
