@@ -21,10 +21,13 @@
 
 
 
-.dcard__content { 
-  display: flex; 
-  align-items: center;    
-   
+.dcard__headerActionsContainer {   
+  justify-content: space-around;
+}
+
+.dcard__text { 
+  overflow: hidden;
+  max-height: 50%; 
 }
 
 .dcard__actions { 

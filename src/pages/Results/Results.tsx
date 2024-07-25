@@ -41,8 +41,8 @@ const Results = () => {
   return (
     <Box className={classes.results__content}>
       <Box className={classes.results__searchResultsHeader} py={40}>
-        <Text fw={700} size="xl">
-          Search Results for: '{searchTerm}'
+        <Text fw={700} size="lg">
+          Results for: '{searchTerm}'
         </Text>
         <Box
           className={classes.results__viewpillContainer}

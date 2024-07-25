@@ -38,39 +38,60 @@ const DetailedAnimeCard = (props: Props) => {
   };
 
   return (
-    <Card className={classes.dcard__container} onClick={handleExpandClick}>
-      <Card.Section className={classes.dcard__header} display={"flex"}>
+    <Card
+      className={classes.dcard__container}
+      onClick={handleExpandClick}
+      h={300}
+      p={16}
+      pt={8}
+    >
+      <Box
+        className={classes.dcard__header}
+        display={"flex"}
+        h={"20%"}
+        mb={10}
+        mt={4}
+      >
         <Text
           className={classes.dcard__headerText}
           fw={700}
-          pl={10}
-          size={"lg"}
+          pl={4}
+          size={"md"}
+          truncate={"end"}
         >
           {animeData.title}
         </Text>
-        <div>
-          <ActionIcon aria-label="more-info" onClick={handleInfoButtonClick}>
-            <InfoIcon />
-          </ActionIcon>
+      </Box>
 
-          <ActionIcon aria-label="share" onClick={handleShareBtnClick}>
-            <ShareIcon />
-          </ActionIcon>
-        </div>
-      </Card.Section>
-
-      <Box className="dcard__content" display={"flex"} h={"50%"}>
+      <Box className={classes.dcard__content} display={"flex"} h={"90%"}>
         <Image
+          mah={{ base: 160, md: 321 }}
           className="dcard__card_media"
           src={animeData.images.jpg.image_url}
-          w={"auto"}
-          mah={{ base: 160, md: 321 }}
           title={`${animeData.title}_cover_picture`}
+          w={"auto"}
         />
-        <Text mah={200} ml={20} lineClamp={4} truncate={"end"}>
+        <Text className={classes.dcard__text} ml={20} lineClamp={6}>
           {" "}
           {animeData.synopsis}
         </Text>
+      </Box>
+      <Box className={classes.dcard__headerActionsContainer} display={"flex"}>
+        <ActionIcon
+          aria-label="more-info"
+          onClick={handleInfoButtonClick}
+          size={"md"}
+        >
+          <InfoIcon />
+        </ActionIcon>
+
+        <ActionIcon
+          aria-label="share"
+          onClick={handleShareBtnClick}
+          size={"md"}
+        >
+          <ShareIcon />
+        </ActionIcon>
       </Box>
     </Card>
   );
