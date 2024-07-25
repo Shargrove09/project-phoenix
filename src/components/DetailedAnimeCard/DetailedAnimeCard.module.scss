@@ -17,21 +17,26 @@
   height: 10%; 
   display: flex; 
   justify-content: space-between;
+
+  &:hover { 
+    text-decoration: underline;
+  }
+
 }
 
 
 
 .dcard__headerActionsContainer {   
+  position: absolute;
+  left: 16px;
+  bottom: 0px;
   justify-content: space-around;
-}
-
-.dcard__text { 
-  overflow: hidden;
-  max-height: 50%; 
 }
 
 .dcard__actions { 
   right: 0; 
   z-index: 3;
+  bottom: 0px;
+
 }
 

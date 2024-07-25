@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ActionIcon, Box, Card, Image, Text } from "@mantine/core";
+import { ActionIcon, Box, Card, Image, ScrollArea, Text } from "@mantine/core";
 import { Anime } from "../../common/Anime";
 import ShareIcon from "@mui/icons-material/Share";
 import InfoIcon from "@mui/icons-material/Info";
@@ -48,7 +48,7 @@ const DetailedAnimeCard = (props: Props) => {
       <Box
         className={classes.dcard__header}
         display={"flex"}
-        h={"20%"}
+        h={"10%"}
         mb={10}
         mt={4}
       >
@@ -63,7 +63,7 @@ const DetailedAnimeCard = (props: Props) => {
         </Text>
       </Box>
 
-      <Box className={classes.dcard__content} display={"flex"} h={"90%"}>
+      <Box className={classes.dcard__content} display={"flex"} h={"75%"}>
         <Image
           mah={{ base: 160, md: 321 }}
           className="dcard__card_media"
@@ -71,14 +71,20 @@ const DetailedAnimeCard = (props: Props) => {
           title={`${animeData.title}_cover_picture`}
           w={"auto"}
         />
-        <Text className={classes.dcard__text} ml={20} lineClamp={6}>
+        <Text className={classes.dcard__text} lineClamp={8} ml={20} mb={10}>
           {" "}
           {animeData.synopsis}
         </Text>
       </Box>
-      <Box className={classes.dcard__headerActionsContainer} display={"flex"}>
+      <Box
+        className={classes.dcard__headerActionsContainer}
+        display={"flex"}
+        h={"15%"}
+        pt={8}
+      >
         <ActionIcon
           aria-label="more-info"
+          className="dcard__action"
           onClick={handleInfoButtonClick}
           size={"md"}
         >
@@ -88,6 +94,7 @@ const DetailedAnimeCard = (props: Props) => {
         <ActionIcon
           aria-label="share"
           onClick={handleShareBtnClick}
+          ml={10}
           size={"md"}
         >
           <ShareIcon />
