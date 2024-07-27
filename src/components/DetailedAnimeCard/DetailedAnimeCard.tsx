@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { ActionIcon, Box, Card, Image, ScrollArea, Text } from "@mantine/core";
+import { ActionIcon, Box, Card, Image, Text } from "@mantine/core";
 import { Anime } from "../../common/Anime";
 import ShareIcon from "@mui/icons-material/Share";
 import InfoIcon from "@mui/icons-material/Info";
@@ -14,22 +13,15 @@ interface Props {
 
 const DetailedAnimeCard = (props: Props) => {
   const { animeData } = props;
-  const [expanded, setExpanded] = useState(false);
-  const { setSingle } = useSearchContext();
+  const { searchById, setSingle } = useSearchContext();
   const navigate = useNavigate();
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   const handleInfoButtonClick = () => {
-    fetch(`https://api.jikan.moe/v4/anime/${animeData.mal_id}/full`)
-      .then((response) => response.json())
-      .then((data) => {
-        setSingle(data);
-        localStorage.setItem("singleData", JSON.stringify(data));
-        navigate("/single-view");
-      });
+    searchById(props.animeData.mal_id).then((anime: any) => {
+      setSingle(anime.data);
+      localStorage.setItem("singleData", JSON.stringify(anime.data));
+      navigate("/single-view");
+    });
   };
 
   const handleShareBtnClick = () => {
@@ -38,13 +30,7 @@ const DetailedAnimeCard = (props: Props) => {
   };
 
   return (
-    <Card
-      className={classes.dcard__container}
-      onClick={handleExpandClick}
-      h={300}
-      p={16}
-      pt={8}
-    >
+    <Card className={classes.dcard__container} h={300} p={16} pt={8}>
       <Box
         className={classes.dcard__header}
         display={"flex"}
@@ -65,13 +51,13 @@ const DetailedAnimeCard = (props: Props) => {
 
       <Box className={classes.dcard__content} display={"flex"} h={"75%"}>
         <Image
-          mah={{ base: 160, md: 321 }}
           className="dcard__card_media"
+          mah={{ base: 160, md: 321 }}
           src={animeData.images.jpg.image_url}
           title={`${animeData.title}_cover_picture`}
           w={"auto"}
         />
-        <Text className={classes.dcard__text} lineClamp={8} ml={20} mb={10}>
+        <Text className={classes.dcard__text} lineClamp={8} mb={10} ml={20}>
           {" "}
           {animeData.synopsis}
         </Text>
