@@ -1,9 +1,6 @@
-import React from "react";
-import { Anime } from "../../common/Anime";
-import { Typography } from "@mui/material";
+import { Text } from "@mantine/core";
 import { useSearchContext } from "../../context/useSearchContext";
 import { useNavigate } from "react-router-dom";
-import { Divider } from "@mui/material";
 import { JikanResourceRelation } from "../../common/types";
 
 // CSS handled in SingleAnime.scss
@@ -28,21 +25,12 @@ const RelatedAnimeSection = (props: Props) => {
     <div>
       {relations?.map((relation) => (
         <>
-          <div className="singleAnime__related_entry_container">
-            <Typography
-              variant={"h6"}
-              sx={{
-                fontSize: "16px",
-                margin: "0px 8px 20px 0px",
-              }}
-            >
-              {relation.relation}:{" "}
-            </Typography>
-            <div className="singleAnime__related_entry_group">
+          <div>
+            <Text variant={"h6"}>{relation.relation}: </Text>
+            <div>
               {relation.entry.map((entry, index) =>
                 entry.type === "anime" ? (
                   <span
-                    className="singleAnime__related_entry singleAnime__related_entry_anime"
                     onClick={() =>
                       handleRelationEntryClick(entry.mal_id.toString())
                     }
@@ -53,7 +41,6 @@ const RelatedAnimeSection = (props: Props) => {
                   </span>
                 ) : (
                   <span
-                    className="singleAnime__related_entry singleAnime__related_entry_non_anime"
                     onClick={() => console.log("Non - Anime pages coming soon")}
                     key={entry.mal_id}
                   >

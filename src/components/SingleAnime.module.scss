@@ -1,18 +1,14 @@
 .singleAnime__container { 
-  margin-top: 50px !important;
-  min-height: 412px;
-  width:100%
+  margin-top: 50px;
+
 }
 
 .singleAnime__image { 
   border-radius: 10px;
-  margin-left: 20px;
 }
 
 .singleAnime__title { 
-  color: rgb(194, 192, 192);
-  padding-bottom: 30px;
-  font-size: 3rem; 
+  display: flex;
 }
 
 .singleAnime__description { 
@@ -34,26 +30,9 @@
 
 
 .singleAnime__info_container { 
-  background-color: #424242; 
   display: flex; 
   margin-bottom: 20px; 
   width: fit-content; 
-}
-
-.singleAnime__info { 
-  padding: 10px;
-  background-color: #424242;
-  border-radius: 4px;
-  color: rgb(194, 192, 192);
-
-}
-
-.singleAnime__additionalInfo {
-  margin-left: 20px  !important;
-  margin-bottom: 5px !important; 
-  color: white;
-
-
 }
 
 .singleAnime__additionalInfoContainer { 
@@ -63,8 +42,6 @@
 .singleAnime__linkButton { 
   width: 45%;
 }
-
-
 
 
 .singleAnime__section_header { 
