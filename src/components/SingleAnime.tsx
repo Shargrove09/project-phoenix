@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
 import { Box, Button, Divider, Grid, Group, Text } from "@mantine/core";
-
-import { Paper } from "@mui/material";
-import {} from "@mui/material";
-
 import { Anime } from "../common/Anime";
-import Example from "./VideoPlayer/VideoPlayer";
-
 import RelatedAnimeSection from "./RelatedAnimeSection/RelatedAnimeSection";
 import AnimeCarousel from "./AnimeCarousel/AnimeCarousel";
+import PrevVideoPlayer from "./VideoPlayer/PrevVideoPlayer";
 
 import classes from "./SingleAnime.module.scss";
+import { useSearchContext } from "../context/useSearchContext";
 
 interface Props {
   anime: Anime;
@@ -22,6 +18,19 @@ const SingleAnime = (props: Props) => {
   const [recommendedShows, setRecommendedShows] = useState<any[]>([]);
 
   useEffect(() => {
+    // if (anime === undefined) {
+    //   try {
+    //     const storedAnimeData = localStorage.getItem("singleData");
+    //     const parsedStoredAnimeData = storedAnimeData
+    //       ? JSON.parse(storedAnimeData)
+    //       : null;
+
+    //     console.log("Parsed", parsedStoredAnimeData);
+    //     setSingle(parsedStoredAnimeData.data);
+    //   } catch (error) {
+    //     console.error("Error fetching stored single anime data");
+    //   }
+    // }
     getRecommendedShows(anime.mal_id);
   }, [anime]);
 
@@ -159,16 +168,14 @@ const SingleAnime = (props: Props) => {
         <AnimeCarousel shows={recommendedShows} />
       </Grid.Col>
       <Grid.Col span={2}>
-        <div className="singleAnime__trailer_container">
+        <div className={classes.singleAnime__trailerContainer}>
           PV
-          <Example
-            videoId={anime.trailer.youtube_id}
-            height={180}
-            width={320}
+          <PrevVideoPlayer
+            height={160}
+            width={240}
+            youtubeURL={anime.trailer.youtube_id}
           />
         </div>
-        Background
-        <Divider />
         <Text variant="body1" component="h3" className="singleAnime__synopsis">
           <p>{background}</p>
         </Text>

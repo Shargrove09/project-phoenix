@@ -11,10 +11,13 @@ const SingleView = () => {
   useEffect(() => {
     if (singleData === undefined || Object.keys(singleData).length === 0) {
       try {
-        const localStorageSingleData: Anime = JSON.parse(
-          localStorage.getItem("singleData")
-        );
-        setSingle(localStorageSingleData);
+        const localStorageSingleData = localStorage.getItem("singleData");
+
+        const parsedLocalStorageSingleData: Anime = localStorageSingleData
+          ? JSON.parse(localStorageSingleData)
+          : {};
+        console.log("Single ata:", parsedLocalStorageSingleData);
+        setSingle(parsedLocalStorageSingleData);
         setDataExists(true);
       } catch (error) {
         console.error("Error Occured in Single View: ", error);

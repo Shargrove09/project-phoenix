@@ -25,7 +25,7 @@ const Results = () => {
         const parsedData = storedData ? JSON.parse(storedData) : [];
         const parsedSearchTerm = lastSearchTerm
           ? JSON.parse(lastSearchTerm)
-          : "Oops";
+          : "Oops can't find the last search term!";
         setAnimeData(parsedData);
         setSearchTerm(parsedSearchTerm);
         setResultsExists(true);

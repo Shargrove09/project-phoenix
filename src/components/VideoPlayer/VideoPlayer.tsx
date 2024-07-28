@@ -1,5 +1,4 @@
 // ts
-import React from "react";
 import YouTube, { YouTubeProps } from "react-youtube";
 
 interface Props {

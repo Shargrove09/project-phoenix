@@ -16,7 +16,7 @@ import { Anime } from "../common/Anime";
 
 interface SearchContextValue {
   animeData: Anime[];
-  singleData: Anime | null;
+  singleData: Anime;
   search: (searchterm: any) => Promise<any>;
   searchById: (searchId: any) => Promise<any>;
   searchTerm: string;
@@ -31,7 +31,7 @@ interface Props {
 
 const SearchContext = createContext<SearchContextValue>({
   animeData: [],
-  singleData: null,
+  singleData: {} as Anime,
   search: async (searchTerm) => ({}),
   searchById: async (searchId) => ({}),
   searchTerm: "",
@@ -72,7 +72,7 @@ export const SearchProvider: React.FC<Props> = ({ children }) => {
     <SearchContext.Provider
       value={{
         animeData,
-        singleData: singleData || null,
+        singleData: {} as Anime,
         search,
         searchById,
         setAnimeData: setAnimeData as React.Dispatch<

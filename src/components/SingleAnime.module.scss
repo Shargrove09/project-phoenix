@@ -1,6 +1,5 @@
 .singleAnime__container { 
   margin-top: 50px;
-
 }
 
 .singleAnime__image { 
@@ -90,12 +89,9 @@ font-weight: 400;
   color: rgb(194, 192, 192);
 }
 
-.singleAnime__trailer_container { 
-  display: flex; 
-  flex-direction: column;
-  align-items: center;
-  font-weight: 600; 
-  text-decoration: underline;
+.singleAnime__trailerContainer { 
+  padding-left: 10px; 
+  margin-right: 10px; 
   
 }
 
