@@ -119,7 +119,7 @@ const SingleAnime = (props: Props) => {
         <Divider />
         <RelatedAnimeSection relations={relations} />
       </Grid.Col>
-      <Grid.Col span={8}>
+      <Grid.Col px={"md"} span={8}>
         <Text
           className={classes.singleAnime__title}
           display={"flex"}
