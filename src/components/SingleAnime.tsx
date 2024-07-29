@@ -54,6 +54,9 @@ const SingleAnime = (props: Props) => {
   const image_url = images?.jpg.image_url;
   const synopsis = props.anime?.synopsis ?? "No Synopisis Loaded";
 
+  console.log("Anime:", props.anime);
+  const trailerURL = props.anime?.trailer?.youtube_id ?? "";
+
   const getRecommendedShows = async (animeId: number) => {
     try {
       const recommendedResponse = await fetch(
@@ -170,11 +173,7 @@ const SingleAnime = (props: Props) => {
       <Grid.Col span={2}>
         <div className={classes.singleAnime__trailerContainer}>
           PV
-          <PrevVideoPlayer
-            height={160}
-            width={240}
-            youtubeURL={anime.trailer.youtube_id}
-          />
+          <PrevVideoPlayer height={160} width={240} youtubeURL={trailerURL} />
         </div>
         <Text variant="body1" component="h3" className="singleAnime__synopsis">
           <p>{background}</p>

@@ -12,25 +12,30 @@ const SingleView = () => {
     if (singleData === undefined || Object.keys(singleData).length === 0) {
       try {
         const localStorageSingleData = localStorage.getItem("singleData");
-
+        console.log("LocaslStorageSingleData", localStorageSingleData);
         const parsedLocalStorageSingleData: Anime = localStorageSingleData
           ? JSON.parse(localStorageSingleData)
           : {};
         console.log("Single ata:", parsedLocalStorageSingleData);
         setSingle(parsedLocalStorageSingleData);
-        setDataExists(true);
       } catch (error) {
         console.error("Error Occured in Single View: ", error);
-        setDataExists(false);
       }
-    } else {
-      setDataExists(true);
     }
-  }, [search]);
+  }, []);
+
+  useEffect(() => {
+    console.log("Single Data:", singleData);
+    setDataExists(singleData && Object.keys(singleData).length > 0);
+  }, [singleData]);
+
+  console.log("Single Data:", singleData);
 
   return (
     <div>
-      {(dataExists && <SingleAnime anime={singleData} />) || (
+      {(dataExists && Object.keys(singleData).length > 0 && (
+        <SingleAnime anime={singleData} />
+      )) || (
         <Typography variant="h4" component="h2">
           No Data Exists
         </Typography>

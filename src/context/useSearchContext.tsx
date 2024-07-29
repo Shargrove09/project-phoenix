@@ -42,7 +42,7 @@ const SearchContext = createContext<SearchContextValue>({
 
 export const SearchProvider: React.FC<Props> = ({ children }) => {
   const [animeData, setAnimeData] = useState([]);
-  const [singleData, setSingleData] = useState<Anime>();
+  const [singleData, setSingleData] = useState<Anime>({} as Anime);
   const [searchTerm, setSearchTerm] = useState("");
 
   // Stores single anime data if single anime is clicked
@@ -72,7 +72,7 @@ export const SearchProvider: React.FC<Props> = ({ children }) => {
     <SearchContext.Provider
       value={{
         animeData,
-        singleData: {} as Anime,
+        singleData: singleData,
         search,
         searchById,
         setAnimeData: setAnimeData as React.Dispatch<
