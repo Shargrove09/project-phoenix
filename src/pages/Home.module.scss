@@ -110,7 +110,6 @@
   margin: 8px; 
   transition: background-color 0.5s; 
   border-radius: 4px; 
-  color: rgb(194, 192, 192);
 
   &:hover { 
     background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-4));
