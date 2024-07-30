@@ -20,9 +20,9 @@ import classes from "./MainToolBar.module.scss";
 import { useState } from "react";
 
 const navLinks = [
-  { link: "/about", label: "Home" },
+  { link: "/", label: "Home" },
   { link: "/results", label: "Results" },
-  { link: "/single-anime", label: "Last Searched" },
+  { link: "/single-view", label: "Last Searched" },
 ];
 
 const MainToolBar = () => {
