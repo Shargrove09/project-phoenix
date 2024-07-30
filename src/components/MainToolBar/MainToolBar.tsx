@@ -6,18 +6,19 @@ import {
   ActionIcon,
   useMantineColorScheme,
   Title,
-  Autocomplete,
   rem,
   Box,
   Image,
+  TextInput,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import phoenixLogo from "../../assets/PhoenixLogo_v1.png";
 import NavDrawer from "../NavDrawer/NavDrawer";
 import { IconSun, IconMoon, IconSearch } from "@tabler/icons-react";
-
+import { SyntheticEvent, useState } from "react";
+import { useSearchContext } from "../../context/useSearchContext";
+import { useNavigate } from "react-router-dom";
 import classes from "./MainToolBar.module.scss";
-import { useState } from "react";
 
 const navLinks = [
   { link: "/", label: "Home" },
@@ -28,7 +29,12 @@ const navLinks = [
 const MainToolBar = () => {
   const [opened, { open, close }] = useDisclosure();
   const { colorScheme, setColorScheme } = useMantineColorScheme();
+  const { search, setAnimeData } = useSearchContext();
+
   const [active, setActive] = useState(0);
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  const navigate = useNavigate();
 
   const darkMode = colorScheme === "dark";
 
@@ -44,6 +50,18 @@ const MainToolBar = () => {
       {link.label}
     </Anchor>
   ));
+
+  const handleAnimeSearch = (event: SyntheticEvent) => {
+    event.preventDefault(); //Won't allow page to refresh when you submit input
+    search(searchValue).then((searchResult) => {
+      setAnimeData(searchResult.data);
+      localStorage.setItem(
+        "animeSearchResultData",
+        JSON.stringify(searchResult.data)
+      ); //Allowed to set Strings
+      navigate("/results");
+    });
+  };
 
   return (
     <AppShell
@@ -88,26 +106,21 @@ const MainToolBar = () => {
           >
             {items}
           </Group>
-          <Autocomplete
-            className={classes.mainToolBar__search}
-            placeholder="Search"
-            leftSection={
-              <IconSearch
-                style={{ width: rem(16), height: rem(16) }}
-                stroke={1.5}
-              />
-            }
-            data={[
-              "React",
-              "Angular",
-              "Vue",
-              "Next.js",
-              "Riot.js",
-              "Svelte",
-              "Blitz.js",
-            ]}
-            visibleFrom="xs"
-          />
+          <form onSubmit={handleAnimeSearch}>
+            <TextInput
+              className={classes.mainToolBar__search}
+              leftSection={
+                <IconSearch
+                  style={{ width: rem(16), height: rem(16) }}
+                  stroke={1.5}
+                />
+              }
+              onChange={(event) => setSearchValue(event.currentTarget.value)}
+              placeholder="Search"
+              visibleFrom={"xs"}
+            />
+          </form>
+
           <ActionIcon
             aria-label="Toggle Color Scheme"
             className={classes.mainToolBar__darkModeToggle}
@@ -129,13 +142,6 @@ const MainToolBar = () => {
             )}
           </ActionIcon>
         </Box>
-
-        {/* <Group grow className="mainToolBar__navLinks_container">
-          <NavLink label={"Results"} />
-          <NavLink label={"Calendar"} />
-          <NavLink label={"Friends"} />
-
-        </Group> */}
       </AppShell.Header>
       <NavDrawer opened={opened} onClose={close}></NavDrawer>
     </AppShell>
