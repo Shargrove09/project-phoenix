@@ -6,7 +6,6 @@ import AnimeCarousel from "./AnimeCarousel/AnimeCarousel";
 import PrevVideoPlayer from "./VideoPlayer/PrevVideoPlayer";
 
 import classes from "./SingleAnime.module.scss";
-import { useSearchContext } from "../context/useSearchContext";
 
 interface Props {
   anime: Anime;
@@ -80,14 +79,19 @@ const SingleAnime = (props: Props) => {
 
   return (
     <Grid className={classes.singleAnime__container}>
-      <Grid.Col className={classes.singleAnime__left} span={2}>
+      <Grid.Col
+        className={classes.singleAnime__left}
+        span={{ base: 12, md: 2 }}
+      >
         <img
           src={image_url}
           alt={title}
           className={classes.singleAnime__image}
         />
         <Box className={classes.singleAnime__additonalInfoContainer}>
-          <Text className="singleAnime__additionalInfo">Information</Text>
+          <Text className="singleAnime__additionalInfo" fs={"italic"} fw={600}>
+            Information
+          </Text>
           <Divider />
           <Text
             variant="body2"
@@ -115,11 +119,13 @@ const SingleAnime = (props: Props) => {
             </a>
           </Button>
         </Box>
-        Related Anime
+        <Text fs={"italic"} fw={600} mt={8}>
+          Related Anime
+        </Text>
         <Divider />
         <RelatedAnimeSection relations={relations} />
       </Grid.Col>
-      <Grid.Col px={"md"} span={8}>
+      <Grid.Col px={"md"} span={{ base: 12, md: 8 }}>
         <Text
           className={classes.singleAnime__title}
           display={"flex"}
@@ -166,16 +172,22 @@ const SingleAnime = (props: Props) => {
         <Text variant="body1" component="h3" className="singleAnime__synopsis">
           <p>{synopsis}</p>
         </Text>
-        Recommended Anime
+        <Text fs={"italic"} fw={600}>
+          Recommended Anime
+        </Text>
         <Divider />
         <AnimeCarousel shows={recommendedShows} />
       </Grid.Col>
-      <Grid.Col span={2}>
+      <Grid.Col span={{ base: 12, md: 2 }}>
         <div className={classes.singleAnime__trailerContainer}>
           PV
           <PrevVideoPlayer height={160} width={240} youtubeURL={trailerURL} />
         </div>
-        <Text variant="body1" component="h3" className="singleAnime__synopsis">
+        <Text
+          variant="body1"
+          component="h3"
+          className="singleAnime__background"
+        >
           <p>{background}</p>
         </Text>
       </Grid.Col>

@@ -1,0 +1,18 @@
+.animeCarousel__loader { 
+  margin-top: 16px; 
+}
+
+
+
+.animeCarousel__slide:hover {
+  filter: brightness(0.8);
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.animeCarousel__slide_title { 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+
+}

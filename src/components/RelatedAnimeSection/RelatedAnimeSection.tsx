@@ -1,4 +1,4 @@
-import { Text } from "@mantine/core";
+import { Box, Paper, Text } from "@mantine/core";
 import { useSearchContext } from "../../context/useSearchContext";
 import { useNavigate } from "react-router-dom";
 import { JikanResourceRelation } from "../../common/types";
@@ -22,38 +22,38 @@ const RelatedAnimeSection = (props: Props) => {
   };
 
   return (
-    <div>
+    <Paper>
       {relations?.map((relation) => (
-        <>
-          <div>
-            <Text variant={"h6"}>{relation.relation}: </Text>
-            <div>
-              {relation.entry.map((entry, index) =>
-                entry.type === "anime" ? (
-                  <span
-                    onClick={() =>
-                      handleRelationEntryClick(entry.mal_id.toString())
-                    }
-                    key={entry.mal_id}
-                  >
-                    {entry.name}
-                    {index < relation.entry.length - 1 && ","}
-                  </span>
-                ) : (
-                  <span
-                    onClick={() => console.log("Non - Anime pages coming soon")}
-                    key={entry.mal_id}
-                  >
-                    {entry.name}
-                    {index < relation.entry.length - 1 && ","}
-                  </span>
-                )
-              )}
-            </div>
-          </div>
-        </>
+        <Box display="flex">
+          <Text>
+            <Text display={"inline"} fs={"italic"} fw={500}>
+              {relation.relation} :{" "}
+            </Text>
+            {relation.entry.map((entry, index) =>
+              entry.type === "anime" ? (
+                <span
+                  onClick={() =>
+                    handleRelationEntryClick(entry.mal_id.toString())
+                  }
+                  key={entry.mal_id}
+                >
+                  {entry.name}
+                  {index < relation.entry.length - 1 && ","}
+                </span>
+              ) : (
+                <span
+                  onClick={() => console.log("Non - Anime pages coming soon")}
+                  key={entry.mal_id}
+                >
+                  {entry.name}
+                  {index < relation.entry.length - 1 && ","}
+                </span>
+              )
+            )}
+          </Text>
+        </Box>
       ))}
-    </div>
+    </Paper>
   );
 };
 
