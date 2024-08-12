@@ -1,0 +1,31 @@
+/* Position needs to be absolute because drawer contents appear offscreen otherwise */
+.mantine-Drawer-root { 
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 10rem;
+}
+
+.mantine-Drawer-content { 
+  height: 50%; 
+}
+
+.mantine-Drawer-close { 
+  margin: 16px;
+  display: block;
+  margin-inline-start: 0 !important;
+}
+
+.navDrawer__content { 
+  height: 100%;
+  padding: 0;  
+}
+
+.navDrawer__header { 
+  display: flex; 
+}
+
+.mantine-Drawer-body { 
+  padding-left: 0; 
+}
+

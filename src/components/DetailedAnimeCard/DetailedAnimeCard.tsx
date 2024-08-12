@@ -1,59 +1,27 @@
-import React, { useState } from "react";
-
-import { Card, CardActions, CardContent, CardMedia } from "@mui/material";
-import { styled } from "@mui/material/styles";
-
-import Typography from "@mui/material/Typography";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-
+import { ActionIcon, Box, Card, Image, Text } from "@mantine/core";
 import { Anime } from "../../common/Anime";
-
 import ShareIcon from "@mui/icons-material/Share";
 import InfoIcon from "@mui/icons-material/Info";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Collapse from "@mui/material/Collapse";
 import { useSearchContext } from "../../context/useSearchContext";
 import { useNavigate } from "react-router-dom";
 
-import "./DetailedAnimeCard.scss";
+import classes from "./DetailedAnimeCard.module.scss";
 
 interface Props {
   animeData: Anime;
 }
 
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
 const DetailedAnimeCard = (props: Props) => {
   const { animeData } = props;
-  const [expanded, setExpanded] = useState(false);
-  const { setSingle } = useSearchContext();
+  const { searchById, setSingle } = useSearchContext();
   const navigate = useNavigate();
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   const handleInfoButtonClick = () => {
-    fetch(`https://api.jikan.moe/v4/anime/${animeData.mal_id}/full`)
-      .then((response) => response.json())
-      .then((data) => {
-        setSingle(data);
-        localStorage.setItem("singleData", JSON.stringify(data));
-        navigate("/single-view");
-      });
+    searchById(props.animeData.mal_id).then((anime: any) => {
+      setSingle(anime.data);
+      localStorage.setItem("singleData", JSON.stringify(anime.data));
+      navigate("/single-view");
+    });
   };
 
   const handleShareBtnClick = () => {
@@ -62,53 +30,62 @@ const DetailedAnimeCard = (props: Props) => {
   };
 
   return (
-    <Card
-      sx={{ backgroundColor: "#424242", marginBottom: "10px" }}
-      className="dcard__container"
-      onClick={handleExpandClick}
-    >
-      <div className="dcard__header">
-        <Typography
-          className="dcard__header_text"
-          sx={{ margin: "10px", fontWeight: 600, fontStyle: "italic" }}
-          variant="h5"
+    <Card className={classes.dcard__container} h={300} p={16} pt={8}>
+      <Box
+        className={classes.dcard__header}
+        display={"flex"}
+        h={"10%"}
+        mb={10}
+        mt={4}
+      >
+        <Text
+          className={classes.dcard__headerText}
+          fw={700}
+          pl={4}
+          size={"md"}
+          truncate={"end"}
         >
           {animeData.title}
-        </Typography>
-        <CardActions className="dcard__actions">
-          <IconButton aria-label="more-info" onClick={handleInfoButtonClick}>
-            <InfoIcon />
-          </IconButton>
+        </Text>
+      </Box>
 
-          <IconButton aria-label="share" onClick={handleShareBtnClick}>
-            <ShareIcon />
-          </IconButton>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more info"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
-        </CardActions>
-      </div>
-
-      <CardContent className="dcard__content">
-        <CardMedia
-          sx={{ height: 120, minWidth: 84 }}
-          image={animeData.images.jpg.image_url}
-          title={`${animeData.title}_cover_picture`}
+      <Box className={classes.dcard__content} display={"flex"} h={"75%"}>
+        <Image
           className="dcard__card_media"
+          mah={{ base: 160, md: 321 }}
+          src={animeData.images.jpg.image_url}
+          title={`${animeData.title}_cover_picture`}
+          w={"auto"}
         />
-        <Typography align="inherit" sx={{ color: "white" }}>
+        <Text className={classes.dcard__text} lineClamp={8} mb={10} ml={20}>
           {" "}
           {animeData.synopsis}
-        </Typography>
-      </CardContent>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <div>More info coming soon</div>
-      </Collapse>
+        </Text>
+      </Box>
+      <Box
+        className={classes.dcard__headerActionsContainer}
+        display={"flex"}
+        h={"15%"}
+        pt={8}
+      >
+        <ActionIcon
+          aria-label="more-info"
+          className="dcard__action"
+          onClick={handleInfoButtonClick}
+          size={"md"}
+        >
+          <InfoIcon />
+        </ActionIcon>
+
+        <ActionIcon
+          aria-label="share"
+          onClick={handleShareBtnClick}
+          ml={10}
+          size={"md"}
+        >
+          <ShareIcon />
+        </ActionIcon>
+      </Box>
     </Card>
   );
 };

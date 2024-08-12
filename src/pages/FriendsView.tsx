@@ -13,7 +13,7 @@ const FriendsView = () => {
     if (friendsList === (undefined || null) || friendsList?.length === 0) {
       try {
         let localStorage_myFriendsData = JSON.parse(
-          localStorage.getItem("myFriendsData")
+          localStorage.getItem("myFriendsData") || "[]"
         );
         if (localStorage_myFriendsData === null) {
           // Going in this if statement no matter what

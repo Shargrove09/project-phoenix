@@ -1,15 +1,13 @@
-import React from "react";
-import { Anime } from "../../common/Anime";
-import { Typography } from "@mui/material";
+import { Box, Paper, Text } from "@mantine/core";
 import { useSearchContext } from "../../context/useSearchContext";
 import { useNavigate } from "react-router-dom";
-import { Divider } from "@mui/material";
 import { JikanResourceRelation } from "../../common/types";
 
 // CSS handled in SingleAnime.scss
+import classes from "./RelatedAnimeSection.module.scss";
 
 interface Props {
-  relations: JikanResourceRelation[];
+  relations: JikanResourceRelation[] | undefined;
 }
 
 const RelatedAnimeSection = (props: Props) => {
@@ -25,48 +23,39 @@ const RelatedAnimeSection = (props: Props) => {
   };
 
   return (
-    <div>
+    <Paper>
       {relations?.map((relation) => (
-        <>
-          <div className="singleAnime__related_entry_container">
-            <Typography
-              variant={"h6"}
-              sx={{
-                fontSize: "16px",
-                margin: "0px 8px 20px 0px",
-              }}
-            >
-              {relation.relation}:{" "}
-            </Typography>
-            <div className="singleAnime__related_entry_group">
-              {relation.entry.map((entry, index) =>
-                entry.type === "anime" ? (
-                  <span
-                    className="singleAnime__related_entry singleAnime__related_entry_anime"
-                    onClick={() =>
-                      handleRelationEntryClick(entry.mal_id.toString())
-                    }
-                    key={entry.mal_id}
-                  >
-                    {entry.name}
-                    {index < relation.entry.length - 1 && ","}
-                  </span>
-                ) : (
-                  <span
-                    className="singleAnime__related_entry singleAnime__related_entry_non_anime"
-                    onClick={() => console.log("Non - Anime pages coming soon")}
-                    key={entry.mal_id}
-                  >
-                    {entry.name}
-                    {index < relation.entry.length - 1 && ","}
-                  </span>
-                )
-              )}
-            </div>
-          </div>
-        </>
+        <Box style={{ display: "flex" }}>
+          <Text>
+            <Text display={"inline"} fs={"italic"} fw={500}>
+              {relation.relation} :{" "}
+            </Text>
+            {relation.entry.map((entry, index) =>
+              entry.type === "anime" ? (
+                <span
+                  className={classes.relatedAnime__animeLink}
+                  onClick={() =>
+                    handleRelationEntryClick(entry.mal_id.toString())
+                  }
+                  key={entry.mal_id}
+                >
+                  {entry.name}
+                  {index < relation.entry.length - 1 && ","}
+                </span>
+              ) : (
+                <span
+                  onClick={() => console.log("Non - Anime pages coming soon")}
+                  key={entry.mal_id}
+                >
+                  {entry.name}
+                  {index < relation.entry.length - 1 && ","}
+                </span>
+              )
+            )}
+          </Text>
+        </Box>
       ))}
-    </div>
+    </Paper>
   );
 };
 

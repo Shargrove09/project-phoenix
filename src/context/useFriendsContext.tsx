@@ -1,3 +1,4 @@
+
 // OLD FRIEND CONTEXT
 // import { createContext } from "react";
 
@@ -12,13 +13,12 @@
 
 import React, { createContext, useContext, useState } from "react";
 import { Friend } from "../common/Friend";
-
 interface FriendsContextValue {
   addToFriendsList: (data: any) => void;
   friendsList: any[];
   friendSearch: (friendName: string) => Promise<any>;
   setFriendsList: React.Dispatch<React.SetStateAction<any[]>>;
-  validateFriends: (dataArr) => void;
+  validateFriends: (dataArr: any) => void;
 }
 
 interface Props {

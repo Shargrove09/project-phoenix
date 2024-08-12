@@ -1,17 +1,16 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Results from "./pages/Results/Results";
 import SingleView from "./pages/SingleView";
-// import MainNavigation from "./components/MainNavigation";
-import MainBar from "./components/MainBar/MainBar";
 import FriendsView from "./pages/FriendsView";
 import { SearchProvider } from "./context/useSearchContext";
 import { FriendsProvider } from "./context/useFriendsContext";
+import { createTheme, MantineProvider } from "@mantine/core";
+import MainToolBar from "./components/MainToolBar/MainToolBar";
+import { ColorSchemeProvider } from "./context/useColorSchemeContext";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles"; // Import from @mui/material
-import CssBaseline from "@mui/material/CssBaseline"; // Import CssBaselin
-
+import "@mantine/core/styles.css";
+import "@mantine/carousel/styles.css";
 import "./App.css";
 
 <>
@@ -24,44 +23,32 @@ import "./App.css";
 </>;
 
 const theme = createTheme({
-  palette: {
-    // type: "dark",
-    primary: {
-      main: "#3f51b5",
-    },
-    secondary: {
-      main: "#f50057",
-    },
-    background: {
-      default: "#3A3A3A ",
-    },
-  },
-  typography: {
-    fontFamily: "Poppins, sans-serif",
-  },
+  primaryColor: "cyan",
+  primaryShade: { dark: 6, light: 7 },
 });
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <SearchProvider>
-        <FriendsProvider>
-          <Router>
-            <MainBar />
-            <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/results" element={<Results />} />
-                <Route path="/single-view" element={<SingleView />} />
-                <Route path="/friends" element={<FriendsView />} />
-                {/*Need to add Navigate component here in future*/}
-              </Routes>
-            </main>
-          </Router>
-        </FriendsProvider>
-      </SearchProvider>
-    </ThemeProvider>
+    <ColorSchemeProvider>
+      <MantineProvider theme={theme}>
+        <SearchProvider>
+          <FriendsProvider>
+            <Router>
+              <MainToolBar />
+              <main>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/results" element={<Results />} />
+                  <Route path="/single-view" element={<SingleView />} />
+                  <Route path="/friends" element={<FriendsView />} />
+                  {/*Need to add Navigate component here in future*/}
+                </Routes>
+              </main>
+            </Router>
+          </FriendsProvider>
+        </SearchProvider>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 }
 

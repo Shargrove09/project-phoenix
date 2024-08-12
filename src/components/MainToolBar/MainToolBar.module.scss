@@ -1,0 +1,115 @@
+.mainToolBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainToolBar__header {
+  background: var(--mantine-color-indigo-8) !important;
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; 
+}
+
+.mainToolBar__burger { 
+  margin-right: auto; 
+  padding: 20px; ; 
+}
+
+.mainToolBar__logoContainer {
+  height: 48px; 
+  margin-left: rem(10)
+}
+
+.mainToolBar__logo { 
+  height: 48px;
+
+}
+
+.mainToolBar__info { 
+  width: 25%;
+  display: flex; 
+}
+
+@media (max-width: 768px) {
+  .mainToolBar__info { 
+    width: 100%; 
+  }
+}
+
+.mainToolBar__searchInput { 
+  margin-left: auto; 
+  padding: 20px; 
+}
+
+.mainToolBar__burger{
+  display: none;
+  z-index: 2000;
+}
+
+@media (max-width: 768px) {
+  .mainToolBar__burger {
+    display: block;
+  }
+}
+
+.mainToolBar__title { 
+  display: block;
+  color: var(--mantine-color-gray-2)
+}
+
+@media (max-width: 768px) {
+  .mainToolBar__title {
+    display: none;
+  }
+}
+
+.mainToolBar__right { 
+  padding-top: var(--mantine-spacing-lg); 
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .mainToolBar__right {
+    display: none;
+  }
+}
+
+.header {
+  background-color: var(--mantine-color-body);
+  border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainToolBar__navLink {
+  text-transform: uppercase;
+  font-size: var(--mantine-font-size-xs);
+  color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-1)) !important;
+  padding: rem(7px) var(--mantine-spacing-sm);
+  font-weight: 700;
+  border-bottom: rem(2px) solid transparent;
+  transition:
+    border-color 100ms ease,
+    color 100ms ease;
+
+  
+  &:hover {
+    color: light-dark(var(--mantine-color-black-8), var(--mantine-color-white-9));
+  }
+    
+  &[data-active] {
+    color: light-dark(var(--mantine-color-black-8), var(--mantine-color-white-9));
+    border-bottom-color: var(--mantine-color-blue-6);
+  }
+}

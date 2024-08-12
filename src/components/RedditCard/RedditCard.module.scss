@@ -1,0 +1,8 @@
+// This is where I would put additional CSS IF I HAD ANY!
+.redditCard__entry { 
+  border-radius: 8px;
+  
+  &:hover { 
+    background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-4));
+  }
+}

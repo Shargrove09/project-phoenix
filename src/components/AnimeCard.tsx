@@ -1,29 +1,14 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-// Old way
-// import { SearchContext } from "../context/useSearchContext";
 import { useSearchContext } from "../context/useSearchContext";
-import { Typography, Link, Card, ImageListItem, Grid } from "@mui/material";
+import { ActionIcon, Box, Card, Image, Text } from "@mantine/core";
+import { IconCaretRight } from "@tabler/icons-react";
 
-import "./AnimeCard.scss";
+import classes from "./AnimeCard.module.scss";
 
-const AnimeCard = (props) => {
+const AnimeCard = (props: any) => {
   const navigate = useNavigate();
 
-  // Old Way
-  // const search = useContext(SearchContext);
-
   const { setSingle, searchById } = useSearchContext();
-
-  const onClickHandler = () => {
-    fetch(`https://api.jikan.moe/v4/anime/${props.anime.mal_id}/full`)
-      .then((response) => response.json())
-      .then((data) => {
-        setSingle(data);
-        localStorage.setItem("singleData", JSON.stringify(data));
-        navigate("/single-view");
-      });
-  };
 
   const onClickHandler2 = () => {
     searchById(props.anime.mal_id).then((anime: any) => {
@@ -33,13 +18,13 @@ const AnimeCard = (props) => {
     });
   };
 
-  const title =
-    props.anime.title.length > 15
-      ? `${props.anime.title.substring(0, 15)}...`
-      : props.anime.title;
+  const title = props.anime.title;
+
   const imageUrl = props.anime.images.jpg.image_url;
 
-  const synopsisDef = props.anime.synopsis || "No Synopsis"; // Default to No Synopsis if anime doesn't have a synopsis
+  // Default to No Synopsis if anime doesn't have a synopsis
+  const synopsisDef = props.anime.synopsis || "No Synopsis Available";
+
   const synopsis =
     synopsisDef.length > 30
       ? `${synopsisDef.substring(0, 30)}...`
@@ -47,39 +32,38 @@ const AnimeCard = (props) => {
 
   // container item takes up only as much space as it needs and no more
   return (
-    <ImageListItem className="animeCard__container">
-      <Grid container item xs={12}>
-        <Card
-          style={{ backgroundColor: "#424242" }}
-          className="animeCard__card"
+    <Card className={classes.animeCard}>
+      {/* 321 is the default height of MAL image */}
+      <Card.Section
+        className={classes.animeCard__img_container}
+        h={340}
+        w={225}
+        pt={10}
+        m={"auto"}
+      >
+        <Image
+          className={classes.animeCard__img}
+          w="auto"
+          mah={321}
+          fit="contain"
+          src={imageUrl}
+          alt={title}
+        />
+      </Card.Section>
+      <Box display={"flex"} className={classes.animeCard__info}>
+        <Text
+          className={classes.animeCard__title}
+          fw={600}
+          size={"xl"}
+          truncate={"end"}
         >
-          <div className="animeCard__img_container">
-            <img className="animeCard__img" src={imageUrl} alt={title} />
-          </div>
-          <Typography variant="h5" component="h3" className="animeCard__title">
-            {" "}
-            {/* component uses render of h2 (in this case) with size of h5 Takes h2 but turns into h5 */}
-            {title}
-          </Typography>
-          <Typography
-            variant="body2"
-            component="h2"
-            paragraph={true}
-            className="animeCard__synopsis"
-          >
-            {synopsis}
-          </Typography>
-          <Link
-            component="button"
-            variant="body1"
-            style={{ marginBottom: 0 }}
-            onClick={onClickHandler2}
-          >
-            Learn More
-          </Link>
-        </Card>
-      </Grid>
-    </ImageListItem>
+          {title}
+        </Text>
+        <ActionIcon onClick={onClickHandler2} ml={8}>
+          <IconCaretRight />
+        </ActionIcon>
+      </Box>
+    </Card>
   );
 };
 

@@ -1,64 +1,36 @@
-import React, { useState } from "react";
-import { IconButton, Paper, Typography } from "@mui/material";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import React from "react";
+import { Carousel, CarouselSlide } from "@mantine/carousel";
+import { Anime } from "../../common/Anime";
 
-import "./SeasonalCarousel.scss";
+import classes from "./SeasonalCarousel.module.scss";
 
-const ImageCarousel = ({ images }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+type SeasonalCarouselProps = {
+  animeList: Anime[];
+};
 
-  const nextImage = () => {
-    if (currentImageIndex < images.length - 1) {
-      setCurrentImageIndex(currentImageIndex + 1);
-    } else {
-      setCurrentImageIndex(0);
-    }
-  };
-
-  const previousImage = () => {
-    if (currentImageIndex > 0) {
-      setCurrentImageIndex(currentImageIndex - 1);
-    } else {
-      setCurrentImageIndex(images.length - 1);
-    }
-  };
-
-  // Animation for carousel sliding
-  const transformStyle = {
-    transform: `translateY(-${currentImageIndex * 50}%)`,
-  };
+const SeasonalCarousel = (props: SeasonalCarouselProps) => {
+  const { animeList } = props;
+  console.log("Anime List: ", animeList);
 
   return (
-    <Paper elevation={3} style={{ padding: "16px", textAlign: "center" }}>
-      <IconButton onClick={previousImage} style={{ marginBottom: "10px" }}>
-        <NavigateBeforeIcon />
-      </IconButton>
-      <div className="scarousel__container">
-        <div className="scarousel__images" style={transformStyle}>
-          {images.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`Img- ${index + 1}`}
-              className="scarousel__image_entry"
-            />
-          ))}
-        </div>
-      </div>
-
-      <IconButton onClick={nextImage} style={{ marginTop: "10px" }}>
-        <NavigateNextIcon />
-      </IconButton>
-      <Typography
-        variant="subtitle1"
-        align="center"
-        style={{ marginTop: "10px" }}
-      >
-        Image {currentImageIndex + 1} of {images.length}
-      </Typography>
-    </Paper>
+    <Carousel
+      className={classes.seasonalCarousel}
+      classNames={{ indicator: classes.seasonalCarousel__indicator }}
+      loop
+      withIndicators
+    >
+      {animeList.map((anime) => (
+        <CarouselSlide
+          className={classes.seasonalCarousel__slide}
+          pt={32}
+          key={anime.mal_id}
+        >
+          <img src={anime.images.jpg.image_url} alt={anime.title} />
+          <h3>{anime.title}</h3>
+        </CarouselSlide>
+      ))}
+    </Carousel>
   );
 };
 
-export default ImageCarousel;
+export default SeasonalCarousel;

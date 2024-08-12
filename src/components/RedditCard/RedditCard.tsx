@@ -1,12 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Card, CardContent, Typography, CircularProgress } from "@mui/material";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import { useEffect, useState } from "react";
+import { Anchor, Card, Group, Text } from "@mantine/core";
+import { IconArrowUp } from "@tabler/icons-react";
 
-import "./RedditCard.scss";
+import classes from "./RedditCard.module.scss";
 
 const RedditCard = () => {
-  const [topPosts, setTopPosts] = useState([]);
+  const [topPosts, setTopPosts] = useState<RedditPost[]>([]);
   const [loading, setLoading] = useState(true);
+
+  interface RedditPost {
+    id: string;
+    permalink: string;
+    score: number;
+    title: string;
+    url: string;
+
+    // add other fields you need from the post
+  }
 
   useEffect(() => {
     const fetchTopPosts = async () => {
@@ -15,7 +25,16 @@ const RedditCard = () => {
           "https://www.reddit.com/r/anime/top.json?t=day&limit=5"
         );
         const postsResults = await response.json();
-        setTopPosts(postsResults.data.children);
+
+        const redditPosts = postsResults.data.children.map((post: any) => ({
+          id: post.data.id,
+          permalink: "https://www.reddit.com" + post.data.permalink,
+          score: post.data.score,
+          title: post.data.title,
+          url: post.data.url,
+        }));
+
+        setTopPosts(redditPosts);
       } catch (error) {
         console.error("Error fetching data from Reddit:", error);
       } finally {
@@ -26,13 +45,13 @@ const RedditCard = () => {
     fetchTopPosts();
   }, []);
 
-  const renderImage = (post) => {
+  const renderImage = (post: any): JSX.Element => {
     // Need to implement OAuth usage for reddit api to grab thumbnail images
     // Defaulting to reddit placeholder until auth is implemented
     if (
-      post.data.preview &&
-      post.data.preview.images[0].resolutions[0] &&
       false
+      // post.data.preview &&
+      // post.data.preview.images[0].resolutions[0] && false
     ) {
       return (
         <img
@@ -47,60 +66,52 @@ const RedditCard = () => {
         <img
           src="https://www.redditinc.com/assets/images/site/reddit-logo.png"
           alt="Reddit Placeholder"
-          style={{ maxWidth: "10%", height: "auto", marginRight: "12px" }}
+          style={{ maxWidth: "8%", height: "auto", marginRight: "2px" }}
         />
       );
     }
   };
 
   return (
-    <div>
+    <div style={{ height: "100%" }}>
       {loading ? (
-        <CircularProgress />
+        <Text>Loading...</Text>
       ) : (
-        <Card className="redditCard" sx={{ backgroundColor: "#424242" }}>
-          <Typography variant="h5" className="redditCard__header">
-            {" "}
-            Top Reddit Posts{" "}
-          </Typography>
-          {topPosts.map((post) => (
-            <Card
-              className="redditCard__entry"
-              key={post.data.id}
-              sx={{ backgroundColor: "#424242" }}
+        <Card
+          className={classes.redditCard}
+          display={"flex"}
+          h={"100%"}
+          radius={"md"}
+        >
+          <Card.Section>
+            <Text className={classes.redditCard__header} fw={700} size={"xl"}>
+              Top Reddit Posts{" "}
+            </Text>
+          </Card.Section>
+
+          {topPosts.map((post: RedditPost) => (
+            <Anchor
+              bd={"1px solid"}
+              className={classes.redditCard__entry}
+              href={post.permalink}
+              my={10}
+              mx={20}
+              p={8}
+              style={{ textDecoration: "none" }}
+              target="_blank"
+              truncate={"end"}
             >
-              <CardContent className="redditCard__content">
-                <Typography
-                  className="redditCard__title"
-                  variant="body1"
-                  gutterBottom
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  {renderImage(post)}
-                  <a
-                    href={post.data.url}
-                    style={{ textDecoration: "none", color: "#C2C2C0" }}
-                    target="blank"
-                  >
-                    {post.data.title}
-                  </a>
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="#C2C2C0"
-                  className="redditCard__entry_stats"
-                >
-                  <ArrowUpwardIcon sx={{ color: "#FE4515" }} />
-                  {post.data.score}
-                </Typography>
-                {/* <Typography variant="body1" style={{ marginTop: "8px" }}>
-                {post.data.selftext || "No additional text"}
-              </Typography> */}
-              </CardContent>
-            </Card>
+              <Group display={"flex"} key={post.id} mr={0}>
+                {renderImage(post)}
+                <Text w={"70%"} truncate={"end"}>
+                  {post.title}
+                </Text>
+                <div style={{ display: "flex" }}>
+                  <Text>{post.score}</Text>
+                  <IconArrowUp />
+                </div>
+              </Group>
+            </Anchor>
           ))}
         </Card>
       )}

@@ -1,5 +1,4 @@
 // ts
-import React from "react";
 import YouTube, { YouTubeProps } from "react-youtube";
 
 interface Props {
@@ -11,7 +10,7 @@ interface Props {
 function Example(props: Props) {
   const { height, width, videoId } = props;
 
-  const onPlayerReady: YouTubeProps["onReady"] = (event) => {
+  const onPlayerReady: YouTubeProps["onReady"] = (event: any) => {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
   };

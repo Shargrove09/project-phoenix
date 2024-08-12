@@ -29,14 +29,14 @@ const FriendModal = () => {
   const [input, setInput] = useState("");
 
   //
-  const appendToLocalStorage = (data) => {
-    let oldStorage = JSON.parse(localStorage.getItem("myFriendsData")) || [];
+  const appendToLocalStorage = (data: any) => {
+    let oldStorage = JSON.parse(localStorage.getItem("myFriendsData") || "[]");
 
     oldStorage.push(data);
     localStorage.setItem("myFriendsData", JSON.stringify(oldStorage));
   };
 
-  const handleAddFriend = (event) => {
+  const handleAddFriend = (event: any) => {
     event.preventDefault(); // I think i need the page to refresh so maybe delete this
     friendSearch(input).then((data) => {
       // Need to add this data to the friendslist - Should Check if Data is valid somewhere

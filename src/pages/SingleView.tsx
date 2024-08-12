@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Text } from "@mantine/core";
 import SingleAnime from "../components/SingleAnime";
 import { useSearchContext } from "../context/useSearchContext";
 import { Anime } from "../common/Anime";
@@ -11,26 +11,34 @@ const SingleView = () => {
   useEffect(() => {
     if (singleData === undefined || Object.keys(singleData).length === 0) {
       try {
-        const localStorageSingleData: Anime = JSON.parse(
-          localStorage.getItem("singleData")
-        );
-        setSingle(localStorageSingleData);
-        setDataExists(true);
+        const localStorageSingleData = localStorage.getItem("singleData");
+        console.log("LocaslStorageSingleData", localStorageSingleData);
+        const parsedLocalStorageSingleData: Anime = localStorageSingleData
+          ? JSON.parse(localStorageSingleData)
+          : {};
+        console.log("Single ata:", parsedLocalStorageSingleData);
+        setSingle(parsedLocalStorageSingleData);
       } catch (error) {
         console.error("Error Occured in Single View: ", error);
-        setDataExists(false);
       }
-    } else {
-      setDataExists(true);
     }
-  }, [search]);
+  }, []);
+
+  useEffect(() => {
+    console.log("Single Data:", singleData);
+    setDataExists(singleData && Object.keys(singleData).length > 0);
+  }, [singleData]);
+
+  console.log("Single Data:", singleData);
 
   return (
     <div>
-      {(dataExists && <SingleAnime anime={singleData} />) || (
-        <Typography variant="h4" component="h2">
+      {(dataExists && Object.keys(singleData).length > 0 && (
+        <SingleAnime anime={singleData} />
+      )) || (
+        <Text variant="h4" component="h2">
           No Data Exists
-        </Typography>
+        </Text>
       )}
     </div>
   );

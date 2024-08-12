@@ -1,34 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { DateInput } from "@mantine/dates";
+import { useState } from "react";
+import { DatePickerInput } from "@mantine/dates";
 
-import "./ShowSchedule.scss";
-import { Box } from "@mui/system";
+import "@mantine/dates/styles.css";
+
+import classes from "./ShowSchedule.module.scss";
 
 interface Props {
-  onDateSelect: (selectedDate) => void;
+  onDateSelect: (selectedDate: Date) => void;
 }
 
 const ShowSchedule = (props: Props) => {
   const { onDateSelect } = props;
-
   const [value, setValue] = useState<Date | null>(new Date());
 
   const handleDateSelect = (selectedDate: Date) => {
     setValue(selectedDate);
-
     // Selects shows based on date
     onDateSelect(selectedDate);
   };
 
   return (
     <>
-      <DateInput
-        className="showSchedule"
-        value={value}
-        onChange={handleDateSelect}
-        label=""
-        placeholder="Select a day to view shows scheduled to air "
+      <DatePickerInput
+        className={classes.showSchedule}
         hideOutsideDates
+        onChange={(selectedDate: Date | null) =>
+          handleDateSelect(selectedDate as Date)
+        }
+        value={value}
+        labelProps={{ ta: "center" }}
+        style={{ textAlign: "center" }}
       />
     </>
   );

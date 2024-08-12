@@ -1,0 +1,10 @@
+.relatedAnime__animeLink { 
+  display: inline;
+}
+
+.relatedAnime__animeLink:hover { 
+  text-decoration: underline;
+  color: light-dark(var(--mantine-color-blue-8), var(--mantine-color-blue-1)) ;
+  cursor: pointer;
+
+}
