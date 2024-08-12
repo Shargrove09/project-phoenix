@@ -12,9 +12,7 @@
 // });
 
 import React, { createContext, useContext, useState } from "react";
-import { Friend
-
- } from "../common/Friend";
+import { Friend } from "../common/Friend";
 interface FriendsContextValue {
   addToFriendsList: (data: any) => void;
   friendsList: any[];
