@@ -258,7 +258,7 @@ const Home = () => {
           className={classes.home__seasonalContainer}
           span={{ base: 12, md: 6 }}
         >
-          <Card className={classes.home__seasonal} radius={"lg"}>
+          <Card className={classes.home__seasonal} radius={"lg"} h={"100%"}>
             <Card.Section mb={10}>
               {" "}
               <Text fw={700} size={"xl"}>

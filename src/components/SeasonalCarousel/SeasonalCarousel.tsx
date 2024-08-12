@@ -14,14 +14,15 @@ const SeasonalCarousel = (props: SeasonalCarouselProps) => {
 
   return (
     <Carousel
-      withIndicators
-      loop
       className={classes.seasonalCarousel}
       classNames={{ indicator: classes.seasonalCarousel__indicator }}
+      loop
+      withIndicators
     >
       {animeList.map((anime) => (
         <CarouselSlide
           className={classes.seasonalCarousel__slide}
+          pt={32}
           key={anime.mal_id}
         >
           <img src={anime.images.jpg.image_url} alt={anime.title} />
