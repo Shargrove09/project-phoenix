@@ -17,19 +17,6 @@ const SingleAnime = (props: Props) => {
   const [recommendedShows, setRecommendedShows] = useState<any[]>([]);
 
   useEffect(() => {
-    // if (anime === undefined) {
-    //   try {
-    //     const storedAnimeData = localStorage.getItem("singleData");
-    //     const parsedStoredAnimeData = storedAnimeData
-    //       ? JSON.parse(storedAnimeData)
-    //       : null;
-
-    //     console.log("Parsed", parsedStoredAnimeData);
-    //     setSingle(parsedStoredAnimeData.data);
-    //   } catch (error) {
-    //     console.error("Error fetching stored single anime data");
-    //   }
-    // }
     getRecommendedShows(anime.mal_id);
   }, [anime]);
 
@@ -69,13 +56,6 @@ const SingleAnime = (props: Props) => {
       console.error("Error getting recommended shows: ", error);
     }
   };
-
-  // const handleRelationEntryClick = async (malID: string) => {
-  //   const relationResult = await searchById(malID);
-  //   setSingle(relationResult.data);
-  //   localStorage.setItem("singleData", JSON.stringify(relationResult.data));
-  //   navigate("/single-view");
-  // };
 
   return (
     <Grid className={classes.singleAnime__container}>
@@ -180,16 +160,25 @@ const SingleAnime = (props: Props) => {
       </Grid.Col>
       <Grid.Col span={{ base: 12, md: 2 }}>
         <div className={classes.singleAnime__trailerContainer}>
-          PV
+          <Text fw={600} pb="md">
+            {" "}
+            Preview
+          </Text>
           <PrevVideoPlayer height={160} width={240} youtubeURL={trailerURL} />
         </div>
-        <Text
-          variant="body1"
-          component="h3"
-          className="singleAnime__background"
-        >
-          <p>{background}</p>
-        </Text>
+        <div>
+          <Text fw={600} pb="md">
+            {" "}
+            Additional Background
+          </Text>
+          <Text
+            variant="body1"
+            component="h3"
+            className="singleAnime__background"
+          >
+            {background}
+          </Text>
+        </div>
       </Grid.Col>
     </Grid>
   );

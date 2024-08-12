@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Text } from "@mantine/core";
 import SingleAnime from "../components/SingleAnime";
 import { useSearchContext } from "../context/useSearchContext";
 import { Anime } from "../common/Anime";
@@ -36,9 +36,9 @@ const SingleView = () => {
       {(dataExists && Object.keys(singleData).length > 0 && (
         <SingleAnime anime={singleData} />
       )) || (
-        <Typography variant="h4" component="h2">
+        <Text variant="h4" component="h2">
           No Data Exists
-        </Typography>
+        </Text>
       )}
     </div>
   );

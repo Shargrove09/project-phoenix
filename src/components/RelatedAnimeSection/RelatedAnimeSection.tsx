@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { JikanResourceRelation } from "../../common/types";
 
 // CSS handled in SingleAnime.scss
+import classes from "./RelatedAnimeSection.module.scss";
 
 interface Props {
   relations: JikanResourceRelation[] | undefined;
@@ -24,7 +25,7 @@ const RelatedAnimeSection = (props: Props) => {
   return (
     <Paper>
       {relations?.map((relation) => (
-        <Box display="flex">
+        <Box style={{ display: "flex" }}>
           <Text>
             <Text display={"inline"} fs={"italic"} fw={500}>
               {relation.relation} :{" "}
@@ -32,6 +33,7 @@ const RelatedAnimeSection = (props: Props) => {
             {relation.entry.map((entry, index) =>
               entry.type === "anime" ? (
                 <span
+                  className={classes.relatedAnime__animeLink}
                   onClick={() =>
                     handleRelationEntryClick(entry.mal_id.toString())
                   }

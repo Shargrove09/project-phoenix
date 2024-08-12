@@ -3,6 +3,7 @@ import { Carousel } from "@mantine/carousel";
 import { Box, Loader, Text } from "@mantine/core";
 import { useSearchContext } from "../../context/useSearchContext";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "@mantine/hooks";
 
 import classes from "./AnimeCarousel.module.scss";
 
@@ -14,6 +15,9 @@ const AnimeCarousel = (props: Props) => {
   const { shows } = props;
   const { searchById, setSingle } = useSearchContext();
   const navigate = useNavigate();
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  console.log("Is mobile? ", isMobile);
 
   useEffect(() => {}, [shows]);
 
@@ -35,13 +39,15 @@ const AnimeCarousel = (props: Props) => {
 
   return (
     <Carousel
+      align={"start"}
       className={classes.animeCarousel}
-      controlsOffset={"lg"}
+      controlsOffset={"md"}
       loop
       slideGap={"xs"}
-      slideSize="33.333333%"
-      slidesToScroll={3}
+      slideSize={isMobile ? "100%" : "25%"}
+      slidesToScroll={isMobile ? 1 : 3}
       withIndicators
+      p={"lg"}
     >
       {shows.map((show, index) => (
         <Carousel.Slide
