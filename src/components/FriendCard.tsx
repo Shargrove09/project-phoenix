@@ -9,7 +9,7 @@ import "./FriendCard.scss";
 
 interface Props {}
 
-const FriendCard = (props:any) => {
+const FriendCard = (props: any) => {
   const { searchById, setAnimeData } = useSearchContext();
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
 
@@ -131,7 +131,7 @@ const FriendCard = (props:any) => {
                 direction={"column"}
               >
                 <div style={{ textAlign: "center" }}>Anime Updates </div>
-                {recentlyWatched.map(function (anime:any, idx:any) {
+                {recentlyWatched.map(function (anime: any, idx: any) {
                   return (
                     <Grid
                       container

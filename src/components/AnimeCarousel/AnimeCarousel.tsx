@@ -39,15 +39,14 @@ const AnimeCarousel = (props: Props) => {
 
   return (
     <Carousel
-      align={"start"}
       className={classes.animeCarousel}
-      controlsOffset={"md"}
+      controlsOffset={"xs"}
       loop
+      p={"lg"}
       slideGap={"xs"}
       slideSize={isMobile ? "100%" : "25%"}
       slidesToScroll={isMobile ? 1 : 3}
       withIndicators
-      p={"lg"}
     >
       {shows.map((show, index) => (
         <Carousel.Slide

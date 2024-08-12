@@ -29,7 +29,7 @@ const FriendModal = () => {
   const [input, setInput] = useState("");
 
   //
-  const appendToLocalStorage = (data:any) => {
+  const appendToLocalStorage = (data: any) => {
     let oldStorage = JSON.parse(localStorage.getItem("myFriendsData") || "[]");
 
     oldStorage.push(data);
