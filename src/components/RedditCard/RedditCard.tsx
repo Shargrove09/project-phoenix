@@ -73,11 +73,16 @@ const RedditCard = () => {
   };
 
   return (
-    <div>
+    <div style={{ height: "100%" }}>
       {loading ? (
         <Text>Loading...</Text>
       ) : (
-        <Card className={classes.redditCard} display={"flex"} radius={"md"}>
+        <Card
+          className={classes.redditCard}
+          display={"flex"}
+          h={"100%"}
+          radius={"md"}
+        >
           <Card.Section>
             <Text className={classes.redditCard__header} fw={700} size={"xl"}>
               Top Reddit Posts{" "}
